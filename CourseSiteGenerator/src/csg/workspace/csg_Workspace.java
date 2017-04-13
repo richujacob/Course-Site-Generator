@@ -1198,7 +1198,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         
         
 
-        // ADD BOX FOR ADDING A TA
+        // ADD BOX FOR ADDING A TA 
         String namePromptText = props.getProperty(csg_Prop.NAME_PROMPT_TEXT.toString());
         String emailPromptText = props.getProperty(csg_Prop.EMAIL_PROMPT_TEXT.toString());
         String addButtonText = props.getProperty(csg_Prop.ADD_BUTTON_TEXT.toString());
