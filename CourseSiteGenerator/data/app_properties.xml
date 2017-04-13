@@ -78,6 +78,7 @@
         <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>
         <property name="NAME_COLUMN_TEXT"               value="Name"></property>
         <property name="EMAIL_COLUMN_TEXT"              value="Email"></property>
+		<property name="USETA_COLUMN_TEXT"				value="Use"></property>
         <property name="NAME_PROMPT_TEXT"               value="Name"></property>
 		<property name="USE_COLUMN_TEXT"                value="Use"></property>
 		<property name="NAVBAR_COLUMN_TEXT"             value="Navbar Title"></property>
@@ -104,13 +105,13 @@
         <property name="START_OVER_END_TITLE"           value="Can not end before start!"></property>
         <property name="START_OVER_END_MESSAGE"         value="Can not end before start!"></property>
 	   <property name="COURSE_INFO_TEXT"		value="Course Info"></property>
-	   <property name="SUBJECT_TEXT"			value="Subject"></property>
-	   <property name="NUMBER_TEXT"			value="Number"></property>
-	   <property name="SEMESTER_TEXT"			value="Semester"></property>
-	   <property name="YEAR_EXIT"			value="Year"></property>
-	   <property name="TITLE_TEXT"			value="Title"></property>
-	   <property name="INSTRUCTOR_NAME_TEXT"	value="Instructor Name"></property>
-	   <property name="INSTRUCTOR_HOME_TEXT"	value="Instructor Home"></property>
+	   <property name="SUBJECT_TEXT"			value="Subject:"></property>
+	   <property name="NUMBER_TEXT"			value="Number:"></property>
+	   <property name="SEMESTER_TEXT"			value="Semester:"></property>
+	   <property name="YEAR_TEXT"			value="Year:"></property>
+	   <property name="TITLE_TEXT"			value="Title:"></property>
+	   <property name="INSTRUCTOR_NAME_TEXT"	value="Instructor Name:"></property>
+	   <property name="INSTRUCTOR_HOME_TEXT"	value="Instructor Home:"></property>
 	   <property name="EXPORT_DIR_TEXT"		value="Export Dir."></property>
 	   <property name="EXPORT_TEXT"		value="CSE2017\Summer2017\public"></property>
 	   <property name="SITE_TEMPLATE_TEXT"		value="Site Template"></property>
@@ -142,9 +143,9 @@
 		<property name="SUPERVISING_TA2_TEXT"			value="Supervising TA:"></property>
 		<property name="SCHEDULE_HEADER_TEXT"			value="Schedule"></property>
 		<property name="CALENDAR_BOUNDS_TEXT"			value="Calender Boundaries"></property>
-		<property name="STARTING_MONDAY_TEXT"			value="Starting Monday"></property>
-		<property name="ENDING_FRIDAY_TEXT"				value="Ending Friday"></property>
-		<property name="SCHEDULE_ITEMS_TEXT"			value="Schedule ITems"></property>
+		<property name="STARTING_MONDAY_TEXT"			value="Starting Monday:"></property>
+		<property name="ENDING_FRIDAY_TEXT"				value="Ending Friday:"></property>
+		<property name="SCHEDULE_ITEMS_TEXT"			value="Schedule Items"></property>
 		<property name="SCHEDULE_DELETE_BUTTON"			value="-"></property>
 		<property name="TYPE_COLUMN_TEXT"				value="Type"></property>
 		<property name="DATE_COLUMN_TEXT"				value="Date"></property>

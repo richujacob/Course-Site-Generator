@@ -7,6 +7,11 @@ import javafx.stage.Stage;
 import properties_manager.PropertiesManager;
 import static djf.settings.AppPropertyType.*;
 import static djf.settings.AppStartupConstants.*;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import properties_manager.InvalidXMLFileFormatException;
 
 /**
@@ -86,29 +91,57 @@ public abstract class AppTemplate extends Application {
     @Override
     public void start(Stage primaryStage) {
 	// LET'S START BY INITIALIZING OUR DIALOGS
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Language Confirmation");
+        alert.setContentText("Choose your language:");
+        ButtonType buttonTypeOne = new ButtonType("English");
+        ButtonType buttonTypeTwo = new ButtonType("Turkish");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        
 	AppMessageDialogSingleton messageDialog = AppMessageDialogSingleton.getSingleton();
 	messageDialog.init(primaryStage);
 	AppYesNoCancelDialogSingleton yesNoDialog = AppYesNoCancelDialogSingleton.getSingleton();
 	yesNoDialog.init(primaryStage);
-	PropertiesManager props = PropertiesManager.getPropertiesManager();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
 
+        
+	
 	try {
 	    // LOAD APP PROPERTIES, BOTH THE BASIC UI STUFF FOR THE FRAMEWORK
 	    // AND THE CUSTOM UI STUFF FOR THE WORKSPACE
-	    boolean success = loadProperties(APP_PROPERTIES_FILE_NAME);
-	    
-	    if (success) {
-                // GET THE TITLE FROM THE XML FILE
-		String appTitle = props.getProperty(APP_TITLE);
+//	    boolean success = loadProperties(APP_PROPERTIES_FILE_NAME);
+//	    
+//	    if (success) {
+//                // GET THE TITLE FROM THE XML FILE
+//		String appTitle = props.getProperty(APP_TITLE);
+//                
+//                // BUILD THE APP GUI OBJECT FIRST, BUT DON'T
+//		gui = new AppGUI(primaryStage, appTitle, this);
+//
+//                // THIS BUILDS ALL OF THE COMPONENTS, NOTE THAT
+//                // IT WOULD BE DEFINED IN AN APPLICATION-SPECIFIC
+//                // CHILD CLASS
+//		buildAppComponentsHook();
+            if(result.get()==buttonTypeOne){
+                boolean success = loadProperties(APP_PROPERTIES_FILE_NAME);
+                String appTitle = props.getProperty(APP_TITLE);
                 
-                // BUILD THE APP GUI OBJECT FIRST, BUT DON'T
-		gui = new AppGUI(primaryStage, appTitle, this);
-
-                // THIS BUILDS ALL OF THE COMPONENTS, NOTE THAT
-                // IT WOULD BE DEFINED IN AN APPLICATION-SPECIFIC
-                // CHILD CLASS
-		buildAppComponentsHook();
-	    } 
+                gui = new AppGUI(primaryStage, appTitle, this);
+                buildAppComponentsHook();
+                
+	    }else if(result.get()==buttonTypeTwo){
+                boolean success = loadProperties(APP_PROPERTIES_FILE_NAME2);
+                String appTitle = props.getProperty(APP_TITLE);
+                
+                gui = new AppGUI(primaryStage, appTitle, this);
+                buildAppComponentsHook();
+            }
+            else if(result.get()==buttonTypeCancel){
+                
+            }
 	}catch (Exception e) {
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
             dialog.show(props.getProperty(PROPERTIES_LOAD_ERROR_TITLE), props.getProperty(PROPERTIES_LOAD_ERROR_MESSAGE));
