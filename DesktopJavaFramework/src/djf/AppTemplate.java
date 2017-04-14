@@ -23,7 +23,7 @@ import properties_manager.InvalidXMLFileFormatException;
  * @version 1.0
  */
 public abstract class AppTemplate extends Application {
-
+    public String xmlFileName;
     // THIS IS THE APP'S FULL JavaFX GUI. NOTE THAT ALL APPS WOULD
     // SHARE A COMMON UI EXCEPT FOR THE CUSTOM WORKSPACE
     protected AppGUI gui;

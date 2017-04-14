@@ -11,7 +11,7 @@ public class csg_TeachingAssistant<E extends Comparable<E>> implements Comparabl
     // THE TABLE WILL STORE TA NAMES AND EMAILS
     private final StringProperty name;
     private final StringProperty email;
-    //private boolean checkBox;
+    private boolean checkBox;
 
     
     /**
@@ -20,7 +20,7 @@ public class csg_TeachingAssistant<E extends Comparable<E>> implements Comparabl
     public csg_TeachingAssistant(String initName, String initEmail/* boolean checkBox*/) {
         name = new SimpleStringProperty(initName);
         email = new SimpleStringProperty(initEmail);
-        //this.checkBox=checkBox;
+        this.checkBox=checkBox;
     }
 
     // ACCESSORS AND MUTATORS FOR THE PROPERTIES
@@ -41,13 +41,13 @@ public class csg_TeachingAssistant<E extends Comparable<E>> implements Comparabl
         email.set(initEmail);
     }
     
-//    public boolean isCheckBox() {
-//        return checkBox;
-//    }
-//    
-//    public void setCheckBox(boolean checkBox){
-//        this.checkBox=checkBox;
-//    }
+    public boolean isCheckBox() {
+        return checkBox;
+    }
+    
+    public void setCheckBox(boolean checkBox){
+        this.checkBox=checkBox;
+    }
     
     @Override
     public int compareTo(E otherTA) {

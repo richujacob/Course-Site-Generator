@@ -48,6 +48,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -274,7 +275,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
     TableView<csg_TeachingAssistant> taTable;
     TableColumn<csg_TeachingAssistant, String> nameColumn;
     TableColumn<csg_TeachingAssistant, String> emailColumn;
-    TableColumn<csg_TeachingAssistant, CheckBox> useBoxColumn;
+    TableColumn useBoxColumn = new TableColumn();
     
     HBox studentsHeaderBox;
     Label studentsHeaderLabel;
@@ -328,6 +329,11 @@ public class csg_Workspace extends AppWorkspaceComponent {
     Tab recitation;
     Tab schedule;
     Tab projects;
+    
+    BorderPane course;
+    BorderPane rec;
+    BorderPane sch;
+    BorderPane proj;
     
     
     // THE OFFICE HOURS GRID
@@ -523,6 +529,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         courseDetailsTable.getColumns().add(fileColumn);
         courseDetailsTable.getColumns().add(scriptColumn);
         courseDetailsTable.setMaxWidth(500);
+        
         courseTableBox.getChildren().add(courseDetailsTable);
         
         courseTableBox.setPadding(new Insets(10, 0, 0, 10));
@@ -601,10 +608,13 @@ public class csg_Workspace extends AppWorkspaceComponent {
         courseDetailsMain.getChildren().add(courseDetailsBottom);
         //courseDetailsMain.setAlignment(Pos.CENTER);
         //courseDetailsMain.setMaxWidth(100);
+        course = new BorderPane();
+       
         courseDetailsTop.setPadding(new Insets(0, 140, 0, 0));
         courseDetailsMain.setSpacing(10);
-        courseDetailsMain.setPadding(new Insets(10, 10, 10, 10));
+        courseDetailsMain.setPadding(new Insets(10, 500, 10, 335));
         courseDetailsMain.setStyle("-fx-background-color: BDD5E1");
+        course.setCenter(courseDetailsMain);
         //courseScroll.setMaxWidth(400);
         
         VBox recitationMain = new VBox();
@@ -750,6 +760,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         //recitationTop.setPadding(new Insets(0, 130, 0, 0));
         recitationBottom.setStyle("-fx-background-color: #ccccff");
         recitationMain.getChildren().add(recitationBottom);
+        recitationMain.setPadding(new Insets(10, 500, 10, 335));
         recitationMain.setStyle("-fx-background-color: BDD5E1");
         
         VBox scheduleMain = new VBox();
@@ -932,7 +943,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
        scheduleBottom.setPadding(new Insets(0, 10, 0, 0));
        scheduleBottom.setStyle("-fx-background-color: #ccccff");
        scheduleMain.getChildren().add(scheduleBottom);
-       scheduleMain.setPadding(new Insets(10, 10, 10, 10));
+       scheduleMain.setPadding(new Insets(10, 500, 10, 335));
        scheduleMain.setStyle("-fx-background-color: BDD5E1");
        scheduleMain.setSpacing(10);
        
@@ -1164,7 +1175,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
        projectsTop.setStyle("-fx-background-color: #ccccff");
        projectsBottom.setStyle("-fx-background-color: #ccccff");
        projectsMain.setStyle("-fx-background-color: BDD5E1");
-       projectsMain.setPadding(new Insets(10, 10, 10, 10));
+       projectsMain.setPadding(new Insets(10, 500, 10, 335));
        projectsMain.setSpacing(10);
        projectsMain.getChildren().add(projectsBottom);
        
@@ -1185,13 +1196,15 @@ public class csg_Workspace extends AppWorkspaceComponent {
         String useTAColumnText = props.getProperty(csg_Prop.USETA_COLUMN_TEXT.toString());
         nameColumn = new TableColumn(nameColumnText);
         emailColumn = new TableColumn(emailColumnText);
-        useBoxColumn = new TableColumn(useTAColumnText);
+        useBoxColumn.setText(useTAColumnText);
         nameColumn.setCellValueFactory(
                 new PropertyValueFactory<csg_TeachingAssistant, String>("name")
         );
         emailColumn.setCellValueFactory(
                 new PropertyValueFactory<csg_TeachingAssistant, String>("email")
         );
+        useBoxColumn.setCellFactory(CheckBoxTableCell.forTableColumn(useBoxColumn));
+        
         taTable.getColumns().add(useBoxColumn);
         taTable.getColumns().add(nameColumn);
         taTable.getColumns().add(emailColumn);
