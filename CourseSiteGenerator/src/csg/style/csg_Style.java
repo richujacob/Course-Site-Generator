@@ -46,7 +46,10 @@ public class csg_Style extends AppStyleComponent {
     // FOR HIGHLIGHTING CELLS, COLUMNS, AND ROWS
     public static String CLASS_HIGHLIGHTED_GRID_CELL = "highlighted_grid_cell";
     public static String CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN = "highlighted_grid_row_or_column";
-    
+    public static String CLASS_COURSE_INFO_LABEL = "course_info_label";
+    public static String CLASS_SITE_TEMPLATE_LABEL = "site_template_label";
+    public static String CLASS_PAGE_STYLE_LABEL = "page_style_label";
+    public static String CLASS_PROJECT_RECITATION_SCHEDULE_LABEL = "recitation_project_schedule_style_label";
     // THIS PROVIDES ACCESS TO OTHER COMPONENTS
     private AppTemplate app;
     
@@ -67,8 +70,29 @@ public class csg_Style extends AppStyleComponent {
 
         // AND NOW OUR WORKSPACE STYLE
         initTAWorkspaceStyle();
+        initTabDetails();
     }
-
+    
+    private void initTabDetails(){
+       csg_Workspace workspaceComponent = (csg_Workspace)app.getWorkspaceComponent();
+       workspaceComponent.getScheduleLabel().getStyleClass().add(CLASS_PROJECT_RECITATION_SCHEDULE_LABEL);
+       workspaceComponent.getRecitationLabel().getStyleClass().add(CLASS_PROJECT_RECITATION_SCHEDULE_LABEL);
+       workspaceComponent.getProjectsHeaderLabel().getStyleClass().add(CLASS_PROJECT_RECITATION_SCHEDULE_LABEL);
+       workspaceComponent.getCourseInfoLabel().getStyleClass().add(CLASS_COURSE_INFO_LABEL);
+       workspaceComponent.getSiteTemplateLabel().getStyleClass().add(CLASS_SITE_TEMPLATE_LABEL);
+       workspaceComponent.getPageStyleLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       workspaceComponent.getAddEditLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       workspaceComponent.getAddEditLabelBox().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       workspaceComponent.getAddEditStudentsLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       workspaceComponent.getAddEditTeamsLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       workspaceComponent.getScheduleLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       workspaceComponent.getScheduleItemsLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       workspaceComponent.getTeamsLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       //workspaceComponent.getStudentsHeaderLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+//workspaceComponent.
+        
+    }
+    
     /**
      * This function specifies all the style classes for
      * all user interface controls in the workspace.

@@ -78,7 +78,7 @@
         <property name="TAS_HEADER_TEXT"                value="Öğretim Görevlileri"></property>
         <property name="NAME_COLUMN_TEXT"               value="İsim"></property>
         <property name="EMAIL_COLUMN_TEXT"              value="E-posta"></property>
-		<property name="USETA_COLUMN_TEXT"				value="Kullan"></property>
+		<property name="USETA_COLUMN_TEXT"				value="Lisans diploması"></property>
         <property name="NAME_PROMPT_TEXT"               value="İsim"></property>
 		<property name="USE_COLUMN_TEXT"                value="Kullan"></property>
 		<property name="NAVBAR_COLUMN_TEXT"             value="Navbar Başlığı"></property>

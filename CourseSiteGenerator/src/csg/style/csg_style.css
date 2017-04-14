@@ -133,3 +133,23 @@
     -fx-border: 5px;
     -fx-border-style:solid;
 }
+
+.recitation_project_schedule_style_label{
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+}
+
+.course_info_label{
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+}
+
+.site_template_label{
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+}
+
+.page_style_label{
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+}

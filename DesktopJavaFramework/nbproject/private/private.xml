@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/DesktopJavaFramework/src/djf/AppTemplate.java</file>
             <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/DesktopJavaFramework/src/djf/settings/AppStartupConstants.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/DesktopJavaFramework/src/djf/ui/AppGUI.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/DesktopJavaFramework/src/djf/AppTemplate.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/DesktopJavaFramework/src/djf/settings/AppPropertyType.java</file>
         </group>
     </open-files>
 </project-private>

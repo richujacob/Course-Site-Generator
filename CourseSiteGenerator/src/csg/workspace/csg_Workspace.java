@@ -75,6 +75,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
     //course details info pane
     HBox courseInfoBox;
     Label courseInfoLabel;
+
+    
     HBox subjectLine;
     Label subjectLabel;
     Label numberLabel;
@@ -396,7 +398,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         courseInfoLabel = new Label(courseInfoText);
         //courseInfoLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 15));
         courseInfoBox.getChildren().add(courseInfoLabel);
-        courseInfoBox.setPadding(new Insets(10, 0, 0, 10));     
+        courseInfoBox.setPadding(new Insets(10, 0, 0, 30));     
         
                 
         subjectLine = new HBox();
@@ -412,7 +414,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         subjectLine.getChildren().add(numberLabel);
         numberLabel.setPadding(new Insets(0, 60, 0, 80));
         subjectLine.getChildren().add(numberCombo);
-        subjectLine.setPadding(new Insets(10, 0, 0, 10));
+        subjectLine.setPadding(new Insets(10, 0, 0, 30));
         
         semesterLine = new HBox();
         String semesterText = props.getProperty(csg_Prop.SEMESTER_TEXT.toString());
@@ -425,7 +427,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         semesterLine.getChildren().add(yearLabel);
         yearLabel.setPadding(new Insets(0, 76, 0, 56));
         semesterLine.getChildren().add(yearCombo);
-        semesterLine.setPadding(new Insets(10, 0, 0, 10));
+        semesterLine.setPadding(new Insets(10, 0, 0, 30));
         
         titleBox = new HBox();
         String titleText = props.getProperty(csg_Prop.TITLE_TEXT.toString());
@@ -435,7 +437,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         titleLabel.setPadding(new Insets(0, 82, 0, 0));
         titleBox.getChildren().add(titleField);
         titleField.setMinWidth(350);
-        titleBox.setPadding(new Insets(10, 0, 0, 10));
+        titleBox.setPadding(new Insets(10, 0, 0, 30));
         
         instructorNameBox = new HBox();
         String instructorNameText = props.getProperty(csg_Prop.INSTRUCTOR_NAME_TEXT.toString());
@@ -445,7 +447,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         instructorNameLabel.setPadding(new Insets(0, 10, 0, 0));
         instructorNameBox.getChildren().add(instructorNameField);
         instructorNameField.setMinWidth(350);
-        instructorNameBox.setPadding(new Insets(10, 0, 0, 10));
+        instructorNameBox.setPadding(new Insets(10, 0, 0, 30));
         
         exportDirectoryBox = new HBox();
         String exportDirText = props.getProperty(csg_Prop.EXPORT_DIR_TEXT.toString());
@@ -455,7 +457,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         String changeButtonText = props.getProperty(csg_Prop.CHANGE_BUTTON_TEXT.toString());
         changeButton = new Button(changeButtonText);
         exportDirectoryBox.getChildren().add(exportDirectoryLabel);
-        exportDirectoryLabel.setPadding(new Insets(0, 46, 0, 0));
+        exportDirectoryLabel.setPadding(new Insets(0, 46, 0, 20));
         exportDirectoryBox.getChildren().add(exportText);
         exportText.setPadding( new Insets(0, 80, 0, 0));
         exportDirectoryBox.getChildren().add(changeButton);
@@ -535,7 +537,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         courseTableBox.setPadding(new Insets(10, 0, 0, 10));
         courseDetailsCenter.getChildren().add(courseTableBox);
         courseDetailsCenter.setStyle("-fx-background-color: #ccccff");
-        courseDetailsCenter.setPadding(new Insets(10, 30, 20, 20));
+        courseDetailsCenter.setPadding(new Insets(10, 10, 20, 20));
         courseDetailsMain.getChildren().add(courseDetailsCenter);
         
         VBox courseDetailsBottom = new VBox();
@@ -1204,7 +1206,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
                 new PropertyValueFactory<csg_TeachingAssistant, String>("email")
         );
         useBoxColumn.setCellFactory(CheckBoxTableCell.forTableColumn(useBoxColumn));
-        
+        taTable.setEditable(true);
         taTable.getColumns().add(useBoxColumn);
         taTable.getColumns().add(nameColumn);
         taTable.getColumns().add(emailColumn);
@@ -1482,6 +1484,63 @@ public class csg_Workspace extends AppWorkspaceComponent {
 
     public HashMap<String, Label> getOfficeHoursGridTACellLabels() {
         return officeHoursGridTACellLabels;
+    }
+    
+    public Label getCourseInfoLabel() {
+        return courseInfoLabel;
+    }
+
+    public Label getRecitationLabel() {
+        return recitationLabel;
+    }
+
+    public Label getStudentsHeaderLabel() {
+        return studentsHeaderLabel;
+    }
+
+    public Label getTeamLabel() {
+        return teamLabel;
+    }
+
+    public Label getScheduleItemsLabel() {
+        return scheduleItemsLabel;
+    }
+
+    public Label getScheduleLabel() {
+        return scheduleLabel;
+    }
+
+    public Label getProjectsHeaderLabel() {
+        return projectsHeaderLabel;
+    }
+    
+
+    public Label getSiteTemplateLabel() {
+        return siteTemplateLabel;
+    }
+
+    public Label getPageStyleLabel() {
+        return pageStyleLabel;
+    }
+
+    public Label getAddEditLabel() {
+        return addEditLabel;
+    }
+
+    public Label getAddEditLabelBox() {
+        return addEditLabelBox;
+    }
+
+    public Label getAddEditTeamsLabel() {
+        return addEditTeamsLabel;
+    }
+
+    public Label getTeamsLabel() {
+        return teamsLabel;
+    }
+
+    public Label getAddEditStudentsLabel() {
+        return addEditStudentsLabel;
     }
     
     public String getCellKey(Pane testPane) {
