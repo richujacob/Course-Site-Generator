@@ -32,6 +32,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.DirectoryChooserBuilder;
+//import jtps.jTPS;
+//import jtps.jTPS_Transaction;
 
 /**
  * This class provides the event programmed responses for the file controls
@@ -42,6 +44,7 @@ import javafx.stage.DirectoryChooserBuilder;
  */
 public class AppFileController {
     // HERE'S THE APP
+    //static jTPS jTPS = new jTPS();
     AppTemplate app;
     
     // WE WANT TO KEEP TRACK OF WHEN SOMETHING HAS NOT BEEN SAVED
@@ -101,11 +104,9 @@ public class AppFileController {
                 // RESET THE DATA
                 app.getDataComponent().resetData();
                 
-                try{// NOW RELOAD THE WORKSPACE WITH THE RESET DATA
+                // NOW RELOAD THE WORKSPACE WITH THE RESET DATA
                 app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
+
 		// MAKE SURE THE WORKSPACE IS ACTIVATED
 		app.getWorkspaceComponent().activateWorkspace(app.getGUI().getAppPane());
 		
@@ -431,4 +432,17 @@ public class AppFileController {
     public boolean isSaved() {
         return saved;
     }
+    
+//     public void Undo(){
+//        jTPS.undoTransaction();
+//         AppGUI gui = app.getGUI();
+//        gui.getFileController().markAsEdited(gui);
+//        //markWorkAsEdited();
+//    }
+//    public void Redo(){
+//        jTPS.doTransaction();
+//         AppGUI gui = app.getGUI();
+//        gui.getFileController().markAsEdited(gui);
+//        //markWorkAsEdited();
+//    }
 }

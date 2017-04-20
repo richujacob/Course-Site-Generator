@@ -21,6 +21,7 @@ import djf.components.AppStyleComponent;
 import static djf.components.AppStyleComponent.CLASS_BORDERED_PANE;
 import static djf.components.AppStyleComponent.CLASS_FILE_BUTTON;
 
+
 /**
  * This class provides the basic user interface for this application,
  * including all the file controls, but not including the workspace,
@@ -188,7 +189,15 @@ public class AppGUI {
         });
         exitButton.setOnAction(e -> {
             fileController.handleExitRequest();
-        });	
+        });
+        
+//        undoButton.setOnAction(e -> {
+//            fileController.undo();
+//        });
+//        
+//        redoButton.setOnAction(e -> {
+//            fileController.redo();
+//        });
     }
 
     // INITIALIZE THE WINDOW (i.e. STAGE) PUTTING ALL THE CONTROLS

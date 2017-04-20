@@ -42,6 +42,10 @@ public class csg_TAFiles implements AppFileComponent {
     static final String JSON_NAME = "name";
     static final String JSON_UNDERGRAD_TAS = "undergrad_tas";
     static final String JSON_EMAIL = "email";
+    static final String JSON_USE = "use";
+    static final String JSON_NAVBARTITLE = "Navbar Title";
+    static final String JSON_FILENAME = "File Name";
+    static final String JSON_SCRIPT = "script";
     
     public csg_TAFiles(csg_App initApp) {
         app = initApp;
