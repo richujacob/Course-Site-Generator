@@ -24,6 +24,11 @@ public class csg_TAData implements AppDataComponent {
     // NOTE THAT THIS DATA STRUCTURE WILL DIRECTLY STORE THE
     // DATA IN THE ROWS OF THE TABLE VIEW
     ObservableList<csg_TeachingAssistant> teachingAssistants;
+    ObservableList<csg_CourseDetails> courseDetailsInfo;
+    ObservableList<csg_Recitation> recTable;
+    ObservableList<csg_Schedule> scheduleTable;
+    ObservableList<csg_Teams> teamsTable;
+    ObservableList<csg_Students> studentsTable;
 
     // THIS WILL STORE ALL THE OFFICE HOURS GRID DATA, WHICH YOU
     // SHOULD NOTE ARE StringProperty OBJECTS THAT ARE CONNECTED
@@ -61,6 +66,13 @@ public class csg_TAData implements AppDataComponent {
 
         // CONSTRUCT THE LIST OF TAs FOR THE TABLE
         teachingAssistants = FXCollections.observableArrayList();
+        courseDetailsInfo = FXCollections.observableArrayList();
+        recTable = FXCollections.observableArrayList();
+        scheduleTable = FXCollections.observableArrayList();
+        teamsTable = FXCollections.observableArrayList();
+        studentsTable = FXCollections.observableArrayList();
+        // CONSTRUCT THE LIST OF TAs FOR THE TABLE
+        
 
         // THESE ARE THE DEFAULT OFFICE HOURS
         startHour = MIN_START_HOUR;
@@ -88,6 +100,11 @@ public class csg_TAData implements AppDataComponent {
         endHour = MAX_END_HOUR;
         teachingAssistants.clear();
         officeHours.clear();
+        courseDetailsInfo.clear();
+        recTable.clear();
+        scheduleTable.clear();
+        teamsTable.clear();
+        studentsTable.clear();
         
         csg_Workspace workspaceComponent = (csg_Workspace)app.getWorkspaceComponent();
         
@@ -349,5 +366,62 @@ public class csg_TAData implements AppDataComponent {
                 addOfficeHoursReservation(ts.getDay(), ts.getTime(), ts.getName());
         }
     }
+    
+    public void addPage(boolean checkBox, String navbar, String fileName, String script) {
+        // MAKE THE TA
+        csg_CourseDetails cD = new csg_CourseDetails(checkBox, navbar, fileName, script);
+        
+       courseDetailsInfo.add(cD);
+        // ADD THE TA
+//        if (!containsTA(initName, initEmail)) {
+//            teachingAssistants.add(ta);
+//        }
+
+        //Collections.sort(courseDetailsInfo);
+    }
+     
+    public ObservableList getCourseDetailsInfo() {
+        return courseDetailsInfo;
+    }
+    
+    public void addRec(String section, String instructor, String dayTime, String location, String ta, String ta2 ){
+        csg_Recitation rec = new csg_Recitation(section, instructor, dayTime, location, ta, ta2);
+        recTable.add(rec);
+    }
+    
+    public ObservableList<csg_Recitation> getRecTable() {
+        return recTable;
+    }
+
+    public void addSchedule(String type, String date, String title, String topic){
+        csg_Schedule sch = new csg_Schedule(type, date, title, topic);
+        scheduleTable.add(sch);
+    }
+    
+    public ObservableList<csg_Schedule> getScheduleTable() {
+        return scheduleTable;
+    }
+    
+    public void addTeam(String name, String color, String textColor, String link){
+        csg_Teams team = new csg_Teams(name, color, textColor, link);
+        teamsTable.add(team);
+    }
+    
+    public ObservableList<csg_Teams> getTeamsTable() {
+        return teamsTable;
+    }
+    
+    public void addStudent(String firstName, String lastName, String team, String role){
+        csg_Students student = new csg_Students(firstName, lastName, team, role);
+        studentsTable.add(student);
+    }
+
+    public ObservableList<csg_Students> getStudentsTable() {
+        return studentsTable;
+    }
+    
+    
+    
+    
     
 }

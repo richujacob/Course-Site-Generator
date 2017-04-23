@@ -1,0 +1,20 @@
+
+{
+    "site_pages":[
+		{
+			"navbarTitle":"Home",
+			"fileName":"index.html",
+			"script":"homebuilder.js"
+		}
+    ],
+    "startHour":"0",
+    "endHour":"23",
+    "undergrad_tas":[
+        {
+            "name":"mhvh",
+            "email":"ghf.fgh@ht.ed"
+        }
+    ],
+    "officeHours":[
+    ]
+}

@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
 /**
  *
  * @author Richu
- */
+// */
 public class csg_TeachingAssistant<E extends Comparable<E>> implements Comparable<E>  {
     // THE TABLE WILL STORE TA NAMES AND EMAILS
     private final StringProperty name;

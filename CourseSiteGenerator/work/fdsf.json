@@ -1,0 +1,15 @@
+
+{
+    "site_pages":[
+    ],
+    "startHour":"0",
+    "endHour":"23",
+    "undergrad_tas":[
+        {
+            "name":"sdfs",
+            "email":"fdsfs.sdf@sfds.edu"
+        }
+    ],
+    "officeHours":[
+    ]
+}

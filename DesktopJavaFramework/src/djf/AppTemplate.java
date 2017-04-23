@@ -32,6 +32,8 @@ public abstract class AppTemplate extends Application {
     // HAS OBJECTS THAT CAN BE SWAPPED OUT FOR OTHER COMPONENTS
     // THIS APP HAS 4 COMPONENTS
     
+    //protected AppDataComponent courseDetailsComponent;
+    
     // THE COMPONENT FOR MANAGING CUSTOM APP DATA
     protected AppDataComponent dataComponent;
     

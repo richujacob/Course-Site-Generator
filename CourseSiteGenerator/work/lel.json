@@ -1,0 +1,23 @@
+
+{
+    "startHour":"0",
+    "endHour":"23",
+    "undergrad_tas":[
+        {
+            "name":"lel",
+            "email":"lelkel@lel.com"
+        }
+    ],
+    "officeHours":[
+    ],
+    "site_pages":[
+    ],
+    "recitations":[
+    ],
+    "schedule":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

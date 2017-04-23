@@ -1,5 +1,6 @@
 
 {
+    
     "startHour":"9",
     "endHour":"20",
     "undergrad_tas":[
@@ -12,8 +13,8 @@
             "email":"sdfds.dsfsd@sdfs.edu"
         },
         {
-            "name":"sdfsd",
-            "email":"fdsfs.edfsd@sfs.edu"
+            "name":"omg",
+            "email":"dsfsd.sdf@sdfsd.edu"
         }
     ],
     "officeHours":[
@@ -42,10 +43,58 @@
             "time":"3_00pm",
             "name":"Yu Zhao"
         },
-		{
+        {
             "day":"WEDNESDAY",
             "time":"4_00pm",
             "name":"Yu Zhao"
         }
-    ]
+    ],
+	"site_pages":[
+        {
+            "use":false,
+            "navbarTitle":"Home",
+            "fileName":"index.html",
+            "script":"homebuilder.js"
+        }
+    ],
+	"recitations":[
+		{
+			"section":"sfs",
+			"instructor":"mckenna",
+			"daytime":"thursday4/20",
+			"location":"india",
+			"ta":"me",
+			"ta2":"you"
+		}
+	],
+	"schedule":[
+		{
+			"type":"sfa",
+			"date":"todaynigga",
+			"title":"thename",
+			"topic":"whatwetalkabout"
+		}
+	],
+	"teams":[
+		{
+			"name":"Atomic Comics",
+			"color":"234434",
+			"textColor":"oij3tij",
+			"link":"www.website.com"
+		}
+	],
+	"students":[
+		{	
+			"firstName":"where",
+			"lastName":"is",
+			"team":"ra",
+			"role":"jack"
+		},
+		{	
+			"firstName":"whersdfse",
+			"lastName":"issdfs",
+			"team":"rasdfs",
+			"role":"jack"
+		}
+	]
 }

@@ -41,6 +41,7 @@ import static csg.csg_Prop.UPDATE_BUTTON_TEXT;
 import csg.style.csg_Style;
 import csg.data.csg_TAData;
 import csg.data.csg_TeachingAssistant;
+import csg.data.csg_CourseDetails;
 import csg.file.csg_TimeSlot;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
@@ -53,6 +54,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import csg.data.csg_CourseDetailsData;
+import csg.data.csg_Recitation;
+import csg.data.csg_Schedule;
+import csg.data.csg_Students;
+import csg.data.csg_Teams;
 /**
  *
  * @author Richu
@@ -120,11 +126,11 @@ public class csg_Workspace extends AppWorkspaceComponent {
     
     Button selectTemplate;
     
-    TableView<csg_TeachingAssistant> courseDetailsTable;
-    TableColumn<csg_TeachingAssistant, String> useColumn;
-    TableColumn<csg_TeachingAssistant, String> navBarColumn;
-    TableColumn<csg_TeachingAssistant, String> fileColumn;
-    TableColumn<csg_TeachingAssistant, String> scriptColumn;
+    TableView<csg_CourseDetails> courseDetailsTable;
+    TableColumn useColumn = new TableColumn();
+    TableColumn<csg_CourseDetails, String> navBarColumn;
+    TableColumn<csg_CourseDetails, String> fileColumn;
+    TableColumn<csg_CourseDetails, String> scriptColumn;
     
     HBox pageStyleBox;
     Label pageStyleLabel;
@@ -148,13 +154,13 @@ public class csg_Workspace extends AppWorkspaceComponent {
     HBox recitationHeader;
     Label recitationLabel;
     
-    TableView<csg_TeachingAssistant> recitationTable;
-    TableColumn<csg_TeachingAssistant, String> sectionColumn;
-    TableColumn<csg_TeachingAssistant, String> instructorColumn;
-    TableColumn<csg_TeachingAssistant, String> dayTimeColumn;
-    TableColumn<csg_TeachingAssistant, String> locationColumn;
-    TableColumn<csg_TeachingAssistant, String> ta1Column;
-    TableColumn<csg_TeachingAssistant, String> ta2Column;
+    TableView<csg_Recitation> recitationTable;
+    TableColumn<csg_Recitation, String> sectionColumn;
+    TableColumn<csg_Recitation, String> instructorColumn;
+    TableColumn<csg_Recitation, String> dayTimeColumn;
+    TableColumn<csg_Recitation, String> locationColumn;
+    TableColumn<csg_Recitation, String> ta1Column;
+    TableColumn<csg_Recitation, String> ta2Column;
     
     Button recitationDeleteButton;
     
@@ -200,11 +206,11 @@ public class csg_Workspace extends AppWorkspaceComponent {
     Label scheduleItemsLabel;
     Button scheduleDeleteItems;
     
-    TableView<csg_TeachingAssistant> scheduleTable;
-    TableColumn<csg_TeachingAssistant, String> typeColumn;
-    TableColumn<csg_TeachingAssistant, String> dateColumn;
-    TableColumn<csg_TeachingAssistant, String> titleColumn;
-    TableColumn<csg_TeachingAssistant, String> topicColumn;
+    TableView<csg_Schedule> scheduleTable;
+    TableColumn<csg_Schedule, String> typeColumn;
+    TableColumn<csg_Schedule, String> dateColumn;
+    TableColumn<csg_Schedule, String> titleColumn;
+    TableColumn<csg_Schedule, String> topicColumn;
     
     HBox addEditScheduleBox;
     Label addEditLabelBox;
@@ -268,11 +274,11 @@ public class csg_Workspace extends AppWorkspaceComponent {
     ColorPicker color1 = new ColorPicker();
     ColorPicker color2 = new ColorPicker();
     
-    TableView<csg_TeachingAssistant> teamsTable;
-    TableColumn<csg_TeachingAssistant, String> nameTeamsColumn;
-    TableColumn<csg_TeachingAssistant, String> colorTeamsColumn;
-    TableColumn<csg_TeachingAssistant, String> textColorTeamsColumn;
-    TableColumn<csg_TeachingAssistant, String> linkTeamsColumn;
+    TableView<csg_Teams> teamsTable;
+    TableColumn<csg_Teams, String> nameTeamsColumn;
+    TableColumn<csg_Teams, String> colorTeamsColumn;
+    TableColumn<csg_Teams, String> textColorTeamsColumn;
+    TableColumn<csg_Teams, String> linkTeamsColumn;
     // FOR THE TA TABLE
     TableView<csg_TeachingAssistant> taTable;
     TableColumn<csg_TeachingAssistant, String> nameColumn;
@@ -305,11 +311,11 @@ public class csg_Workspace extends AppWorkspaceComponent {
     Button addUpdateButton5;
     Button clearButton5;
     
-    TableView<csg_TeachingAssistant> studentsTable;
-    TableColumn<csg_TeachingAssistant, String> firstNameColumn;
-    TableColumn<csg_TeachingAssistant, String> lastNameColumn;
-    TableColumn<csg_TeachingAssistant, String> teamColumn;
-    TableColumn<csg_TeachingAssistant, String> roleColumn;
+    TableView<csg_Students> studentsTable;
+    TableColumn<csg_Students, String> firstNameColumn;
+    TableColumn<csg_Students, String> lastNameColumn;
+    TableColumn<csg_Students, String> teamColumn;
+    TableColumn<csg_Students, String> roleColumn;
     
     // THE TA INPUT
     HBox addBox;
@@ -518,7 +524,10 @@ public class csg_Workspace extends AppWorkspaceComponent {
         String navBarText = props.getProperty(csg_Prop.NAVBAR_COLUMN_TEXT.toString());
         String fileTitleText = props.getProperty(csg_Prop.FILE_COLUMN_TEXT.toString());
         String scriptText = props.getProperty(csg_Prop.SCRIPT_COLUMN_TEXT.toString());
-        useColumn = new TableColumn(useColumnText);
+        csg_TAData sitePagesStuff = (csg_TAData) app.getDataComponent();
+        ObservableList<csg_CourseDetails> sitePages = sitePagesStuff.getTeachingAssistants();
+        courseDetailsTable.setItems(sitePages);
+        useColumn.setText(useColumnText);
         useColumn.setMinWidth(40);
         navBarColumn = new TableColumn(navBarText);
         navBarColumn.setMinWidth(120);
@@ -526,12 +535,25 @@ public class csg_Workspace extends AppWorkspaceComponent {
         fileColumn.setMinWidth(120);
         scriptColumn = new TableColumn(scriptText);
         scriptColumn.setMinWidth(120);
+        
+        navBarColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_CourseDetails, String>("navbarTitle")
+        );
+        
+        fileColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_CourseDetails, String>("fileName")
+        );
+        
+        scriptColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_CourseDetails, String>("script")
+        );
+        useColumn.setCellFactory(CheckBoxTableCell.forTableColumn(useColumn));
+        courseDetailsTable.setMaxWidth(500);
+        courseDetailsTable.setEditable(true);
         courseDetailsTable.getColumns().add(useColumn);
         courseDetailsTable.getColumns().add(navBarColumn);
         courseDetailsTable.getColumns().add(fileColumn);
         courseDetailsTable.getColumns().add(scriptColumn);
-        courseDetailsTable.setMaxWidth(500);
-        
         courseTableBox.getChildren().add(courseDetailsTable);
         
         courseTableBox.setPadding(new Insets(10, 0, 0, 10));
@@ -655,6 +677,27 @@ public class csg_Workspace extends AppWorkspaceComponent {
         ta1Column.setMinWidth(88);
         ta2Column = new TableColumn(ta2ColumnText);
         ta2Column.setMinWidth(88);
+        csg_TAData recTableStuff = (csg_TAData) app.getDataComponent();
+        ObservableList<csg_Recitation> recitationTables = recTableStuff.getRecTable();
+        recitationTable.setItems(recitationTables);
+        sectionColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Recitation, String>("section")
+        );
+        instructorColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Recitation, String>("instructor")
+        );
+        dayTimeColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Recitation, String>("dayTime")
+        );
+        locationColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Recitation, String>("location")
+        );
+        ta1Column.setCellValueFactory(
+                new PropertyValueFactory<csg_Recitation, String>("ta")
+        );
+        ta2Column.setCellValueFactory(
+                new PropertyValueFactory<csg_Recitation, String>("ta2")
+        );
         recitationTable.getColumns().add(sectionColumn);
         recitationTable.getColumns().add(instructorColumn);
         recitationTable.getColumns().add(dayTimeColumn);
@@ -819,6 +862,9 @@ public class csg_Workspace extends AppWorkspaceComponent {
        String dateText = props.getProperty(csg_Prop.DATE_COLUMN_TEXT);
        String titleSchText = props.getProperty(csg_Prop.TITLE_COLUMN_TEXT);
        String topicText = props.getProperty(csg_Prop.TOPIC_COLUMN_TEXT);
+       csg_TAData schTableStuff = (csg_TAData) app.getDataComponent();
+       ObservableList<csg_Schedule> scheduleTables = schTableStuff.getScheduleTable();
+       scheduleTable.setItems(scheduleTables);
        typeColumn = new TableColumn(typeText);
        typeColumn.setMinWidth(100);
        dateColumn = new TableColumn(dateText);
@@ -827,6 +873,18 @@ public class csg_Workspace extends AppWorkspaceComponent {
        titleColumn.setMinWidth(155);
        topicColumn = new TableColumn(topicText);
        topicColumn.setMinWidth(220);
+       typeColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Schedule, String>("type")
+        );
+       dateColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Schedule, String>("date")
+        );
+       titleColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Schedule, String>("title")
+        );
+       topicColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Schedule, String>("topic")
+        );
        scheduleTable.getColumns().add(typeColumn);
        scheduleTable.getColumns().add(dateColumn);
        scheduleTable.getColumns().add(titleColumn);
@@ -980,6 +1038,9 @@ public class csg_Workspace extends AppWorkspaceComponent {
        String colorTeamsText = props.getProperty(csg_Prop.COLOR_TEAMS_COLUMN.toString());
        String textColorTeamsText = props.getProperty(csg_Prop.TEXTCOLOR_TEAMS_COLUMN.toString());
        String linkTeamsText = props.getProperty(csg_Prop.LINK_TEAMS_COLUMN.toString());
+       csg_TAData teamsTableStuff = (csg_TAData) app.getDataComponent();
+       ObservableList<csg_Teams> teamTables = teamsTableStuff.getTeamsTable();
+       teamsTable.setItems(teamTables);
        nameTeamsColumn = new TableColumn(nameTeamsText);
        nameTeamsColumn.setMinWidth(150);
        colorTeamsColumn = new TableColumn(colorTeamsText);
@@ -988,6 +1049,18 @@ public class csg_Workspace extends AppWorkspaceComponent {
        textColorTeamsColumn.setMinWidth(150);
        linkTeamsColumn = new TableColumn(linkTeamsText);
        linkTeamsColumn.setMinWidth(150);
+       nameTeamsColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Teams, String>("name")
+        );
+       colorTeamsColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Teams, String>("color")
+        );
+       textColorTeamsColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Teams, String>("textColor")
+        );
+       linkTeamsColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Teams, String>("link")
+        );
        teamsTable.getColumns().add(nameTeamsColumn);
        teamsTable.getColumns().add(colorTeamsColumn);
        teamsTable.getColumns().add(textColorTeamsColumn);
@@ -1088,6 +1161,9 @@ public class csg_Workspace extends AppWorkspaceComponent {
        String lastNameColText = props.getProperty(csg_Prop.LASTNAME_COLUMN.toString());
        String teamColText = props.getProperty(csg_Prop.TEAM_COLUMN.toString());
        String roleColText = props.getProperty(csg_Prop.ROLE_COLUMN.toString());
+       csg_TAData studentsTableStuff = (csg_TAData) app.getDataComponent();
+       ObservableList<csg_Students> studentTables = studentsTableStuff.getStudentsTable();
+       studentsTable.setItems(studentTables);
        firstNameColumn = new TableColumn(firstNameColText);
        firstNameColumn.setMinWidth(150);
        lastNameColumn = new TableColumn(lastNameColText);
@@ -1096,6 +1172,18 @@ public class csg_Workspace extends AppWorkspaceComponent {
        teamColumn.setMinWidth(150);
        roleColumn = new TableColumn(roleColText);
        roleColumn.setMinWidth(150);
+       firstNameColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Students, String>("firstName")
+        );
+       lastNameColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Students, String>("lastName")
+        );
+       teamColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Students, String>("team")
+        );
+       roleColumn.setCellValueFactory(
+                new PropertyValueFactory<csg_Students, String>("role")
+        );
        studentsTable.getColumns().add(firstNameColumn);
        studentsTable.getColumns().add(lastNameColumn);
        studentsTable.getColumns().add(teamColumn);
@@ -1605,6 +1693,9 @@ public class csg_Workspace extends AppWorkspaceComponent {
     public void reloadWorkspace(AppDataComponent dataComponent) {
         csg_TAData taData = (csg_TAData)dataComponent;
         reloadOfficeHoursGrid(taData);
+        
+        //csg_CourseDetailsData cd = (csg_CourseDetailsData)dataComponent;
+        
     }
 
     public void reloadOfficeHoursGrid(csg_TAData dataComponent) {        
