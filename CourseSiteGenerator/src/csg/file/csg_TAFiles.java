@@ -24,7 +24,6 @@ import javax.json.stream.JsonGenerator;
 import csg.csg_App;
 import csg.data.csg_TAData;
 import csg.data.csg_TeachingAssistant;
-import csg.data.csg_CourseDetailsData;
 import csg.data.csg_CourseDetails;
 import csg.data.csg_Recitation;
 import csg.data.csg_Schedule;
@@ -99,16 +98,7 @@ public class csg_TAFiles implements AppFileComponent {
         // NOW RELOAD THE WORKSPACE WITH THE LOADED DATA
         app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
         
-        JsonArray jsonSitePagesArray = json.getJsonArray(JSON_SITEPAGES);
-        for(int i=0; i<jsonSitePagesArray.size(); i++){
-            JsonObject jsonSitePages = jsonSitePagesArray.getJsonObject(i);
-            //String use = jsonSitePages.getString(JSON_USE);
-            String navbar = jsonSitePages.getString(JSON_NAVBARTITLE);
-            String fileName = jsonSitePages.getString(JSON_FILENAME);
-            String script = jsonSitePages.getString(JSON_SCRIPT);
-            dataManager.addPage(false, navbar, fileName, script);
-        }
-        
+               
         // NOW LOAD ALL THE UNDERGRAD TAs
         JsonArray jsonTAArray = json.getJsonArray(JSON_UNDERGRAD_TAS);
         for (int i = 0; i < jsonTAArray.size(); i++) {
@@ -126,6 +116,16 @@ public class csg_TAFiles implements AppFileComponent {
             String time = jsonOfficeHours.getString(JSON_TIME);
             String name = jsonOfficeHours.getString(JSON_NAME);
             dataManager.addOfficeHoursReservation(day, time, name);
+        }
+        
+        JsonArray jsonSitePagesArray = json.getJsonArray(JSON_SITEPAGES);
+        for(int i=0; i<jsonSitePagesArray.size(); i++){
+            JsonObject jsonSitePages = jsonSitePagesArray.getJsonObject(i);
+            //String use = jsonSitePages.getString(JSON_USE);
+            String navbar = jsonSitePages.getString(JSON_NAVBARTITLE);
+            String fileName = jsonSitePages.getString(JSON_FILENAME);
+            String script = jsonSitePages.getString(JSON_SCRIPT);
+            dataManager.addPage(false, navbar, fileName, script);
         }
         
         JsonArray jsonRecitationArray = json.getJsonArray(JSON_RECITATION);
@@ -214,7 +214,7 @@ public class csg_TAFiles implements AppFileComponent {
         ObservableList<csg_CourseDetails> cd = dataManager.getCourseDetailsInfo();
         for(csg_CourseDetails course: cd){
             JsonObject courseJson = Json.createObjectBuilder()
-                    .add(JSON_USE, course.isCheckBox())
+                    //.add(JSON_USE, course.getCheckBox())
                     .add(JSON_NAVBARTITLE, course.getNavbarTitle())
                     .add(JSON_FILENAME, course.getFileName())
                     .add(JSON_SCRIPT, course.getScript()).build();

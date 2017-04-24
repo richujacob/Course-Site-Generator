@@ -1,20 +1,41 @@
 
 {
-    "site_pages":[
-		{
-			"navbarTitle":"Home",
-			"fileName":"index.html",
-			"script":"homebuilder.js"
-		}
-    ],
     "startHour":"0",
     "endHour":"23",
     "undergrad_tas":[
         {
-            "name":"mhvh",
-            "email":"ghf.fgh@ht.ed"
+            "name":"name",
+            "email":"name.email@domain.com"
         }
     ],
     "officeHours":[
+        {
+            "day":"day",
+            "time":"time",
+            "name":"name"
+        },
+        {
+            "day":"day",
+            "time":"time",
+            "name":"name"
+        }
+    ],
+    "site_pages":[
+    ],
+    "recitations":[
+        {
+            "section":"dsfsd",
+            "instructor":"sfs",
+            "daytime":"sdfsd",
+            "location":"dsfs",
+            "ta":"dsfds",
+            "ta2":"dsfsd"
+        }
+    ],
+    "schedule":[
+    ],
+    "teams":[
+    ],
+    "students":[
     ]
 }

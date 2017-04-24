@@ -2,6 +2,7 @@ package csg.data;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.CheckBox;
 
 /**
  *
@@ -11,13 +12,13 @@ public class csg_CourseDetails {
     private final StringProperty navbarTitle;
     private final StringProperty fileName;
     private final StringProperty script;
-    private boolean checkBox;
+    private CheckBox checkBox;
     
-    public csg_CourseDetails(boolean boxCheck, String navBar, String initFileName, String initScript){
+    public csg_CourseDetails(String navBar, String initFileName, String initScript){
         navbarTitle = new SimpleStringProperty(navBar);
         fileName = new SimpleStringProperty(initFileName);
         script = new SimpleStringProperty(initScript);
-        checkBox = boxCheck;
+        this.checkBox=checkBox;
     }
     
     public String getNavbarTitle(){
@@ -44,14 +45,15 @@ public class csg_CourseDetails {
         script.set(initScript);
     }
 
-    public boolean isCheckBox() {
+    public CheckBox getCheckBox() {
         return checkBox;
     }
 
-    public void setCheckBox(boolean checkBox) {
+    public void setCheckBox(CheckBox checkBox) {
         this.checkBox = checkBox;
     }
-    
+
+   
     
 //     @Override
 //    public int compareTo(E otherTA) {

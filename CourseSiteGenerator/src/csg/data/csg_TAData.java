@@ -369,7 +369,7 @@ public class csg_TAData implements AppDataComponent {
     
     public void addPage(boolean checkBox, String navbar, String fileName, String script) {
         // MAKE THE TA
-        csg_CourseDetails cD = new csg_CourseDetails(checkBox, navbar, fileName, script);
+        csg_CourseDetails cD = new csg_CourseDetails(navbar, fileName, script);
         
        courseDetailsInfo.add(cD);
         // ADD THE TA

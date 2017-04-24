@@ -54,7 +54,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import csg.data.csg_CourseDetailsData;
 import csg.data.csg_Recitation;
 import csg.data.csg_Schedule;
 import csg.data.csg_Students;
@@ -525,17 +524,19 @@ public class csg_Workspace extends AppWorkspaceComponent {
         String fileTitleText = props.getProperty(csg_Prop.FILE_COLUMN_TEXT.toString());
         String scriptText = props.getProperty(csg_Prop.SCRIPT_COLUMN_TEXT.toString());
         csg_TAData sitePagesStuff = (csg_TAData) app.getDataComponent();
-        ObservableList<csg_CourseDetails> sitePages = sitePagesStuff.getTeachingAssistants();
+        ObservableList<csg_CourseDetails> sitePages = sitePagesStuff.getCourseDetailsInfo();
         courseDetailsTable.setItems(sitePages);
         useColumn.setText(useColumnText);
-        useColumn.setMinWidth(40);
+        //useColumn.setMinWidth(40);
         navBarColumn = new TableColumn(navBarText);
-        navBarColumn.setMinWidth(120);
+        //navBarColumn.setMinWidth(120);
         fileColumn = new TableColumn(fileTitleText);
-        fileColumn.setMinWidth(120);
+        //fileColumn.setMinWidth(120);
         scriptColumn = new TableColumn(scriptText);
-        scriptColumn.setMinWidth(120);
-        
+        //scriptColumn.setMinWidth(120);
+//        useColumn.setCellFactory(
+//                new PropertyValueFactory<csg_CourseDetails, CheckBox>("checkBox")
+//        );
         navBarColumn.setCellValueFactory(
                 new PropertyValueFactory<csg_CourseDetails, String>("navbarTitle")
         );

@@ -2,6 +2,7 @@ package csg.data;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.CheckBox;
 
 /**
  *
@@ -11,7 +12,7 @@ public class csg_TeachingAssistant<E extends Comparable<E>> implements Comparabl
     // THE TABLE WILL STORE TA NAMES AND EMAILS
     private final StringProperty name;
     private final StringProperty email;
-    private boolean checkBox;
+    private CheckBox checkBox;
 
     
     /**
@@ -40,14 +41,16 @@ public class csg_TeachingAssistant<E extends Comparable<E>> implements Comparabl
     public void setEmail(String initEmail) {
         email.set(initEmail);
     }
-    
-    public boolean isCheckBox() {
+
+    public CheckBox getCheckBox() {
         return checkBox;
     }
-    
-    public void setCheckBox(boolean checkBox){
-        this.checkBox=checkBox;
+
+    public void setCheckBox(CheckBox checkBox) {
+        this.checkBox = checkBox;
     }
+    
+    
     
     @Override
     public int compareTo(E otherTA) {

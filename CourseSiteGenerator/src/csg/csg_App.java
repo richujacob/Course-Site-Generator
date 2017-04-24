@@ -2,7 +2,6 @@ package csg;
 
 import java.util.Locale;
 import csg.data.csg_TAData;
-import csg.data.csg_CourseDetailsData;
 import csg.file.csg_TAFiles;
 import csg.workspace.csg_Workspace;
 import djf.AppTemplate;
@@ -18,9 +17,7 @@ public class csg_App extends AppTemplate {
     
     @Override
     public void buildAppComponentsHook() {
-        //
         dataComponent = new csg_TAData(this);
-        //courseDetailsComponent = new csg_CourseDetailsData(this);
         workspaceComponent = new csg_Workspace(this);
         fileComponent = new csg_TAFiles(this);
         styleComponent = new csg_Style(this);
