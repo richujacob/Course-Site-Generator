@@ -1,51 +1,23 @@
 
 {
-    "startHour":"9",
-    "endHour":"20",
+    "startHour":"0",
+    "endHour":"23",
     "undergrad_tas":[
         {
-            "name":"Yu Zhao",
-            "email":"yu.zhao@stonybrook.edu"
-        },
-        {
-            "name":"dfsdf",
-            "email":"sdfds.dsfsd@sdfs.edu"
-        },
-        {
-            "name":"omg",
-            "email":"dsfsd.sdf@sdfsd.edu"
+            "name":"name",
+            "email":"name.email@domain.com"
         }
     ],
     "officeHours":[
         {
             "day":"MONDAY",
             "time":"9_30am",
-            "name":"sdfsd"
+            "name":"name"
         },
         {
             "day":"TUESDAY",
-            "time":"11_30am",
-            "name":"Yu Zhao"
-        },
-        {
-            "day":"THURSDAY",
-            "time":"11_30am",
-            "name":"Yu Zhao"
-        },
-        {
-            "day":"WEDNESDAY",
-            "time":"2_30pm",
-            "name":"Yu Zhao"
-        },
-        {
-            "day":"WEDNESDAY",
-            "time":"3_00pm",
-            "name":"Yu Zhao"
-        },
-        {
-            "day":"WEDNESDAY",
-            "time":"4_00pm",
-            "name":"Yu Zhao"
+            "time":"10_30am",
+            "name":"name"
         }
     ],
     "site_pages":[
@@ -57,42 +29,36 @@
     ],
     "recitations":[
         {
-            "section":"sfs",
-            "instructor":"mckenna",
-            "daytime":"thursday4/20",
-            "location":"india",
-            "ta":"me",
-            "ta2":"you"
+            "section":"R02",
+            "instructor":"Mckenna",
+            "daytime":"Wed 3:30pm - tomorrow",
+            "location":"New CS 321",
+            "ta":"Person",
+            "ta2":"Person"
         }
     ],
     "schedule":[
         {
-            "type":"sfa",
-            "date":"todaynigga",
-            "title":"thename",
-            "topic":"whatwetalkabout"
+            "type":"Holiday",
+            "date":"Today",
+            "title":"Spring Break",
+            "topic":"nothing"
         }
     ],
     "teams":[
         {
             "name":"Atomic Comics",
-            "color":"234434",
-            "textColor":"oij3tij",
-            "link":"www.website.com"
+            "color":"55211",
+            "textColor":"fff ffff",
+            "link":"http://atomic.com"
         }
     ],
     "students":[
         {
-            "firstName":"where",
-            "lastName":"is",
-            "team":"ra",
-            "role":"jack"
-        },
-        {
-            "firstName":"whersdfse",
-            "lastName":"issdfs",
-            "team":"rasdfs",
-            "role":"jack"
+            "firstName":"RA",
+            "lastName":"Jack",
+            "team":"Atomic Comics",
+            "role":"Lead Designer"
         }
     ]
 }

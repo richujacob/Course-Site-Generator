@@ -52,7 +52,11 @@ public class TestSave {
             app.loadProperties("app_properties.xml");
             csg_TAData data = new csg_TAData(app);
             data.addTA("name", "name.email@domain.com");
+            data.addPage(false, "Home", "index.html", "homebuilder.js");
             data.addRec("R02", "Mckenna", "Wed 3:30pm - tomorrow", "New CS 321", "Person", "Person");
+            data.addSchedule("Holiday", "Today", "Spring Break", "nothing");
+            data.addTeam("Atomic Comics", "55211", "fff ffff", "http://atomic.com");
+            data.addStudent("RA", "Jack", "Atomic Comics", "Lead Designer");
             TestSave test = new TestSave();
             test.saveData(data,"C:\\Users\\Richu\\219NetBeans\\Final_Proj\\CourseSiteGenerator\\work\\SiteSaveTest.json");
             //csg_TAFiles file = new csg_TAFiles(app);
@@ -230,8 +234,8 @@ public class TestSave {
 	// NOW BUILD THE TIME SLOT JSON OBJCTS TO SAVE
 	JsonArrayBuilder timeSlotArrayBuilder = Json.createArrayBuilder();
         officeHours = FXCollections.observableArrayList();
-        csg_TimeSlot slot1 = new csg_TimeSlot(JSON_DAY, JSON_TIME, JSON_NAME);
-        csg_TimeSlot slot2 = new csg_TimeSlot(JSON_DAY, JSON_TIME, JSON_NAME);
+        csg_TimeSlot slot1 = new csg_TimeSlot("MONDAY", "9_30am", "name");
+        csg_TimeSlot slot2 = new csg_TimeSlot("TUESDAY", "10_30am", "name");
         officeHours.add(slot1);
         officeHours.add(slot2);
 	//ArrayList<csg_TimeSlot> officeHours = csg_TimeSlot.buildOfficeHoursList(dataManager);

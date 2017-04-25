@@ -68,7 +68,7 @@ public class TestSaveTest {
         String filePath = "C:\\Users\\Richu\\219NetBeans\\Final_Proj\\CourseSiteGenerator\\work\\SiteSaveTest.json";
         TestSave instance = new TestSave();
         instance.loadData(dataManager, filePath);
-        assertEquals(dataManager, data);
+        assertEquals(data, dataManager);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
         }catch(Exception e){

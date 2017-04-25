@@ -10,22 +10,17 @@
     ],
     "officeHours":[
         {
-            "day":"MONDAY",
-            "time":"9_30am",
+            "day":"day",
+            "time":"time",
             "name":"name"
         },
         {
-            "day":"TUESDAY",
-            "time":"10_30am",
+            "day":"day",
+            "time":"time",
             "name":"name"
         }
     ],
     "site_pages":[
-        {
-            "navbarTitle":"Home",
-            "fileName":"index.html",
-            "script":"homebuilder.js"
-        }
     ],
     "recitations":[
         {

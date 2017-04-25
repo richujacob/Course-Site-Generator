@@ -75,6 +75,14 @@ public class csg_TAFiles implements AppFileComponent {
     static final String JSON_TEAM = "team";
     static final String JSON_ROLE = "role";
     
+    //export variables
+    static final String JSON_RECITATION_EXPORT = "recitations";
+    static final String JSON_SECTION_EXPORT = "section";
+    static final String JSON_DAYTIME_EXPORT = "day_time";
+    static final String JSON_LOCATION_EXPORT = "location";
+    static final String JSON_TA1_EXPORT = "ta_1";
+    static final String JSON_TA2_EXPORT = "ta_2";
+    
     
     public csg_TAFiles(csg_App initApp) {
         app = initApp;
@@ -317,6 +325,26 @@ public class csg_TAFiles implements AppFileComponent {
 
     @Override
     public void exportData(AppDataComponent data, String filePath) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        csg_TAData dataManager = (csg_TAData)data;
+        
+        JsonObject json = loadJSONFile(filePath);
+        
+        JsonArrayBuilder recTableArray = Json.createArrayBuilder();
+        ObservableList<csg_Recitation> rec =  dataManager.getRecTable();
+        for(csg_Recitation recitation: rec){
+            JsonObject recJson = Json.createObjectBuilder()
+                    .add(JSON_SECTION_EXPORT, recitation.getSection())
+                    //.add(JSON_INSTRUCTOR_EXPORT, recitation.getInstructor())
+                    .add(JSON_DAYTIME_EXPORT, recitation.getDayTime())
+                    .add(JSON_LOCATION_EXPORT, recitation.getLocation())
+                    .add(JSON_TA1_EXPORT, recitation.getTa())
+                    .add(JSON_TA2_EXPORT, recitation.getTa2()).build();
+            recTableArray.add(recJson);
+        }
+        
+        
+        
+        
     }
 }
