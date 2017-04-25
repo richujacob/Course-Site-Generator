@@ -29,6 +29,7 @@ import csg.data.csg_Recitation;
 import csg.data.csg_Schedule;
 import csg.data.csg_Students;
 import csg.data.csg_Teams;
+import djf.controller.AppFileController;
 
 /**
  *
@@ -328,7 +329,8 @@ public class csg_TAFiles implements AppFileComponent {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         csg_TAData dataManager = (csg_TAData)data;
         
-        JsonObject json = loadJSONFile(filePath);
+        AppFileController file  = new AppFileController(app);
+        JsonObject json = loadJSONFile("..\\TAManagerTester\\public_html\\js\\RecitationsData.json");
         
         JsonArrayBuilder recTableArray = Json.createArrayBuilder();
         ObservableList<csg_Recitation> rec =  dataManager.getRecTable();
@@ -342,7 +344,14 @@ public class csg_TAFiles implements AppFileComponent {
                     .add(JSON_TA2_EXPORT, recitation.getTa2()).build();
             recTableArray.add(recJson);
         }
+        JsonArray recTablesArray = recTableArray.build();
         
+        file.handleExportRequest();
+        
+        JsonObject json1 = loadJSONFile("..\\TAManagerTester\\public_html\\js\\ScheduleBuilder.json");
+        
+        
+        //JsonArrayBuilder schTableArray = 
         
         
         

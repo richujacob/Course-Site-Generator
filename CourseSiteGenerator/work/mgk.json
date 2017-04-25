@@ -10,13 +10,13 @@
     ],
     "officeHours":[
         {
-            "day":"day",
-            "time":"time",
+            "day":"MONDAY",
+            "time":"9_30am",
             "name":"name"
         },
         {
-            "day":"day",
-            "time":"time",
+            "day":"TUESDAY",
+            "time":"10_30am",
             "name":"name"
         }
     ],
