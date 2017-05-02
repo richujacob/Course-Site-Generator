@@ -194,6 +194,15 @@ public class csg_TAData implements AppDataComponent {
         return null;
     }
     
+    public csg_Recitation getSection(String section){
+        for(csg_Recitation rec: recTable){
+            if(rec.getSection().equals(section)){
+                return rec;
+            }
+        }
+        return null;
+    }
+    
     /**
      * This method is for giving this data manager the string property
      * for a given cell.
@@ -256,6 +265,29 @@ public class csg_TAData implements AppDataComponent {
         }
         return false;
     }
+    
+    public boolean containsRec(String section, String instructor, String dayTime, String location, String ta1, String ta2){
+        for(csg_Recitation rec: recTable){
+            if(rec.getSection().equals(section)){
+                return true;
+            }
+            if(rec.getInstructor().equals(instructor)){
+                return true;
+            }
+            if(rec.getDayTime().equals(dayTime)){
+                return true;
+            }
+            if(rec.getLocation().equals(location)){
+                return true;
+            }
+//            if(rec.getTa().equals(ta1)){
+//                return true;
+//            }
+//            if(rec.getTa2().equals(ta2)){
+//                return true;
+//            }
+        }return false;
+    }
 
 
 
@@ -280,6 +312,8 @@ public class csg_TAData implements AppDataComponent {
             }
         }
     }
+    
+    
     
     public void addOfficeHoursReservation(String day, String time, String taName) {
         String cellKey = getCellKey(day, time);
@@ -392,7 +426,16 @@ public class csg_TAData implements AppDataComponent {
     public ObservableList<csg_Recitation> getRecTable() {
         return recTable;
     }
-
+    
+    public void removeRecitation(String section){
+        for(csg_Recitation rec: recTable){
+            if(section.equals(rec.getSection())){
+                recTable.remove(rec);
+                return;
+            }
+        }
+    }
+    
     public void addSchedule(String type, String date, String title, String topic){
         csg_Schedule sch = new csg_Schedule(type, date, title, topic);
         scheduleTable.add(sch);

@@ -240,6 +240,21 @@
         <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="Benzersiz bir TA Adı ve E-postası sağlamalısınız"></property>
         <property name="TA_EMAIL_INVALID_TITLE"     value="TA e-posta geçersiz"></property>
         <property name="TA_EMAIL_INVALID_MESSAGE"   value="Geçerli bir E-posta göndermelisiniz"></property>
+		<property name="MISSING_SECTION_TITLE"		value="Eksik bölüm adı"></property>
+		<property name="MISSING_INSTRUCTOR_TITLE"		value="Eksik eğitmen adı"></property>
+		<property name="MISSING_DAYTIME_TITLE"		value="Eksik gün ve saat"></property>
+		<property name="MISSING_LOCATION_TITLE"		value="Konum eksik"></property>
+		<property name="MISSING_SUPERVISING1_TITLE"		value="Denetlenen TA adını eksik"></property>
+		<property name="MISSING_SUPERVISING2_TITLE"		value="Denetlenen TA adını eksik"></property>
+		<property name="REC_TITLE_NOT_UNIQUE_TITLE"		value="Benzersiz bir anlatım sağlamalıdır"></property>
+		<property name="MISSING_SECTION_REC"		value="Bir bölüm adı sağlamalısınız"></property>
+		<property name="MISSING_INSTRUCTOR_REC"		value="Eğitmen adını vermelisin"></property>
+		<property name="MISSING_DAYTIME_REC"		value="Bir gün ve saat vermelisin"></property>
+		<property name="MISSING_LOCATION_REC"		value="Bir yer sağlamalısınız"></property>
+		<property name="MISSING_SUPERVISING1_REC"		value="Denetimli bir TA sağlamalısınız"></property>
+		<property name="MISSING_SUPERVISING2_REC"		value="Denetimli bir TA sağlamalısınız"></property>
+		<property name="REC_TITLE_NOT_UNIQUE"		value="Benzersiz bir açıklama yapmalısınız"></property>
+		
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

@@ -240,6 +240,21 @@
         <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="You must provide a unique TA Name and Email"></property>
         <property name="TA_EMAIL_INVALID_TITLE"     value="TA Email invalid"></property>
         <property name="TA_EMAIL_INVALID_MESSAGE"   value="You must provide a valid Email"></property>
+		<property name="MISSING_SECTION_TITLE"		value="Missing section name"></property>
+		<property name="MISSING_INSTRUCTOR_TITLE"		value="Missing instructor name"></property>
+		<property name="MISSING_DAYTIME_TITLE"		value="Missing day and time"></property>
+		<property name="MISSING_LOCATION_TITLE"		value="Missing location"></property>
+		<property name="MISSING_SUPERVISING1_TITLE"		value="Missing supervising TA name"></property>
+		<property name="MISSING_SUPERVISING2_TITLE"		value="Missing supervising TA name"></property>
+		<property name="REC_TITLE_NOT_UNIQUE_TITLE"		value="Must provide unique recitation"></property>
+		<property name="MISSING_SECTION_REC"		value="You must provide a section name"></property>
+		<property name="MISSING_INSTRUCTOR_REC"		value="You must provide a instructor name"></property>
+		<property name="MISSING_DAYTIME_REC"		value="You must provide a day and time"></property>
+		<property name="MISSING_LOCATION_REC"		value="You must provide a location"></property>
+		<property name="MISSING_SUPERVISING1_REC"		value="You must provide a supervising TA"></property>
+		<property name="MISSING_SUPERVISING2_REC"		value="You must provide a supervising TA"></property>
+		<property name="REC_TITLE_NOT_UNIQUE"		value="You must provide a unique recitation"></property>
+		
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

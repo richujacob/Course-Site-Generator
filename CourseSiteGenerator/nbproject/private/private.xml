@@ -5,12 +5,12 @@
         <group>
             <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/csg_App.java</file>
             <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_Workspace.java</file>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/test_bed/TestSave.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_RecitationController.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_TAController.java</file>
             <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/file/csg_TimeSlot.java</file>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/data/csg_CourseDetails.java</file>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/file/csg_TAFiles.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/jtps/TAAdderUR.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/jtps/RecAdderUR.java</file>
             <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/data/csg_TAData.java</file>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/data/csg_TeachingAssistant.java</file>
         </group>
     </open-files>
 </project-private>

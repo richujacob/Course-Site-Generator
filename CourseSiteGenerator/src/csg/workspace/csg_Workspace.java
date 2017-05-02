@@ -58,18 +58,24 @@ import csg.data.csg_Recitation;
 import csg.data.csg_Schedule;
 import csg.data.csg_Students;
 import csg.data.csg_Teams;
+import djf.ui.AppGUI;
+import jtps.jTPS;
+
 /**
  *
  * @author Richu
  */
 public class csg_Workspace extends AppWorkspaceComponent {
-    
+    static jTPS jTPS = new jTPS();
     // THIS PROVIDES US WITH ACCESS TO THE APP COMPONENTS
     csg_App app;
     boolean add;
+    boolean addRec;
 
     // THIS PROVIDES RESPONSES TO INTERACTIONS WITH THIS WORKSPACE
     csg_TAController TAcontroller;
+    csg_RecitationController recController;
+    csg_ScheduleController schController;
 
     // NOTE THAT EVERY CONTROL IS PUT IN A BOX TO HELP WITH ALIGNMENT
     
@@ -192,6 +198,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
     TextField locationField;
     
     HBox scheduleBox;
+
+    
     Label scheduleLabel;
     
     HBox calendarBoundsBox;
@@ -363,6 +371,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
         // KEEP THIS FOR LATER
         app = initApp;
         add = true;
+        addRec = true;
+        
         
         TabPane tabPane = new TabPane();
         
@@ -1447,7 +1457,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
 
         // NOW LET'S SETUP THE EVENT HANDLING
         TAcontroller = new csg_TAController(app);
-
+        recController  = new csg_RecitationController(app);
+        schController = new csg_ScheduleController(app);
         // CONTROLS FOR ADDING TAs
         nameTextField.setOnAction(e -> {
             if(!add)
@@ -1467,6 +1478,25 @@ public class csg_Workspace extends AppWorkspaceComponent {
             else
                 TAcontroller.handleAddTA();
         });
+        
+       addUpdate2.setOnAction(e -> {
+           if(!addRec)
+               recController.editExistingRecitation();
+           else
+               recController.handleAddRec();
+       });
+        
+       clear2.setOnAction(e ->{
+           addRec = true;
+           sectionField.clear();
+           instructorField.clear();
+           dayTimeField.clear();
+           locationField.clear();
+           supervisingTA.getSelectionModel().clearSelection();
+           supervisingTA2.getSelectionModel().clearSelection();
+           recitationTable.getSelectionModel().select(null);
+       });
+       
         clearButton.setOnAction(e -> {
             addButton.setText(ADD_BUTTON_TEXT.toString());
             add = true;
@@ -1479,18 +1509,52 @@ public class csg_Workspace extends AppWorkspaceComponent {
         taTable.setOnKeyPressed(e -> {
             TAcontroller.handleKeyPress(e.getCode());
         });
+        
+        recitationTable.setFocusTraversable(true);
+        recitationTable.setOnKeyPressed(e ->{
+            if(e.getCode() == KeyCode.DELETE){
+                recController.handleDeleteRec();
+            }
+        });
+        
+        recitationDeleteButton.setOnAction(e ->{
+            recController.handleDeleteRec();
+        });
+        
+        
+        
         taTable.setOnMouseClicked(e -> {
             addButton.setText(UPDATE_BUTTON_TEXT.toString());
             add = false;
             TAcontroller.loadTAtotext();
         });
         
+        recitationTable.setOnMouseClicked(e ->{
+            addRec = false;
+            recController.loadRectotext();
+        });
+        
+        date.setOnAction(e ->{
+            schController.handleCalenderBounds();
+        });
+        
         workspace.setOnKeyPressed(e ->{
             if(e.isControlDown())
-                if(e.getCode() == KeyCode.Z)
-                    TAcontroller.Undo();
-                else if(e.getCode() == KeyCode.Y)
-                    TAcontroller.Redo();
+                if(e.getCode() == KeyCode.Z){
+                    if(taData.isSelected()){
+                        TAcontroller.Undo();
+                    }
+                    else if(recitation.isSelected()){
+                        recController.Undo();
+                    }
+//                  
+                }else if(e.getCode() == KeyCode.Y){
+                    if(taData.isSelected()){
+                        TAcontroller.Redo();
+                    }else if(recitation.isSelected()){
+                        recController.Redo();
+                    }
+                }
         });
     }
     
@@ -1631,6 +1695,47 @@ public class csg_Workspace extends AppWorkspaceComponent {
     public Label getAddEditStudentsLabel() {
         return addEditStudentsLabel;
     }
+    
+    public TextField getDayTimeField() {
+        return dayTimeField;
+    }
+   
+    public ComboBox getSupervisingTA() {
+        return supervisingTA;
+    }
+
+    public ComboBox getSupervisingTA2() {
+        return supervisingTA2;
+    }
+
+    public TextField getSectionField() {
+        return sectionField;
+    }
+
+    public TextField getInstructorField() {
+        return instructorField;
+    }
+
+    public TextField getLocationField() {
+        return locationField;
+    }
+
+    public TableView<csg_Recitation> getRecitationTable() {
+        return recitationTable;
+    }
+
+    public DatePicker getDate() {
+        return date;
+    }
+
+    public DatePicker getDate2() {
+        return date2;
+    }
+
+    public DatePicker getDate3() {
+        return date3;
+    }
+    
     
     public String getCellKey(Pane testPane) {
         for (String key : officeHoursGridTACellLabels.keySet()) {
