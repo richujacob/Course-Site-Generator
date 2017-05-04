@@ -57,7 +57,7 @@ public class RecReplaceUR implements jTPS_Transaction{
         data.addRec(sectionNew, instructorNew, dayTimeNew, locationNew, ta1New, ta2New);
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         TableView recTable = workspace.getRecitationTable();
-        recTable.getSelectionModel().select(data.getTA(sectionNew));
+        recTable.getSelectionModel().select(data.getSection(sectionNew));
     }
     
     @Override
@@ -67,7 +67,7 @@ public class RecReplaceUR implements jTPS_Transaction{
         data.addRec(section, instructor, dayTime, location, ta1, ta2);
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         TableView recTable = workspace.getRecitationTable();
-        recTable.getSelectionModel().select(data.getTA(section));
+        recTable.getSelectionModel().select(data.getSection(section));
     }
 
    

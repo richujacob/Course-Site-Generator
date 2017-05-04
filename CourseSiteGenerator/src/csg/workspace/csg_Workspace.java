@@ -60,17 +60,19 @@ import csg.data.csg_Students;
 import csg.data.csg_Teams;
 import djf.ui.AppGUI;
 import jtps.jTPS;
-
+import csg.data.csg_TAData;
 /**
  *
  * @author Richu
  */
 public class csg_Workspace extends AppWorkspaceComponent {
     static jTPS jTPS = new jTPS();
+    
     // THIS PROVIDES US WITH ACCESS TO THE APP COMPONENTS
     csg_App app;
     boolean add;
     boolean addRec;
+    boolean addSch;
 
     // THIS PROVIDES RESPONSES TO INTERACTIONS WITH THIS WORKSPACE
     csg_TAController TAcontroller;
@@ -372,6 +374,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
         app = initApp;
         add = true;
         addRec = true;
+        addSch = true;
+        csg_TAData data = (csg_TAData) app.getDataComponent();
         
         
         TabPane tabPane = new TabPane();
@@ -769,16 +773,17 @@ public class csg_Workspace extends AppWorkspaceComponent {
         locationField.setMinWidth(200);
         recitationBottom.getChildren().add(locationBox);
         
-        ta_Options = FXCollections.observableArrayList(
-               props.getProperty(csg_Prop.NAME_JANE.toString()),
-               props.getProperty(csg_Prop.NAME_JOE.toString())
-        );
-        supervisingTA = new ComboBox(ta_Options);
-        ta_Options2 = FXCollections.observableArrayList(
-               props.getProperty(csg_Prop.NAME_JANE.toString()),
-               props.getProperty(csg_Prop.NAME_JOE.toString())
-        );
-        supervisingTA2 = new ComboBox(ta_Options2);
+//        ta_Options = FXCollections.observableArrayList(
+//               props.getProperty(csg_Prop.NAME_JANE.toString()),
+//               props.getProperty(csg_Prop.NAME_JOE.toString())
+//        );
+        
+        supervisingTA = new ComboBox(data.getTeachingAssistants());
+//        ta_Options2 = FXCollections.observableArrayList(
+//               props.getProperty(csg_Prop.NAME_JANE.toString()),
+//               props.getProperty(csg_Prop.NAME_JOE.toString())
+//        );
+        supervisingTA2 = new ComboBox(data.getTeachingAssistants());
         
         supervisingTA1Box = new HBox();
         String supervisingTA1Text = props.getProperty(csg_Prop.SUPERVISING_TA1_TEXT.toString());
@@ -1289,7 +1294,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         // MAKE THE TABLE AND SETUP THE DATA MODEL
         taTable = new TableView();
         taTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        csg_TAData data = (csg_TAData) app.getDataComponent();
+        
         ObservableList<csg_TeachingAssistant> tableData = data.getTeachingAssistants();
         taTable.setItems(tableData);
         String nameColumnText = props.getProperty(csg_Prop.NAME_COLUMN_TEXT.toString());
@@ -1533,10 +1538,27 @@ public class csg_Workspace extends AppWorkspaceComponent {
             addRec = false;
             recController.loadRectotext();
         });
-        
+               
         date.setOnAction(e ->{
-            schController.handleCalenderBounds();
+            date2.setOnAction(j ->{
+                 schController.handleCalenderBounds();
+            });
+           
         });
+        
+        scheduleTable.setOnMouseClicked(e ->{
+            addSch = false;
+            schController.loadSchToText();
+        });
+        
+        addUpdateButton3.setOnAction(e ->{
+            if(!addSch){
+                schController.handleEditSch();
+            }else{
+                schController.handleAddSch();
+            }
+        });
+       
         
         workspace.setOnKeyPressed(e ->{
             if(e.isControlDown())
@@ -1546,6 +1568,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
                     }
                     else if(recitation.isSelected()){
                         recController.Undo();
+                    }else if(schedule.isSelected()){
+                        schController.Undo();
                     }
 //                  
                 }else if(e.getCode() == KeyCode.Y){
@@ -1553,6 +1577,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
                         TAcontroller.Redo();
                     }else if(recitation.isSelected()){
                         recController.Redo();
+                    }else if(schedule.isSelected()){
+                        schController.Redo();
                     }
                 }
         });
@@ -1735,6 +1761,38 @@ public class csg_Workspace extends AppWorkspaceComponent {
     public DatePicker getDate3() {
         return date3;
     }
+
+    public TableView<csg_Schedule> getScheduleTable() {
+        return scheduleTable;
+    }
+
+    public TextField getTimeField() {
+        return timeField;
+    }
+
+
+    public ComboBox getTypeEventBox() {
+        return typeEventBox;
+    }
+
+    public TextField getTitleScheduleField() {
+        return titleScheduleField;
+    }
+
+    
+
+    public TextField getTopicField() {
+        return topicField;
+    }
+
+    public TextField getLinkField() {
+        return linkField;
+    }
+
+    public TextField getCriteriaField() {
+        return criteriaField;
+    }
+    
     
     
     public String getCellKey(Pane testPane) {

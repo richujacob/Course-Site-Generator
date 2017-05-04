@@ -22,6 +22,7 @@ import static djf.components.AppStyleComponent.CLASS_BORDERED_PANE;
 import static djf.components.AppStyleComponent.CLASS_FILE_BUTTON;
 
 
+
 /**
  * This class provides the basic user interface for this application,
  * including all the file controls, but not including the workspace,
@@ -33,6 +34,8 @@ import static djf.components.AppStyleComponent.CLASS_FILE_BUTTON;
 public class AppGUI {
     // THIS HANDLES INTERACTIONS WITH FILE-RELATED CONTROLS
     protected AppFileController fileController;
+    //static jTPS jTPS = new jTPS();
+   
 
     // THIS IS THE APPLICATION WINDOW
     protected Stage primaryStage;

@@ -13,6 +13,11 @@ import csg.csg_App;
 import csg.csg_Prop;
 import csg.file.csg_TimeSlot;
 import csg.workspace.csg_Workspace;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import javafx.scene.control.DatePicker;
 /**
  *
  * @author Richu
@@ -203,6 +208,15 @@ public class csg_TAData implements AppDataComponent {
         return null;
     }
     
+    public csg_Schedule getDate(String date){
+        for(csg_Schedule sch: scheduleTable){
+            if(sch.getDate().equals(date)){
+                return sch;
+            }
+        }
+        return null;
+    }
+    
     /**
      * This method is for giving this data manager the string property
      * for a given cell.
@@ -266,28 +280,7 @@ public class csg_TAData implements AppDataComponent {
         return false;
     }
     
-    public boolean containsRec(String section, String instructor, String dayTime, String location, String ta1, String ta2){
-        for(csg_Recitation rec: recTable){
-            if(rec.getSection().equals(section)){
-                return true;
-            }
-            if(rec.getInstructor().equals(instructor)){
-                return true;
-            }
-            if(rec.getDayTime().equals(dayTime)){
-                return true;
-            }
-            if(rec.getLocation().equals(location)){
-                return true;
-            }
-//            if(rec.getTa().equals(ta1)){
-//                return true;
-//            }
-//            if(rec.getTa2().equals(ta2)){
-//                return true;
-//            }
-        }return false;
-    }
+   
 
 
 
@@ -427,6 +420,29 @@ public class csg_TAData implements AppDataComponent {
         return recTable;
     }
     
+    public boolean containsRec(String section, String instructor, String dayTime, String location, String ta1, String ta2){
+        for(csg_Recitation rec: recTable){
+            if(rec.getSection().equals(section)){
+                return true;
+            }
+            if(rec.getInstructor().equals(instructor)){
+                return true;
+            }
+            if(rec.getDayTime().equals(dayTime)){
+                return true;
+            }
+            if(rec.getLocation().equals(location)){
+                return true;
+            }
+//            if(rec.getTa().equals(ta1)){
+//                return true;
+//            }
+//            if(rec.getTa2().equals(ta2)){
+//                return true;
+//            }
+        }return false;
+    }
+     
     public void removeRecitation(String section){
         for(csg_Recitation rec: recTable){
             if(section.equals(rec.getSection())){
@@ -439,11 +455,35 @@ public class csg_TAData implements AppDataComponent {
     public void addSchedule(String type, String date, String title, String topic){
         csg_Schedule sch = new csg_Schedule(type, date, title, topic);
         scheduleTable.add(sch);
+        
     }
     
     public ObservableList<csg_Schedule> getScheduleTable() {
         return scheduleTable;
     }
+    
+    public boolean containSch(String date){
+        for(csg_Schedule sch: scheduleTable){
+            if(sch.getDate().equals(date)){
+                return true;
+            }
+        }return false;
+    }   
+    
+    public void removeSchedule(String date){
+        for(csg_Schedule sch: scheduleTable ){
+            if(date.equals(sch.getDate())){
+                scheduleTable.remove(sch);
+            }
+        }return;
+    }
+    
+//    public void removeSchedule(DatePicker date, DatePicker date2) throws ParseException{
+//        for(csg_Schedule sch: scheduleTable){
+//            
+//            //DatePicker date1 = new DateTimeFormatter("MM-dd-yyyy").parse(validTest); 
+//        }
+//    }
     
     public void addTeam(String name, String color, String textColor, String link){
         csg_Teams team = new csg_Teams(name, color, textColor, link);

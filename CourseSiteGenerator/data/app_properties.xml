@@ -227,6 +227,7 @@
 		<property name="TYPE_LECTURE"				value="Lecture"></property>
 		<property name="TYPE_BREAK"					value="Break"></property>
 		<property name="TYPE_HW"					value="HW"></property>
+		<property name="TYPE_RECITATION"			value="Recitation"></property>
 		<property name="TEAM_1"					value="Team 1"></property>
 		<property name="TEAM_2"					value="Team 2"></property>
 		<property name="TEAM_3"					value="Team 3"></property>
@@ -254,6 +255,22 @@
 		<property name="MISSING_SUPERVISING1_REC"		value="You must provide a supervising TA"></property>
 		<property name="MISSING_SUPERVISING2_REC"		value="You must provide a supervising TA"></property>
 		<property name="REC_TITLE_NOT_UNIQUE"		value="You must provide a unique recitation"></property>
+		<property name="SCH_START_BEFORE_END_TITLE"		value="End before start error"></property>
+		<property name="START_NOT_MONDAY_TITLE"		value="Start day error"></property>
+		<property name="END_NOT_FRIDAY_TITLE"		value="End day error"></property>
+		<property name="DATE_NOT_RANGE_TITLE"		value="Date invalid"></property>
+		<property name="SCH_START_BEFORE_END_MESSAGE"		value="End date has to be after start date"></property>
+		<property name="START_NOT_MONDAY_MESSAGE"		value="Start day has to be a Monday"></property>
+		<property name="END_NOT_FRIDAY_MESSAGE"		value="End day has to be a Friday"></property>
+		<property name="DATE_NOT_RANGE_MESSAGE"		value="Date not in valid range"></property>
+		<property name="TYPE_MISSING_TITLE"		value="Schedule type missing"></property>
+		<property name="DATE_MISSING_TITLE"		value="Schedule date missing"></property>
+		<property name="TITLE_MISSING_TITLE"		value="Schedule title missing"></property>
+		<property name="TYPE_MISSING_MESSAGE"		value="You must provide a schedule type"></property>
+		<property name="DATE_MISSING_MESSAGE"		value="You must provide a schedule date"></property>
+		<property name="TITLE_MISSING_MESSAGE"		value="You must provide a schedule title"></property>
+		<property name="SCH_NOT_UNIQUE_TITLE"		value="Schedule not unique"></property>
+		<property name="SCH_NOT_UNIQUE_MESSAGE"		value="You must provide a unique schedule"></property>
 		
     </property_list>
     <property_options_list>

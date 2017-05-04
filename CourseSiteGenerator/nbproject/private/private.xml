@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/csg_App.java</file>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_Workspace.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/file/csg_TAFiles.java</file>
             <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_RecitationController.java</file>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_TAController.java</file>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/file/csg_TimeSlot.java</file>
-            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/jtps/TAAdderUR.java</file>
             <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/jtps/RecAdderUR.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_ScheduleController.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_Workspace.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/csg_Prop.java</file>
             <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/data/csg_TAData.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/jtps/schAdderUR.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/data/csg_Schedule.java</file>
+            <file>file:/C:/Users/Richu/219NetBeans/Final_Proj/CourseSiteGenerator/src/csg/workspace/csg_TAController.java</file>
         </group>
     </open-files>
 </project-private>

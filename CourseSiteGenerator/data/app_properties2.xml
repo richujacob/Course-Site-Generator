@@ -227,6 +227,7 @@
 		<property name="TYPE_LECTURE"				value="Ders"></property>
 		<property name="TYPE_BREAK"					value="Kırılma"></property>
 		<property name="TYPE_HW"					value="HW"></property>
+		<property name="TYPE_RECITATION"			value="Seslendirmeler"></property>
 		<property name="TEAM_1"					value="Team 1"></property>
 		<property name="TEAM_2"					value="Team 2"></property>
 		<property name="TEAM_3"					value="Team 3"></property>
@@ -254,6 +255,22 @@
 		<property name="MISSING_SUPERVISING1_REC"		value="Denetimli bir TA sağlamalısınız"></property>
 		<property name="MISSING_SUPERVISING2_REC"		value="Denetimli bir TA sağlamalısınız"></property>
 		<property name="REC_TITLE_NOT_UNIQUE"		value="Benzersiz bir açıklama yapmalısınız"></property>
+		<property name="SCH_START_BEFORE_END_TITLE"		value="Başlama hatasından önce bitir"></property>
+		<property name="START_NOT_MONDAY_TITLE"		value="Başlangıç ​​günü hatası"></property>
+		<property name="END_NOT_FRIDAY_TITLE"		value="Bitiş günü hatası"></property>
+		<property name="DATE_NOT_RANGE_TITLE"		value="Geçersiz tarih"></property>
+		<property name="SCH_START_BEFORE_END_MESSAGE"		value="Bitiş tarihi, başlangıç ​​tarihinden sonra olmalı"></property>
+		<property name="START_NOT_MONDAY_MESSAGE"		value="Başlama günü bir Pazartesi olmalı"></property>
+		<property name="END_NOT_FRIDAY_MESSAGE"		value="Bitiş günü bir Cuma olmalı"></property>
+		<property name="DATE_NOT_RANGE_MESSAGE"		value="Tarih geçerli aralıkta değil"></property>
+		<property name="TYPE_MISSING_TITLE"		value="Takvim türü eksik"></property>
+		<property name="DATE_MISSING_TITLE"		value="Takvim tarihi eksik"></property>
+		<property name="TITLE_MISSING_TITLE"		value="Takvim başlığı eksik"></property>
+		<property name="TYPE_MISSING_MESSAGE"		value="Bir zamanlama türü sağlamalısınız"></property>
+		<property name="DATE_MISSING_MESSAGE"		value="Bir zamanlama tarihi belirtmelisiniz"></property>
+		<property name="TITLE_MISSING_MESSAGE"		value="Bir zamanlama başlığı sağlamalısınız"></property>
+		<property name="SCH_NOT_UNIQUE_TITLE"		value="Benzersiz bir anlatım"></property>
+		<property name="SCH_NOT_UNIQUE_MESSAGE"		value="Benzersiz bir yapmalısınız"></property>
 		
     </property_list>
     <property_options_list>

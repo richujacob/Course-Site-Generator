@@ -32,13 +32,22 @@ public class RecAdderUR implements jTPS_Transaction {
         instructor = workspace.getInstructorField().getText();
         dayTime = workspace.getDayTimeField().getText();
         location = workspace.getLocationField().getText();
-        ta1 = (String)workspace.getSupervisingTA().getValue();
-        ta2 = (String)workspace.getSupervisingTA2().getValue();
+        ta1 = (String)workspace.getSupervisingTA().getValue().toString();
+        try{
+        
+        ta2 = (String)workspace.getSupervisingTA2().getValue().toString();
+        }catch(NullPointerException e){
+            ta2="";
+        }
     }
     
     @Override
     public void doTransaction(){
-        ((csg_TAData)app.getDataComponent()).addRec(section, instructor, dayTime, location, ta1, ta2);
+        if(!ta2.isEmpty()){
+            ((csg_TAData)app.getDataComponent()).addRec(section, instructor, dayTime, location, ta1, ta2);
+        }else{
+            ((csg_TAData)app.getDataComponent()).addRec(section, instructor, dayTime, location, ta1, "");
+        }
     }
 
     @Override

@@ -49,6 +49,7 @@ public class csg_RecitationController {
     }
     
     public void handleAddRec(){
+        try{
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         TextField sectionField = workspace.getSectionField();
         TextField instructorField = workspace.getInstructorField();
@@ -58,8 +59,8 @@ public class csg_RecitationController {
         String instructor = instructorField.getText();
         String dayTime = dayTimeField.getText();
         String location = locationField.getText();
-        String TA1 = (String)workspace.getSupervisingTA().getValue();
-        String TA2 = (String)workspace.getSupervisingTA2().getValue();
+        String TA1 = (String)workspace.getSupervisingTA().getValue().toString();
+        String TA2 = (String)workspace.getSupervisingTA2().getValue().toString();
         //String ta1 = "";
         //String ta2 = "sdfsd";
         
@@ -81,10 +82,11 @@ public class csg_RecitationController {
         }else if(workspace.getSupervisingTA().getSelectionModel().isEmpty()){
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(MISSING_SUPERVISING1_TITLE), props.getProperty(MISSING_SUPERVISING1_REC)); 
-        }else if(workspace.getSupervisingTA2().getSelectionModel().isEmpty()){
-            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-	    dialog.show(props.getProperty(MISSING_SUPERVISING2_TITLE), props.getProperty(MISSING_SUPERVISING2_REC)); 
-        }else if(data.containsRec(section, instructor, dayTime, location, TA1, TA2)){
+        }//else if(workspace.getSupervisingTA2().getSelectionModel().isEmpty()){
+            //AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    //dialog.show(props.getProperty(MISSING_SUPERVISING2_TITLE), props.getProperty(MISSING_SUPERVISING2_REC)); 
+        //}
+        else if(data.containsRec(section, instructor, dayTime, location, TA1, TA2)){
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(REC_TITLE_NOT_UNIQUE_TITLE), props.getProperty(REC_TITLE_NOT_UNIQUE));
         }
@@ -101,7 +103,28 @@ public class csg_RecitationController {
             workspace.getSupervisingTA2().getSelectionModel().clearSelection();
             markWorkAsEdited();
         }
-    
+        
+        }catch(NullPointerException e){
+            csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TextField sectionField = workspace.getSectionField();
+        TextField instructorField = workspace.getInstructorField();
+        TextField dayTimeField = workspace.getDayTimeField();
+        TextField locationField  = workspace.getLocationField();
+        String section =  sectionField.getText();
+        String instructor = instructorField.getText();
+        String dayTime = dayTimeField.getText();
+        String location = locationField.getText();
+            jTPS_Transaction addRecUR = new RecAdderUR(app);
+            jTPS.addTransaction(addRecUR);
+            
+            sectionField.setText("");
+            instructorField.setText("");
+            dayTimeField.setText("");
+            locationField.setText("");
+            workspace.getSupervisingTA().getSelectionModel().clearSelection();
+            workspace.getSupervisingTA2().getSelectionModel().clearSelection();
+            markWorkAsEdited();
+        }
     }
     
     public void editExistingRecitation(){
