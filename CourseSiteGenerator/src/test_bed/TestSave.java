@@ -53,8 +53,8 @@ public class TestSave {
             csg_TAData data = new csg_TAData(app);
             data.addTA("name", "name.email@domain.com");
             data.addPage(false, "Home", "index.html", "homebuilder.js");
-            data.addRec("R02", "Mckenna", "Wed 3:30pm - tomorrow", "New CS 321", "Person", "Person");
-            data.addSchedule("Holiday", "Today", "Spring Break", "nothing");
+            data.addRec("R02", "Mckenna", "Wed 3:30pm - tomorrow", "New CS 321", "Person", "");
+            data.addSchedule("Holiday", "Today", "Spring Break", "nothing", "time", "link", "criteria");
             data.addTeam("Atomic Comics", "55211", "fff ffff", "http://atomic.com");
             data.addStudent("RA", "Jack", "Atomic Comics", "Lead Designer");
             TestSave test = new TestSave();
@@ -96,6 +96,9 @@ public class TestSave {
     static final String JSON_DATE = "date";
     static final String JSON_TITLE = "title";
     static final String JSON_TOPIC = "topic";
+    static final String JSON_SCH_TIME = "time";
+    static final String JSON_SCH_LINK = "link";
+    static final String JSON_CRITERIA = "criteria";
     static final String JSON_TEAMS = "teams";
     static final String JSON_TEAMNAME = "name";
     static final String JSON_COLOR = "color";
@@ -179,7 +182,10 @@ public class TestSave {
             String date = jsonScheduleTable.getString(JSON_DATE);
             String title = jsonScheduleTable.getString(JSON_TITLE);
             String topic = jsonScheduleTable.getString(JSON_TOPIC);
-            dataManager.addSchedule(type, date, title, topic);
+            String time = jsonScheduleTable.getString(JSON_SCH_TIME);
+            String link = jsonScheduleTable.getString(JSON_SCH_LINK);
+            String criteria  = jsonScheduleTable.getString(JSON_CRITERIA);
+            dataManager.addSchedule(type, date, title, topic, time, link, criteria);
         }
         
         JsonArray jsonTeamsArray = json.getJsonArray(JSON_TEAMS);
@@ -282,7 +288,11 @@ public class TestSave {
                     .add(JSON_TYPE, schedule.getType())
                     .add(JSON_DATE, schedule.getDate())
                     .add(JSON_TITLE, schedule.getTitle())
-                    .add(JSON_TOPIC, schedule.getTopic()).build();
+                    .add(JSON_TOPIC, schedule.getTopic())
+                    .add(JSON_SCH_TIME, schedule.getTime())
+                    .add(JSON_LINK, schedule.getLink())
+                    .add(JSON_CRITERIA, schedule.getCriteria())
+                    .build();
             schTableArray.add(schJson);
         }
         JsonArray schTablesArray = schTableArray.build();

@@ -29,8 +29,9 @@ import csg.csg_Prop;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import jtps.schAdderUR;
+import jtps.schDeleteUR;
 import jtps.schEditUR;
-//import static csg.workspace.csg_RecitationController.jTPS;
+
 /**
  *
  * @author Richu
@@ -128,7 +129,7 @@ public class csg_ScheduleController {
         }else if(title.isEmpty()){
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(TITLE_MISSING_TITLE), props.getProperty(TITLE_MISSING_MESSAGE));
-        }else if(data.containSch(date)){
+        }else if(data.containSch(title)){
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(SCH_NOT_UNIQUE_TITLE), props.getProperty(SCH_NOT_UNIQUE_MESSAGE));
             workspace.getTypeEventBox().getSelectionModel().clearSelection();
@@ -191,27 +192,44 @@ public class csg_ScheduleController {
         TableView schTable = workspace.getScheduleTable();
         Object selectedItem = schTable.getSelectionModel().getSelectedItem();
         if(selectedItem!=null){
-            csg_Schedule sch = (csg_Schedule)selectedItem;
-            String type = sch.getType();
-            String newType = (String)workspace.getTypeEventBox().getValue();
-            String date = sch.getDate();
-            String newDate = workspace.getDate3().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-            String title = sch.getTitle();
-            String newTitle = workspace.getTitleScheduleField().getText();
-            String topic = sch.getTopic();
-            String newTopic = workspace.getTopicField().getText();
-            String time = sch.getTitle();
-            String newTime = workspace.getTimeField().getText();
-            String link = sch.getLink();
-            String newLink = workspace.getLinkField().getText();
-            String criteria = sch.getCriteria();
-            String newCriteria = workspace.getCriteriaField().getText();
+//            csg_Schedule sch = (csg_Schedule)selectedItem;
+//            String type = sch.getType();
+//            String newType = (String)workspace.getTypeEventBox().getValue();
+//            String date = sch.getDate();
+//            String newDate = workspace.getDate3().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+//            String title = sch.getTitle();
+//            String newTitle = workspace.getTitleScheduleField().getText();
+//            String topic = sch.getTopic();
+//            String newTopic = workspace.getTopicField().getText();
+//            String time = sch.getTime();
+//            String newTime = workspace.getTimeField().getText();
+//            String link = sch.getLink();
+//            String newLink = workspace.getLinkField().getText();
+//            String criteria = sch.getCriteria();
+//            String newCriteria = workspace.getCriteriaField().getText();
             
             jTPS_Transaction editSchUR = new schEditUR(app);
             jTPS.addTransaction(editSchUR);
             
             markWorkAsEdited();
         }
+    }
+    
+    public void handleDeleteSch(){
+            csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+            TableView schTable = workspace.getScheduleTable();
+            
+            Object selectedItem = schTable.getSelectionModel().getSelectedItem();
+            if(selectedItem!=null){
+                csg_Schedule sch = (csg_Schedule)selectedItem;
+                String title = sch.getTitle();
+                csg_TAData data = (csg_TAData)app.getDataComponent();
+                
+                jTPS_Transaction schDelete = new schDeleteUR(app, title);
+                jTPS.addTransaction(schDelete);
+                
+                markWorkAsEdited();
+            }
     }
     
     public void Undo(){

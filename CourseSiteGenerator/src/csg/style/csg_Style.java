@@ -87,7 +87,7 @@ public class csg_Style extends AppStyleComponent {
        workspaceComponent.getAddEditTeamsLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
        workspaceComponent.getScheduleLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
        workspaceComponent.getScheduleItemsLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
-       workspaceComponent.getTeamsLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
+       //workspaceComponent.getTeamsLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
        //workspaceComponent.getStudentsHeaderLabel().getStyleClass().add(CLASS_PAGE_STYLE_LABEL);
 //workspaceComponent.
         

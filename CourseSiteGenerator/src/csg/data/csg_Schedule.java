@@ -16,7 +16,7 @@ public class csg_Schedule {
     private String link;
     private String  criteria;
     
-    public csg_Schedule(String Type, String Date, String Title, String Topic){
+    public csg_Schedule(String Type, String Date, String Title, String Topic, String time, String link, String criteria){
         type = new SimpleStringProperty(Type);
         date = new SimpleStringProperty(Date);
         title = new SimpleStringProperty(Title);

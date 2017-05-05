@@ -61,6 +61,7 @@ import csg.data.csg_Teams;
 import djf.ui.AppGUI;
 import jtps.jTPS;
 import csg.data.csg_TAData;
+import javafx.scene.paint.Color;
 /**
  *
  * @author Richu
@@ -73,11 +74,14 @@ public class csg_Workspace extends AppWorkspaceComponent {
     boolean add;
     boolean addRec;
     boolean addSch;
-
+    boolean addTeam;
+    boolean addStudent;
+    
     // THIS PROVIDES RESPONSES TO INTERACTIONS WITH THIS WORKSPACE
     csg_TAController TAcontroller;
     csg_RecitationController recController;
     csg_ScheduleController schController;
+    csg_TeamController teamController;
 
     // NOTE THAT EVERY CONTROL IS PUT IN A BOX TO HELP WITH ALIGNMENT
     
@@ -375,6 +379,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
         add = true;
         addRec = true;
         addSch = true;
+        addTeam = true;
+        addStudent = true;
         csg_TAData data = (csg_TAData) app.getDataComponent();
         
         
@@ -1238,12 +1244,12 @@ public class csg_Workspace extends AppWorkspaceComponent {
        lastNameField.setMinWidth(200);
        projectsBottom.getChildren().add(lastNameBox);
        
-       team_Options = FXCollections.observableArrayList(
-               props.getProperty(csg_Prop.TEAM_1.toString()),
-               props.getProperty(csg_Prop.TEAM_2.toString()),
-               props.getProperty(csg_Prop.TEAM_3.toString())
-       );
-       teams = new ComboBox(team_Options);
+//       team_Options = FXCollections.observableArrayList(
+//               props.getProperty(csg_Prop.TEAM_1.toString()),
+//               props.getProperty(csg_Prop.TEAM_2.toString()),
+//               props.getProperty(csg_Prop.TEAM_3.toString())
+//       );
+       teams = new ComboBox(data.getTeamsTable());
        
        teamsBox = new HBox();
        String teamsStudentsText = props.getProperty(csg_Prop.TEAM_TEXT.toString());
@@ -1464,6 +1470,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         TAcontroller = new csg_TAController(app);
         recController  = new csg_RecitationController(app);
         schController = new csg_ScheduleController(app);
+        teamController = new csg_TeamController(app);
         // CONTROLS FOR ADDING TAs
         nameTextField.setOnAction(e -> {
             if(!add)
@@ -1558,7 +1565,105 @@ public class csg_Workspace extends AppWorkspaceComponent {
                 schController.handleAddSch();
             }
         });
+        
+        clearButton3.setOnAction(e ->{
+            addSch = true;
+            typeEventBox.setValue(null);
+            date3.setValue(null);
+            timeField.setText("");
+            titleScheduleField.setText("");
+            topicField.setText("");
+            linkField.setText("");
+            criteriaField.setText("");
+        });
+        
+        clearButton4.setOnAction(e ->{
+            color1.setValue(Color.BLUE);
+            color2.setValue(Color.WHITE);
+            nameTeams.setText("");
+            linkTeams.setText("");
+            addTeam = true;
+        });
+        
+        scheduleDeleteButton.setOnAction(e ->{
+            schController.handleDeleteSch();
+            
+        });
+        
+        scheduleTable.setFocusTraversable(true);
+        scheduleTable.setOnKeyPressed(e ->{
+            if(e.getCode() == KeyCode.DELETE){
+                schController.handleDeleteSch();
+               
+            }
+        });
        
+        teamsTable.setOnMouseClicked(e ->{
+           addTeam = false;
+            teamController.loadTeamText();
+        });
+        
+        addUpdate4Button.setOnAction(e ->{
+            if(!addTeam){
+                teamController.editTeamText();
+            }else{
+                teamController.handleAddTeam();
+            }
+        });
+        
+        teamsDeleteButton.setOnAction(e ->{
+            teamController.handleTeamDelete();
+            nameTeams.setText("");
+            color1.setValue(null);
+            color2.setValue(null);
+            linkTeams.setText("");
+        });
+        
+        teamsTable.setOnKeyPressed(e ->{
+            teamController.handleTeamDelete();
+            nameTeams.setText("");
+            color1.setValue(null);
+            color2.setValue(null);
+            linkTeams.setText("");
+        });
+        
+        addUpdateButton5.setOnAction(e ->{
+            if(!addStudent){
+                teamController.handleStudentEdit();
+            }else{
+            teamController.handleStudentAdd();
+            }
+        });
+        
+        studentsDeleteButton.setOnAction(e ->{
+            teamController.handleStudentDelete();
+            firstNameField.setText("");
+            lastNameField.setText("");
+            teams.setValue(null);
+            roleField.setText("");
+        });
+        
+        studentsTable.setOnKeyPressed(e ->{
+            teamController.handleStudentDelete();
+            firstNameField.setText("");
+            lastNameField.setText("");
+            teams.setValue(null);
+            roleField.setText("");
+        });
+       
+        clearButton5.setOnAction(e ->{
+            addStudent = true;
+            firstNameField.setText("");
+            lastNameField.setText("");
+            teams.setValue(null);
+            roleField.setText("");
+            firstNameField.requestFocus();
+        });
+        
+       studentsTable.setOnMouseClicked(e ->{
+           addStudent = false;
+           teamController.loadStudentText();
+        });
         
         workspace.setOnKeyPressed(e ->{
             if(e.isControlDown())
@@ -1570,6 +1675,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
                         recController.Undo();
                     }else if(schedule.isSelected()){
                         schController.Undo();
+                    }else if(projects.isSelected()){
+                        teamController.Undo();
                     }
 //                  
                 }else if(e.getCode() == KeyCode.Y){
@@ -1579,6 +1686,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
                         recController.Redo();
                     }else if(schedule.isSelected()){
                         schController.Redo();
+                    }else if(projects.isSelected()){
+                        teamController.Redo();
                     }
                 }
         });
@@ -1601,10 +1710,22 @@ public class csg_Workspace extends AppWorkspaceComponent {
         return taTable;
     }
 
+    public TableView<csg_Teams> getTeamsTable() {
+        return teamsTable;
+    }
+    
+    
+
     public HBox getAddBox() {
         return addBox;
     }
 
+    public TableView<csg_Students> getStudentsTable() {
+        return studentsTable;
+    }
+
+    
+    
     public TextField getNameTextField() {
         return nameTextField;
     }
@@ -1791,6 +1912,38 @@ public class csg_Workspace extends AppWorkspaceComponent {
 
     public TextField getCriteriaField() {
         return criteriaField;
+    }
+
+    public TextField getNameTeams() {
+        return nameTeams;
+    }
+
+    public TextField getLinkTeams() {
+        return linkTeams;
+    }
+
+    public ColorPicker getColor1() {
+        return color1;
+    }
+
+    public ColorPicker getColor2() {
+        return color2;
+    }
+
+    public TextField getFirstNameField() {
+        return firstNameField;
+    }
+
+    public TextField getLastNameField() {
+        return lastNameField;
+    }
+
+    public TextField getRoleField() {
+        return roleField;
+    }
+
+    public ComboBox getTeams() {
+        return teams;
     }
     
     

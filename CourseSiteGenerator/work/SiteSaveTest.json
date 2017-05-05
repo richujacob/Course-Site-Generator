@@ -34,7 +34,7 @@
             "daytime":"Wed 3:30pm - tomorrow",
             "location":"New CS 321",
             "ta":"Person",
-            "ta2":"Person"
+            "ta2":""
         }
     ],
     "schedule":[
@@ -42,7 +42,10 @@
             "type":"Holiday",
             "date":"Today",
             "title":"Spring Break",
-            "topic":"nothing"
+            "topic":"nothing",
+            "time":"time",
+            "link":"link",
+            "criteria":"criteria"
         }
     ],
     "teams":[

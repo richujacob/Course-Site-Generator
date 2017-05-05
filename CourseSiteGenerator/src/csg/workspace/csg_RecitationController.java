@@ -132,19 +132,19 @@ public class csg_RecitationController {
         TableView recTable = workspace.getRecitationTable();
         Object selectedItem = recTable.getSelectionModel().getSelectedItem();
         if(selectedItem!=null){
-            csg_Recitation rec  = (csg_Recitation)selectedItem;
-            String section = rec.getSection();
-            String newSection = workspace.getSectionField().getText();
-            String instructor = rec.getInstructor();
-            String newInstructor = workspace.getInstructorField().getText();
-            String dayTime = rec.getDayTime();
-            String newDayTime = workspace.getDayTimeField().getText();
-            String location = rec.getLocation();
-            String newLocation = workspace.getLocationField().getText();
-            String supervisingTA1 = rec.getTa();
-            String newTA1 = (String)workspace.getSupervisingTA().getValue();
-            String supervisingTA2 = rec.getTa2();
-            String newTA2 = (String)workspace.getSupervisingTA2().getValue();
+//            csg_Recitation rec  = (csg_Recitation)selectedItem;
+//            String section = rec.getSection();
+//            String newSection = workspace.getSectionField().getText();
+//            String instructor = rec.getInstructor();
+//            String newInstructor = workspace.getInstructorField().getText();
+//            String dayTime = rec.getDayTime();
+//            String newDayTime = workspace.getDayTimeField().getText();
+//            String location = rec.getLocation();
+//            String newLocation = workspace.getLocationField().getText();
+//            String supervisingTA1 = rec.getTa();
+//            String newTA1 = (String)workspace.getSupervisingTA().getValue();
+//            String supervisingTA2 = rec.getTa2();
+//            String newTA2 = (String)workspace.getSupervisingTA2().getValue();
             jTPS_Transaction replaceRecUR = new RecReplaceUR(app);
             jTPS.addTransaction(replaceRecUR);
             

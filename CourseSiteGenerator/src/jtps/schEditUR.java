@@ -53,24 +53,25 @@ public class schEditUR implements  jTPS_Transaction{
         link = sch.getLink();
         criteria = sch.getCriteria();   
         
+        
     }
 
     @Override
     public void doTransaction() {
-        data.removeSchedule(date);
-        data.addSchedule(newType, newDate, newTitle, newTopic);
+        data.removeSchedule(title);
+        data.addSchedule(newType, newDate, newTitle, newTopic, newTime, newLink, newCriteria);
         csg_Workspace workspace  = (csg_Workspace)app.getWorkspaceComponent();
         TableView schTable  = workspace.getScheduleTable();
-        schTable.getSelectionModel().select(data.getDate(newDate));
+        schTable.getSelectionModel().select(data.getTitle(newTitle));
     }
 
     @Override
     public void undoTransaction() {
-        data.removeSchedule(newDate);
-        data.addSchedule(type, date, title, topic);
+        data.removeSchedule(newTitle);
+        data.addSchedule(type, date, title, topic, time, link, criteria);
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         TableView schTable = workspace.getScheduleTable();
-        schTable.getSelectionModel().select(data.getDate(date));
+        schTable.getSelectionModel().select(data.getTitle(title));
     }
     
     

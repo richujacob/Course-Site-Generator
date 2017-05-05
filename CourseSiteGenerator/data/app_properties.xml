@@ -271,6 +271,27 @@
 		<property name="TITLE_MISSING_MESSAGE"		value="You must provide a schedule title"></property>
 		<property name="SCH_NOT_UNIQUE_TITLE"		value="Schedule not unique"></property>
 		<property name="SCH_NOT_UNIQUE_MESSAGE"		value="You must provide a unique schedule"></property>
+		<property name="NAME_MISSING_TEAM_TITLE"		value="Team name missing"></property>
+		<property name="COLOR_MISSING_TITLE"		value="Team color missing"></property>
+		<property name="TEXTCOLOR_MISSING_TITLE"		value="Team text color missing"></property>
+		<property name="LINK_MISSING_TEAM_TITLE"		value="Team link missing"></property>
+		<property name="NAME_MISSING_TEAM_MESSAGE"		value="You must provide a team name"></property>
+		<property name="COLOR_MISSING_MESSAGE"		value="You must provide a team color"></property>
+		<property name="TEXTCOLOR_MISSING_MESSAGE"		value="You must provide a text color"></property>
+		<property name="LINK_MISSING_TEAM_MESSAGE"		value="You must provide a team link"></property>
+		<property name="FIRSTNAME_MISSING_TITLE"		value="First name missing"></property>
+	    <property name="LASTNAME_MISSING_TITLE"		value="Last name missing"></property>
+		<property name="TEAM_MISSING_TITLE"		value="Team missing"></property>
+		<property name="ROLE_MISSING_TITLE"		value="Role missing"></property>
+		<property name="FIRSTNAME_MISSING_MESSAGE"		value="You must provide a first name"></property>
+	    <property name="LASTNAME_MISSING_MESSAGE"		value="You must provide a last name"></property>
+		<property name="TEAM_MISSING_MESSAGE"		value="You must pick a team"></property>
+		<property name="ROLE_MISSING_MESSAGE"		value="You must enter a role"></property>
+		<property name="TEAMS_NOT_UNIQUE_TITLE"		value="Teams not unique"></property>
+	    <property name="TEAMS_NOT_UNIQUE_MESSAGE"		value="You must provide a unique team"></property>
+		<property name="STUDENTS_NOT_UNIQUE_TITLE"		value="Students not unique"></property>
+		<property name="STUDENTS_NOT_UNIQUE_MESSAGE"		value="You must provide a unique student"></property>
+		
 		
     </property_list>
     <property_options_list>

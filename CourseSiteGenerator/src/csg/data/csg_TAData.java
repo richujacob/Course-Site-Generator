@@ -208,14 +208,33 @@ public class csg_TAData implements AppDataComponent {
         return null;
     }
     
-    public csg_Schedule getDate(String date){
+    public csg_Teams getTeamName(String name){
+        for(csg_Teams team: teamsTable){
+            if(team.getName().equals(name)){
+                return team;
+            }
+        }
+        return null;
+    }
+    
+    public csg_Students getFirstName(String firstName){
+        for(csg_Students student: studentsTable){
+            if(student.getFirstName().equals(firstName)){
+                return student;
+            }
+        }
+        return null;
+    }
+    
+    public csg_Schedule getTitle(String title){
         for(csg_Schedule sch: scheduleTable){
-            if(sch.getDate().equals(date)){
+            if(sch.getTitle().equals(title)){
                 return sch;
             }
         }
         return null;
     }
+    
     
     /**
      * This method is for giving this data manager the string property
@@ -442,6 +461,32 @@ public class csg_TAData implements AppDataComponent {
 //            }
         }return false;
     }
+    
+    public boolean containsTeam(String name, String color, String textColor, String link){
+        for(csg_Teams team: teamsTable){
+            if(team.getName().equals(name)){
+                return true;
+            }if(team.getColor().equals(color)){
+                return true;
+            }if(team.getTextColor().equals(textColor)){
+                return true;
+            }if(team.getLink().equals(link)){
+                return true;
+            }
+        }return false;
+    }
+    
+    public boolean containsStudent(String firstName, String lastName, String role){
+        for(csg_Students student: studentsTable){
+            if(student.getFirstName().equals(firstName)){
+                return true;
+            }if(student.getLastName().equals(lastName)){
+                return true;
+            }if(student.getRole().equals(role)){
+                return true;
+            }
+        }return false;
+    }
      
     public void removeRecitation(String section){
         for(csg_Recitation rec: recTable){
@@ -452,8 +497,8 @@ public class csg_TAData implements AppDataComponent {
         }
     }
     
-    public void addSchedule(String type, String date, String title, String topic){
-        csg_Schedule sch = new csg_Schedule(type, date, title, topic);
+    public void addSchedule(String type, String date, String title, String topic, String time, String link, String criteria){
+        csg_Schedule sch = new csg_Schedule(type, date, title, topic, time, link, criteria);
         scheduleTable.add(sch);
         
     }
@@ -462,20 +507,21 @@ public class csg_TAData implements AppDataComponent {
         return scheduleTable;
     }
     
-    public boolean containSch(String date){
+    public boolean containSch(String title){
         for(csg_Schedule sch: scheduleTable){
-            if(sch.getDate().equals(date)){
+            if(sch.getTitle().equals(title)){
                 return true;
             }
         }return false;
     }   
     
-    public void removeSchedule(String date){
-        for(csg_Schedule sch: scheduleTable ){
-            if(date.equals(sch.getDate())){
-                scheduleTable.remove(sch);
+     public void removeSchedule(String title){
+        for(csg_Schedule sch: scheduleTable){
+            if(title.equals(sch.getTitle())){
+                scheduleTable.remove(title);
+                return;
             }
-        }return;
+        }
     }
     
 //    public void removeSchedule(DatePicker date, DatePicker date2) throws ParseException{
@@ -494,6 +540,15 @@ public class csg_TAData implements AppDataComponent {
         return teamsTable;
     }
     
+    public void removeTeam(String name){
+        for(csg_Teams team: teamsTable){
+            if(name.equals(team.getName())){
+                teamsTable.remove(team);
+                return;
+            }
+        }
+    } 
+    
     public void addStudent(String firstName, String lastName, String team, String role){
         csg_Students student = new csg_Students(firstName, lastName, team, role);
         studentsTable.add(student);
@@ -501,6 +556,15 @@ public class csg_TAData implements AppDataComponent {
 
     public ObservableList<csg_Students> getStudentsTable() {
         return studentsTable;
+    }
+    
+    public void removeStudent(String firstName){
+        for(csg_Students student: studentsTable){
+            if(firstName.equals(student.getFirstName())){
+                studentsTable.remove(student);
+                return;
+            }
+        }
     }
     
     

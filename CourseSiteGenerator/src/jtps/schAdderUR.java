@@ -39,20 +39,20 @@ public class schAdderUR implements jTPS_Transaction {
         time = workspace.getTimeField().getText();
         link  = workspace.getLinkField().getText();
         criteria = workspace.getCriteriaField().getText();
-        sch = new csg_Schedule(type, date, title, topic);
+        //sch = new csg_Schedule(type, date, title, topic);
     }
     
     public void doTransaction(){
-        ((csg_TAData) app.getDataComponent()).addSchedule(type, date, title, topic);
-        sch.setTime(time);
-        sch.setLink(link);
-        sch.setCriteria(criteria);        
+        ((csg_TAData) app.getDataComponent()).addSchedule(type, date, title, topic, time, link, criteria);
+//        sch.setTime(time);
+//        sch.setLink(link);
+//        sch.setCriteria(criteria);        
     }
     
     public void undoTransaction(){
-        ((csg_TAData)app.getDataComponent()).removeSchedule(date);
-        sch.setTime(null);
-        sch.setLink(null);
-        sch.setCriteria(null);
+        ((csg_TAData)app.getDataComponent()).removeSchedule(title);
+//        sch.setTime(null);
+//        sch.setLink(null);
+//        sch.setCriteria(null);
     }
 }

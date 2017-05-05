@@ -65,6 +65,9 @@ public class csg_TAFiles implements AppFileComponent {
     static final String JSON_DATE = "date";
     static final String JSON_TITLE = "title";
     static final String JSON_TOPIC = "topic";
+    static final String JSON_SCH_TIME = "time";
+    static final String JSON_SCH_LINK = "link";
+    static final String JSON_CRITERIA = "criteria";
     static final String JSON_TEAMS = "teams";
     static final String JSON_TEAMNAME = "name";
     static final String JSON_COLOR = "color";
@@ -156,7 +159,10 @@ public class csg_TAFiles implements AppFileComponent {
             String date = jsonScheduleTable.getString(JSON_DATE);
             String title = jsonScheduleTable.getString(JSON_TITLE);
             String topic = jsonScheduleTable.getString(JSON_TOPIC);
-            dataManager.addSchedule(type, date, title, topic);
+            String time = jsonScheduleTable.getString(JSON_SCH_TIME);
+            String link = jsonScheduleTable.getString(JSON_SCH_LINK);
+            String criteria  = jsonScheduleTable.getString(JSON_CRITERIA);
+            dataManager.addSchedule(type, date, title, topic, time, link, criteria);
         }
         
         JsonArray jsonTeamsArray = json.getJsonArray(JSON_TEAMS);
@@ -253,7 +259,11 @@ public class csg_TAFiles implements AppFileComponent {
                     .add(JSON_TYPE, schedule.getType())
                     .add(JSON_DATE, schedule.getDate())
                     .add(JSON_TITLE, schedule.getTitle())
-                    .add(JSON_TOPIC, schedule.getTopic()).build();
+                    .add(JSON_TOPIC, schedule.getTopic())
+                    .add(JSON_SCH_TIME, schedule.getTime())
+                    .add(JSON_LINK, schedule.getLink())
+                    .add(JSON_CRITERIA, schedule.getCriteria())
+                    .build();
             schTableArray.add(schJson);
         }
         JsonArray schTablesArray = schTableArray.build();
