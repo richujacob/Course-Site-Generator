@@ -12,9 +12,9 @@ public class csg_CourseDetails {
     private final StringProperty navbarTitle;
     private final StringProperty fileName;
     private final StringProperty script;
-    private CheckBox checkBox;
+    private boolean checkBox;
     
-    public csg_CourseDetails(String navBar, String initFileName, String initScript){
+    public csg_CourseDetails(boolean checkBox, String navBar, String initFileName, String initScript){
         navbarTitle = new SimpleStringProperty(navBar);
         fileName = new SimpleStringProperty(initFileName);
         script = new SimpleStringProperty(initScript);
@@ -45,13 +45,15 @@ public class csg_CourseDetails {
         script.set(initScript);
     }
 
-    public CheckBox getCheckBox() {
+    public boolean isCheckBox() {
         return checkBox;
     }
 
-    public void setCheckBox(CheckBox checkBox) {
+    public void setCheckBox(boolean checkBox) {
         this.checkBox = checkBox;
     }
+
+    
 
    
     

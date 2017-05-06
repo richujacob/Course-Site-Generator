@@ -271,6 +271,28 @@
 		<property name="TITLE_MISSING_MESSAGE"		value="Bir zamanlama başlığı sağlamalısınız"></property>
 		<property name="SCH_NOT_UNIQUE_TITLE"		value="Benzersiz bir anlatım"></property>
 		<property name="SCH_NOT_UNIQUE_MESSAGE"		value="Benzersiz bir yapmalısınız"></property>
+		<property name="NAME_MISSING_TEAM_TITLE"		value="Takım adı eksik"></property>
+		<property name="COLOR_MISSING_TITLE"		value="Takım rengi eksik"></property>
+		<property name="TEXTCOLOR_MISSING_TITLE"		value="Takım metin rengi eksik"></property>
+		<property name="LINK_MISSING_TEAM_TITLE"		value="Takım bağlantısı eksik"></property>
+		<property name="NAME_MISSING_TEAM_MESSAGE"		value="Bir takım adı sağlamalısın"></property>
+		<property name="COLOR_MISSING_MESSAGE"		value="Takım rengi sağlamalısın"></property>
+		<property name="TEXTCOLOR_MISSING_MESSAGE"		value="Takım rengi sağlamalısın"></property>
+		<property name="LINK_MISSING_TEAM_MESSAGE"		value="Bir takım bağlantısı sağlamalısınız"></property>
+		<property name="FIRSTNAME_MISSING_TITLE"		value="İlk adı eksik"></property>
+	    <property name="LASTNAME_MISSING_TITLE"		value="Soyadı eksik"></property>
+		<property name="TEAM_MISSING_TITLE"		value="Takım eksik"></property>
+		<property name="ROLE_MISSING_TITLE"		value="Rol eksik"></property>
+		<property name="FIRSTNAME_MISSING_MESSAGE"		value="Bir isim vermelisiniz"></property>
+	    <property name="LASTNAME_MISSING_MESSAGE"		value="Soyadını vermelisin"></property>
+		<property name="TEAM_MISSING_MESSAGE"		value="Bir takım seçmelisin"></property>
+		<property name="ROLE_MISSING_MESSAGE"		value="Bir rol girmelisiniz"></property>
+		<property name="TEAMS_NOT_UNIQUE_TITLE"		value="Benzersiz olmayan takımlar"></property>
+	    <property name="TEAMS_NOT_UNIQUE_MESSAGE"		value="Benzersiz bir takım sağlamalısın"></property>
+		<property name="STUDENTS_NOT_UNIQUE_TITLE"		value="Benzersiz olmayan öğrenciler"></property>
+		<property name="STUDENTS_NOT_UNIQUE_MESSAGE"		value="Benzersiz bir öğrenci sağlamalısın"></property>
+		<property name="TIME_MISSING_TITLE"		value="Zamanlama saati eksik"></property>
+		<property name="TIME_MISSING_MESSAGE"		value="Bir zamanlama zamanı sağlamalısın"></property>
 		
     </property_list>
     <property_options_list>

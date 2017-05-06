@@ -1,0 +1,28 @@
+
+{
+    "startHour":"0",
+    "endHour":"23",
+    "undergrad_tas":[
+    ],
+    "officeHours":[
+    ],
+    "site_pages":[
+    ],
+    "recitations":[
+    ],
+    "schedule":[
+        {
+            "type":"HW",
+            "date":"05/22/2017",
+            "title":"dfssdfsd",
+            "topic":"fsdfsd",
+            "time":"sdf",
+            "link":"",
+            "criteria":""
+        }
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

@@ -291,6 +291,8 @@
 	    <property name="TEAMS_NOT_UNIQUE_MESSAGE"		value="You must provide a unique team"></property>
 		<property name="STUDENTS_NOT_UNIQUE_TITLE"		value="Students not unique"></property>
 		<property name="STUDENTS_NOT_UNIQUE_MESSAGE"		value="You must provide a unique student"></property>
+		<property name="TIME_MISSING_TITLE"		value="Schedule time missing"></property>
+		<property name="TIME_MISSING_MESSAGE"		value="You must provide a schedule titme"></property>
 		
 		
     </property_list>

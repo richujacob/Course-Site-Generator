@@ -51,7 +51,7 @@ public class TestSave {
             //app = new csg_App();
             app.loadProperties("app_properties.xml");
             csg_TAData data = new csg_TAData(app);
-            data.addTA("name", "name.email@domain.com");
+            data.addTA(false, "name", "name.email@domain.com");
             data.addPage(false, "Home", "index.html", "homebuilder.js");
             data.addRec("R02", "Mckenna", "Wed 3:30pm - tomorrow", "New CS 321", "Person", "");
             data.addSchedule("Holiday", "Today", "Spring Break", "nothing", "time", "link", "criteria");
@@ -77,10 +77,12 @@ public class TestSave {
     static final String JSON_DAY = "day";
     static final String JSON_TIME = "time";
     static final String JSON_NAME = "name";
+    static final String JSON_USETA = "use";
     static final String JSON_UNDERGRAD_TAS = "undergrad_tas";
     static final String JSON_EMAIL = "email";
     static final String JSON_SITEPAGES = "site_pages";
     static final String JSON_USE = "use";
+    //static final boolean JSON_USE = false;
     static final String JSON_NAVBARTITLE = "navbarTitle";
     static final String JSON_FILENAME = "fileName";
     static final String JSON_SCRIPT = "script";
@@ -138,9 +140,10 @@ public class TestSave {
         JsonArray jsonTAArray = json.getJsonArray(JSON_UNDERGRAD_TAS);
         for (int i = 0; i < jsonTAArray.size(); i++) {
             JsonObject jsonTA = jsonTAArray.getJsonObject(i);
+            boolean use = jsonTA.getBoolean(JSON_USETA);
             String name = jsonTA.getString(JSON_NAME);
             String email = jsonTA.getString(JSON_EMAIL);
-            dataManager.addTA(name, email);
+            dataManager.addTA(use, name, email);
         }
 
         // AND THEN ALL THE OFFICE HOURS
@@ -156,11 +159,11 @@ public class TestSave {
         JsonArray jsonSitePagesArray = json.getJsonArray(JSON_SITEPAGES);
         for(int i=0; i<jsonSitePagesArray.size(); i++){
             JsonObject jsonSitePages = jsonSitePagesArray.getJsonObject(i);
-            //String use = jsonSitePages.getString(JSON_USE);
+            boolean use = jsonSitePages.getBoolean(JSON_USE);
             String navbar = jsonSitePages.getString(JSON_NAVBARTITLE);
             String fileName = jsonSitePages.getString(JSON_FILENAME);
             String script = jsonSitePages.getString(JSON_SCRIPT);
-            dataManager.addPage(false, navbar, fileName, script);
+            dataManager.addPage(use, navbar, fileName, script);
         }
         
         JsonArray jsonRecitationArray = json.getJsonArray(JSON_RECITATION);
@@ -230,8 +233,10 @@ public class TestSave {
 	ObservableList<csg_TeachingAssistant> tas = dataManager.getTeachingAssistants();
 	for (csg_TeachingAssistant ta : tas) {	    
 	    JsonObject taJson = Json.createObjectBuilder()
-		    .add(JSON_NAME, ta.getName())
-		    .add(JSON_EMAIL, ta.getEmail()).build();
+		    .add(JSON_USETA, ta.isCheckBox())
+                    .add(JSON_NAME, ta.getName())
+		    .add(JSON_EMAIL, ta.getEmail())
+                    .build();
 	    taArrayBuilder.add(taJson);
 	}
 	JsonArray undergradTAsArray = taArrayBuilder.build();
@@ -258,7 +263,7 @@ public class TestSave {
         ObservableList<csg_CourseDetails> cd = dataManager.getCourseDetailsInfo();
         for(csg_CourseDetails course: cd){
             JsonObject courseJson = Json.createObjectBuilder()
-                    //.add(JSON_USE, course.getCheckBox())
+                    .add(JSON_USE, course.isCheckBox())
                     .add(JSON_NAVBARTITLE, course.getNavbarTitle())
                     .add(JSON_FILENAME, course.getFileName())
                     .add(JSON_SCRIPT, course.getScript()).build();

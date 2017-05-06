@@ -4,6 +4,7 @@
     "endHour":"23",
     "undergrad_tas":[
         {
+            "use":false,
             "name":"name",
             "email":"name.email@domain.com"
         }
@@ -22,6 +23,7 @@
     ],
     "site_pages":[
         {
+            "use":true,
             "navbarTitle":"Home",
             "fileName":"index.html",
             "script":"homebuilder.js"
@@ -40,7 +42,7 @@
     "schedule":[
         {
             "type":"Holiday",
-            "date":"Today",
+            "date":"05/22/2017",
             "title":"Spring Break",
             "topic":"nothing",
             "time":"time",

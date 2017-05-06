@@ -52,6 +52,7 @@ public class csg_ScheduleController {
     }
     
     public void handleCalenderBounds(){
+        try{
         boolean validDate = false;
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         csg_TAData data = (csg_TAData)app.getDataComponent();
@@ -73,6 +74,14 @@ public class csg_ScheduleController {
             if(workspace.getDate2().getValue().getDayOfWeek().getValue()==5){
                 workspace.getDate2().setValue(null);
                 workspace.getDate().requestFocus();
+                if(workspace.getDate().getValue().getDayOfWeek().getValue()==1){
+                    
+                }else{
+                    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                    dialog.show(props.getProperty(START_NOT_MONDAY_TITLE), props.getProperty(START_NOT_MONDAY_MESSAGE));
+                    workspace.getDate().setValue(null);
+                    workspace.getDate().requestFocus();
+                }
             }else{
                 AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
                 dialog.show(props.getProperty(END_NOT_FRIDAY_TITLE), props.getProperty(END_NOT_FRIDAY_MESSAGE));
@@ -86,6 +95,33 @@ public class csg_ScheduleController {
             //workspace.getDate().setValue();
         }
         
+        if(workspace.getDate2().getValue().getDayOfWeek().getValue()==5){
+            if(workspace.getDate().getValue().getDayOfWeek().getValue()==1){
+                validDate = true;    
+                }else{
+                    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                    dialog.show(props.getProperty(START_NOT_MONDAY_TITLE), props.getProperty(START_NOT_MONDAY_MESSAGE));
+                    workspace.getDate().setValue(null);
+                    workspace.getDate().requestFocus();
+                }
+        }else{
+            if(workspace.getDate().getValue().getDayOfWeek().getValue()==1){
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(END_NOT_FRIDAY_TITLE), props.getProperty(END_NOT_FRIDAY_MESSAGE));
+                workspace.getDate2().setValue(null);
+                workspace.getDate().requestFocus();
+            }else{
+                    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                    dialog.show(props.getProperty(START_NOT_MONDAY_TITLE), props.getProperty(START_NOT_MONDAY_MESSAGE));
+                    workspace.getDate().setValue(null);
+                    workspace.getDate().requestFocus();
+            }
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(END_NOT_FRIDAY_TITLE), props.getProperty(END_NOT_FRIDAY_MESSAGE));
+                workspace.getDate2().setValue(null);
+                workspace.getDate().requestFocus();
+        }
+        
         if(validDate = true){
             if(workspace.getDate().getValue().compareTo(workspace.getDate2().getValue())<0){
                 
@@ -96,6 +132,9 @@ public class csg_ScheduleController {
                 workspace.getDate().setValue(null);
                 workspace.getDate().requestFocus();
             }
+        }
+        }catch(NullPointerException e){
+            
         }
         
     }
@@ -129,7 +168,11 @@ public class csg_ScheduleController {
         }else if(title.isEmpty()){
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(TITLE_MISSING_TITLE), props.getProperty(TITLE_MISSING_MESSAGE));
-        }else if(data.containSch(title)){
+        }else if(time.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TIME_MISSING_TITLE), props.getProperty(TIME_MISSING_MESSAGE));
+        }
+        else if(data.containSch(title)){
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(SCH_NOT_UNIQUE_TITLE), props.getProperty(SCH_NOT_UNIQUE_MESSAGE));
             workspace.getTypeEventBox().getSelectionModel().clearSelection();
@@ -222,11 +265,11 @@ public class csg_ScheduleController {
             Object selectedItem = schTable.getSelectionModel().getSelectedItem();
             if(selectedItem!=null){
                 csg_Schedule sch = (csg_Schedule)selectedItem;
-                String title = sch.getTitle();
+                String title  = sch.getTitle();
                 csg_TAData data = (csg_TAData)app.getDataComponent();
                 
-                jTPS_Transaction schDelete = new schDeleteUR(app, title);
-                jTPS.addTransaction(schDelete);
+                jTPS_Transaction deleteSch = new schDeleteUR(app, title);
+                jTPS.addTransaction(deleteSch);
                 
                 markWorkAsEdited();
             }

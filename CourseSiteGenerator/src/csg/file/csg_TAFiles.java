@@ -46,6 +46,7 @@ public class csg_TAFiles implements AppFileComponent {
     static final String JSON_DAY = "day";
     static final String JSON_TIME = "time";
     static final String JSON_NAME = "name";
+    static final String JSON_USETA = "use";
     static final String JSON_UNDERGRAD_TAS = "undergrad_tas";
     static final String JSON_EMAIL = "email";
     static final String JSON_SITEPAGES = "site_pages";
@@ -115,9 +116,10 @@ public class csg_TAFiles implements AppFileComponent {
         JsonArray jsonTAArray = json.getJsonArray(JSON_UNDERGRAD_TAS);
         for (int i = 0; i < jsonTAArray.size(); i++) {
             JsonObject jsonTA = jsonTAArray.getJsonObject(i);
+            boolean use = jsonTA.getBoolean(JSON_USETA);
             String name = jsonTA.getString(JSON_NAME);
             String email = jsonTA.getString(JSON_EMAIL);
-            dataManager.addTA(name, email);
+            dataManager.addTA(use, name, email);
         }
 
         // AND THEN ALL THE OFFICE HOURS
@@ -133,11 +135,11 @@ public class csg_TAFiles implements AppFileComponent {
         JsonArray jsonSitePagesArray = json.getJsonArray(JSON_SITEPAGES);
         for(int i=0; i<jsonSitePagesArray.size(); i++){
             JsonObject jsonSitePages = jsonSitePagesArray.getJsonObject(i);
-            //String use = jsonSitePages.getString(JSON_USE);
+            boolean use = jsonSitePages.getBoolean(JSON_USE);
             String navbar = jsonSitePages.getString(JSON_NAVBARTITLE);
             String fileName = jsonSitePages.getString(JSON_FILENAME);
             String script = jsonSitePages.getString(JSON_SCRIPT);
-            dataManager.addPage(false, navbar, fileName, script);
+            dataManager.addPage(use, navbar, fileName, script);
         }
         
         JsonArray jsonRecitationArray = json.getJsonArray(JSON_RECITATION);
@@ -207,6 +209,7 @@ public class csg_TAFiles implements AppFileComponent {
 	ObservableList<csg_TeachingAssistant> tas = dataManager.getTeachingAssistants();
 	for (csg_TeachingAssistant ta : tas) {	    
 	    JsonObject taJson = Json.createObjectBuilder()
+                    .add(JSON_USETA, ta.isCheckBox())
 		    .add(JSON_NAME, ta.getName())
 		    .add(JSON_EMAIL, ta.getEmail()).build();
 	    taArrayBuilder.add(taJson);
@@ -229,7 +232,7 @@ public class csg_TAFiles implements AppFileComponent {
         ObservableList<csg_CourseDetails> cd = dataManager.getCourseDetailsInfo();
         for(csg_CourseDetails course: cd){
             JsonObject courseJson = Json.createObjectBuilder()
-                    //.add(JSON_USE, course.getCheckBox())
+                    .add(JSON_USE, course.isCheckBox())
                     .add(JSON_NAVBARTITLE, course.getNavbarTitle())
                     .add(JSON_FILENAME, course.getFileName())
                     .add(JSON_SCRIPT, course.getScript()).build();

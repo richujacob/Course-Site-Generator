@@ -26,10 +26,11 @@ public class schDeleteUR implements jTPS_Transaction {
     
     public schDeleteUR(csg_App app, String title){
         this.app = app;
-        //data = (csg_TAData)app.getDataComponent();
-        this.title=title;
+        data = (csg_TAData)app.getDataComponent();
+        
         this.type = data.getTitle(title).getType();
         this.date = data.getTitle(title).getDate();
+        this.title=title;
         this.topic = data.getTitle(title).getTopic();
         this.time = data.getTitle(title).getTime();
         this.link = data.getTitle(title).getLink();

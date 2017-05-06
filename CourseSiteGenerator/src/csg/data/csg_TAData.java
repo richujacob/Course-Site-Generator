@@ -236,6 +236,8 @@ public class csg_TAData implements AppDataComponent {
     }
     
     
+    
+    
     /**
      * This method is for giving this data manager the string property
      * for a given cell.
@@ -303,9 +305,9 @@ public class csg_TAData implements AppDataComponent {
 
 
 
-    public void addTA(String initName, String initEmail) {
+    public void addTA(boolean use, String initName, String initEmail) {
         // MAKE THE TA
-        csg_TeachingAssistant ta = new csg_TeachingAssistant(initName, initEmail);
+        csg_TeachingAssistant ta = new csg_TeachingAssistant(use, initName, initEmail);
 
         // ADD THE TA
         if (!containsTA(initName, initEmail)) {
@@ -415,7 +417,7 @@ public class csg_TAData implements AppDataComponent {
     
     public void addPage(boolean checkBox, String navbar, String fileName, String script) {
         // MAKE THE TA
-        csg_CourseDetails cD = new csg_CourseDetails(navbar, fileName, script);
+        csg_CourseDetails cD = new csg_CourseDetails(checkBox ,navbar, fileName, script);
         
        courseDetailsInfo.add(cD);
         // ADD THE TA
@@ -515,21 +517,14 @@ public class csg_TAData implements AppDataComponent {
         }return false;
     }   
     
-     public void removeSchedule(String title){
+    public void removeSchedule(String title){
         for(csg_Schedule sch: scheduleTable){
             if(title.equals(sch.getTitle())){
-                scheduleTable.remove(title);
+                scheduleTable.remove(sch);
                 return;
             }
         }
     }
-    
-//    public void removeSchedule(DatePicker date, DatePicker date2) throws ParseException{
-//        for(csg_Schedule sch: scheduleTable){
-//            
-//            //DatePicker date1 = new DateTimeFormatter("MM-dd-yyyy").parse(validTest); 
-//        }
-//    }
     
     public void addTeam(String name, String color, String textColor, String link){
         csg_Teams team = new csg_Teams(name, color, textColor, link);

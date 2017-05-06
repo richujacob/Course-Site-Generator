@@ -1553,6 +1553,12 @@ public class csg_Workspace extends AppWorkspaceComponent {
            
         });
         
+        date2.setOnAction(e ->{
+            date.setOnAction(j ->{
+                schController.handleCalenderBounds();
+            });
+        });
+        
         scheduleTable.setOnMouseClicked(e ->{
             addSch = false;
             schController.loadSchToText();

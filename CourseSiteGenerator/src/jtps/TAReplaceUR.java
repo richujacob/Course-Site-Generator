@@ -37,7 +37,7 @@ public class TAReplaceUR implements jTPS_Transaction{
     public void doTransaction() {
         data.replaceTAName(TAname, newName);
         data.removeTA(TAname);
-        data.addTA(newName, newEmail);
+        data.addTA(false, newName, newEmail);
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         TableView taTable = workspace.getTATable();
         taTable.getSelectionModel().select(data.getTA(newName));
@@ -47,7 +47,7 @@ public class TAReplaceUR implements jTPS_Transaction{
     public void undoTransaction() {
         data.replaceTAName(newName, TAname);
         data.removeTA(newName);
-        data.addTA(TAname, TAemail);
+        data.addTA(false, TAname, TAemail);
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         TableView taTable = workspace.getTATable();
         taTable.getSelectionModel().select(data.getTA(TAname));
