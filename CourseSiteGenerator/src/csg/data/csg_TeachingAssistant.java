@@ -19,9 +19,9 @@ public class csg_TeachingAssistant<E extends Comparable<E>> implements Comparabl
      * Constructor initializes both the TA name and email.
      */
     public csg_TeachingAssistant(boolean checkBox, String initName, String initEmail/* boolean checkBox*/) {
+        this.checkBox=checkBox;
         name = new SimpleStringProperty(initName);
         email = new SimpleStringProperty(initEmail);
-        this.checkBox=checkBox;
     }
 
     // ACCESSORS AND MUTATORS FOR THE PROPERTIES

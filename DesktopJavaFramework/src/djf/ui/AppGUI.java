@@ -20,6 +20,9 @@ import static djf.settings.AppStartupConstants.PATH_IMAGES;
 import djf.components.AppStyleComponent;
 import static djf.components.AppStyleComponent.CLASS_BORDERED_PANE;
 import static djf.components.AppStyleComponent.CLASS_FILE_BUTTON;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -188,7 +191,12 @@ public class AppGUI {
             fileController.handleSaveAsRequest();
         });
         exportButton.setOnAction(e -> {
-            fileController.handleExportRequest();
+            try {
+                fileController.handleExportRequest();
+                //fileController.handleExportScheduleRequest();
+            } catch (IOException ex) {
+                Logger.getLogger(AppGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         exitButton.setOnAction(e -> {
             fileController.handleExitRequest();

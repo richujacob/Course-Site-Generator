@@ -224,6 +224,7 @@ public enum csg_Prop {
     COURSE_CSE,
     NUMBER_219,
     NUMBER_308,
+    NUMBER_380,
     SEMESTER_FALL,
     SEMESTER_SPRING,
     YEAR_2017,
@@ -235,6 +236,7 @@ public enum csg_Prop {
     TYPE_BREAK,
     TYPE_HW,
     TYPE_RECITATION,
+    TYPE_REFERENCES,
     TEAM_1,
     TEAM_2,
     TEAM_3

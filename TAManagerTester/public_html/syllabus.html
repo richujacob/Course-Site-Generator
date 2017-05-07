@@ -68,11 +68,19 @@
                 <!-- NAVIGATION LINKS GO HERE -->
 		<a class="nav" href="index.html" id="home_link">Home</a><a class="open_nav" href="syllabus.html" id="syllabus_link">Syllabus</a><a class="nav" href="schedule.html" id="schedule_link">Schedule</a><a class="nav" href="hws.html" id="hws_link">HWs</a>
 	    </div>
-
+                <script >
+                var dataFile = "./js/courseDetailsData.json";
+                $.getJSON(dataFile, function(json){
+                   
+                    document.getElementById("banner").innerHTML = json.subject + json.number + 
+                            " - " + json.semester + json.year + '<br/>' +  json.title;
+                });
+                
+            </script>
 
 	    <div id="banner">
                 <!-- BANNER NEEDS TO BE SET -->
-		CSE 219 - Spring 2017<br>Computer Science III - 02</div>
+		</div>
 
 	    <div id="desc">
 

@@ -47,6 +47,7 @@ public class AppFileController {
     //static jTPS jTPS = new jTPS();
     AppTemplate app;
     
+    
     // WE WANT TO KEEP TRACK OF WHEN SOMETHING HAS NOT BEEN SAVED
     boolean saved;
     
@@ -212,13 +213,16 @@ public class AppFileController {
         }
     }
     
-    public void handleExportRequest() {
+    public void handleExportRequest() throws IOException {
 	// WE'LL NEED THIS TO GET CUSTOM STUFF
 	PropertiesManager props = PropertiesManager.getPropertiesManager();
         try {
             String newPath = "..\\TAManagerTester\\public_html\\js\\OfficeHoursGridData.json";
             File target = new File(newPath);
             saveWork(target);
+            //String newPath1 = "..\\TAManagerTester\\public_html\\js\\ScheduleBuilder.json";
+            //File target1 = new File(newPath1);
+            //saveWork(target1);
         } catch (IOException ioe) {
 	    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(LOAD_ERROR_TITLE), props.getProperty(LOAD_ERROR_MESSAGE));
@@ -229,7 +233,30 @@ public class AppFileController {
         System.out.println(path);
         String oldPath = "..\\TAManagerTester\\public_html";
         copy(oldPath, path);
+        String filePath = "..\\TAManagerTester\\public_html\\js\\courseDetailsData.json";
+        app.getFileComponent().exportData(app.getDataComponent(), filePath);
+        String filePathRec = "..\\TAManagerTester\\public_html\\js\\RecitationsData.json";
+        app.getFileComponent().saveRecitationData(app.getDataComponent(), filePathRec);
     }
+    
+//    public void handleExportScheduleRequest() {
+//	// WE'LL NEED THIS TO GET CUSTOM STUFF
+//	PropertiesManager props = PropertiesManager.getPropertiesManager();
+//        try {
+//            String newPath = "..\\TAManagerTester\\public_html\\js\\ScheduleBuilder.json";
+//            File target = new File(newPath);
+//            saveWork(target);
+//        } catch (IOException ioe) {
+//	    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+//	    dialog.show(props.getProperty(LOAD_ERROR_TITLE), props.getProperty(LOAD_ERROR_MESSAGE));
+//        }
+//        DirectoryChooser dc = new DirectoryChooser();
+//        dc.setInitialDirectory(new File(PATH_WORK));
+//        String path = dc.showDialog(null).getPath();
+//        System.out.println(path);
+//        String oldPath = "..\\TAManagerTester\\public_html";
+//        copy(oldPath, path);
+//    }
     
     public void copy(String oldPath, String newPath) { 
         try { 
@@ -432,6 +459,11 @@ public class AppFileController {
     public boolean isSaved() {
         return saved;
     }
+    
+//    public void Undo(){
+//        TAController controller = new TAController(app);
+//        
+//    }
     
 //     public void Undo(){
 //        jTPS.undoTransaction();

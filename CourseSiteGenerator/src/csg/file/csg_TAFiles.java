@@ -29,7 +29,9 @@ import csg.data.csg_Recitation;
 import csg.data.csg_Schedule;
 import csg.data.csg_Students;
 import csg.data.csg_Teams;
+import csg.workspace.csg_Workspace;
 import djf.controller.AppFileController;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -81,12 +83,41 @@ public class csg_TAFiles implements AppFileComponent {
     static final String JSON_ROLE = "role";
     
     //export variables
+    static final String JSON_SUBJECT_EXPORT = "subject";
+    static final String JSON_SEMESTER_EXPORT = "semester";
+    static final String JSON_NUMBER_EXPORT = "number";
+    static final String JSON_YEAR_EXPORT = "year";
+    static final String JSON_TITLE_EXPORT = "title";
+    static final String JSON_INSTRUCTORNAME_EXPORT  = "instructor_name";
+    static final String JSON_INSTRUCTORHOME_EXPORT = "instructor_home";
+            
     static final String JSON_RECITATION_EXPORT = "recitations";
     static final String JSON_SECTION_EXPORT = "section";
+    static final String JSON_INSTRUCTOR_EXPORT = "instructor";
     static final String JSON_DAYTIME_EXPORT = "day_time";
     static final String JSON_LOCATION_EXPORT = "location";
     static final String JSON_TA1_EXPORT = "ta_1";
     static final String JSON_TA2_EXPORT = "ta_2";
+    
+    static final String JSON_STARTINGMONDAY_MONTH_EXPORT = "startingMondayMonth";
+    static final String JSON_STARTINGMONDAY_DAY_EXPORT = "startingMondayDay";
+    static final String JSON_ENDINGFRIDAY_MONTH_EXPORT = "endingFridayMonth";
+    static final String JSON_ENDINGFRIDAY_DAY_EXPORT = "endingFridayDay";
+    
+    static final String JSON_HOLIDAYS_EXPORT = "holidays";
+    static final String JSON_HW_EXPORT = "hws";
+    static final String JSON_SCHRECITATION_EXPORT = "recitations";
+    static final String JSON_LECTURES_EXPORT = "lectures";
+    static final String JSON_REFERENCES_EXPORT = "references";
+    
+    static final String JSON_MONTH_EXPORT = "month";
+    static final String JSON_DAY_EXPORT = "day";
+    static final String JSON_TITLESCH_EXPORT = "title";
+    static final String JSON_LINK_EXPORT = "link";
+    static final String JSON_TOPIC_EXPORT = "topic";
+    static final String JSON_TIME_EXPORT = "time";
+    static final String JSON_CRITERIA_EXPORT = "criteria";
+    
     
     
     public csg_TAFiles(csg_App initApp) {
@@ -329,6 +360,119 @@ public class csg_TAFiles implements AppFileComponent {
 	pw.close();
     }
     
+    
+    
+    public void saveCourseDetails(AppDataComponent data, String filePath) throws IOException{
+        csg_TAData dataManager = (csg_TAData)data;
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+       
+            JsonObject courseDetailsJson = Json.createObjectBuilder()
+                    .add(JSON_SUBJECT_EXPORT, (String)workspace.getSubjectCombo().getValue())
+                    .add(JSON_SEMESTER_EXPORT, (String)workspace.getSemesterCombo().getValue())
+                    .add(JSON_NUMBER_EXPORT, (String)workspace.getNumberCombo().getValue())
+                    .add(JSON_YEAR_EXPORT, (String)workspace.getYearCombo().getValue())
+                    .add(JSON_TITLE_EXPORT, workspace.getTitleField().getText())
+                    .add(JSON_INSTRUCTORNAME_EXPORT, workspace.getInstructorNameField().getText())
+                    .add(JSON_INSTRUCTORHOME_EXPORT, workspace.getInstructorHomeField().getText()).build();
+            
+        Map<String, Object> properties = new HashMap<String, Object>(1);
+	properties.put(JsonGenerator.PRETTY_PRINTING, true);
+	JsonWriterFactory writerFactory = Json.createWriterFactory(properties);
+	StringWriter sw = new StringWriter();
+	JsonWriter jsonWriter = writerFactory.createWriter(sw);
+	jsonWriter.writeObject(courseDetailsJson);
+	jsonWriter.close();
+
+	// INIT THE WRITER
+	OutputStream os = new FileOutputStream(filePath);
+	JsonWriter jsonFileWriter = Json.createWriter(os);
+	jsonFileWriter.writeObject(courseDetailsJson);
+	String prettyPrinted = sw.toString();
+	PrintWriter pw = new PrintWriter(filePath);
+	pw.write(prettyPrinted);
+	pw.close();
+        
+    }
+    
+    public void saveRecitationData(AppDataComponent data, String filePath) throws IOException{
+        csg_TAData dataManager = (csg_TAData)data;
+        
+        
+        JsonArrayBuilder recTableArray = Json.createArrayBuilder();
+        ObservableList<csg_Recitation> rec = dataManager.getRecTable();
+        for(csg_Recitation recitation: rec){
+            JsonObject recJson = Json.createObjectBuilder()
+                    .add(JSON_SECTION_EXPORT, recitation.getSection())
+                    .add(JSON_INSTRUCTOR_EXPORT, recitation.getInstructor())
+                    .add(JSON_DAYTIME_EXPORT, recitation.getDayTime())
+                    .add(JSON_LOCATION_EXPORT, recitation.getLocation())
+                    .add(JSON_TA1_EXPORT, recitation.getTa())
+                    .add(JSON_TA2_EXPORT, recitation.getTa2()).build();
+            recTableArray.add(recJson);
+        }
+        JsonArray recitationTablesArray = recTableArray.build();
+        JsonObject dataManagerJSO = Json.createObjectBuilder()
+                .add(JSON_RECITATION_EXPORT, recitationTablesArray).build();
+        
+        
+        Map<String, Object> properties = new HashMap<String, Object>(1);
+	properties.put(JsonGenerator.PRETTY_PRINTING, true);
+	JsonWriterFactory writerFactory = Json.createWriterFactory(properties);
+	StringWriter sw = new StringWriter();
+	JsonWriter jsonWriter = writerFactory.createWriter(sw);
+	jsonWriter.writeObject(dataManagerJSO);
+	jsonWriter.close();
+
+	// INIT THE WRITER
+	OutputStream os = new FileOutputStream(filePath);
+	JsonWriter jsonFileWriter = Json.createWriter(os);
+	jsonFileWriter.writeObject(dataManagerJSO);
+	String prettyPrinted = sw.toString();
+	PrintWriter pw = new PrintWriter(filePath);
+	pw.write(prettyPrinted);
+	pw.close();
+        //JsonArray recTablesArray = recTableArray.build();
+    }
+    
+    public void saveScheduleData(AppDataComponent data, String filePath) throws IOException{
+        csg_TAData dataManager = (csg_TAData)data;
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        
+        String startingMonday = workspace.getDate().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        String endingFriday = workspace.getDate2().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        String selectedDate = workspace.getDate3().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        
+        int mondayMonth = workspace.getDate().getValue().getMonthValue();
+        String startingMondayMonth = Integer.toString(mondayMonth);
+        int mondayDay = workspace.getDate().getValue().getDayOfMonth();
+        String startingMondayDay = Integer.toString(mondayDay);
+        
+        int fridayMonth = workspace.getDate2().getValue().getMonthValue();
+        String endingFridayMonth = Integer.toString(fridayMonth);
+        int fridayDay = workspace.getDate().getValue().getDayOfMonth();
+        String endFridayDay = Integer.toString(fridayDay);
+        
+        JsonArrayBuilder schTableArray = Json.createArrayBuilder();
+        ObservableList<csg_Schedule> sch = dataManager.getScheduleTable();
+        for(csg_Schedule schedule: sch){
+            JsonObject schJson = Json.createObjectBuilder()
+                    .add(JSON_TYPE, schedule.getType())
+                    .add(JSON_DATE, schedule.getDate())
+                    .add(JSON_TITLE, schedule.getTitle())
+                    .add(JSON_TOPIC, schedule.getTopic())
+                    .add(JSON_SCH_TIME, schedule.getTime())
+                    .add(JSON_LINK, schedule.getLink())
+                    .add(JSON_CRITERIA, schedule.getCriteria())
+                    .build();
+            schTableArray.add(schJson);
+        }
+        JsonArray schTablesArray = schTableArray.build(); 
+        
+        
+        
+    }
+    
+    
     // IMPORTING/EXPORTING DATA IS USED WHEN WE READ/WRITE DATA IN AN
     // ADDITIONAL FORMAT USEFUL FOR ANOTHER PURPOSE, LIKE ANOTHER APPLICATION
 
@@ -341,32 +485,6 @@ public class csg_TAFiles implements AppFileComponent {
     public void exportData(AppDataComponent data, String filePath) throws IOException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         csg_TAData dataManager = (csg_TAData)data;
-        
-        AppFileController file  = new AppFileController(app);
-        JsonObject json = loadJSONFile("..\\TAManagerTester\\public_html\\js\\RecitationsData.json");
-        
-        JsonArrayBuilder recTableArray = Json.createArrayBuilder();
-        ObservableList<csg_Recitation> rec =  dataManager.getRecTable();
-        for(csg_Recitation recitation: rec){
-            JsonObject recJson = Json.createObjectBuilder()
-                    .add(JSON_SECTION_EXPORT, recitation.getSection())
-                    //.add(JSON_INSTRUCTOR_EXPORT, recitation.getInstructor())
-                    .add(JSON_DAYTIME_EXPORT, recitation.getDayTime())
-                    .add(JSON_LOCATION_EXPORT, recitation.getLocation())
-                    .add(JSON_TA1_EXPORT, recitation.getTa())
-                    .add(JSON_TA2_EXPORT, recitation.getTa2()).build();
-            recTableArray.add(recJson);
-        }
-        JsonArray recTablesArray = recTableArray.build();
-        
-        file.handleExportRequest();
-        
-        JsonObject json1 = loadJSONFile("..\\TAManagerTester\\public_html\\js\\ScheduleBuilder.json");
-        
-        
-        //JsonArrayBuilder schTableArray = 
-        
-        
-        
+        saveCourseDetails(data, filePath);       
     }
 }

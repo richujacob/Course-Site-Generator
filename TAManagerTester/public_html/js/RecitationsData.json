@@ -1,10 +1,13 @@
+
 {
-    "recitations": [
-        {   "section": "<strong>R01</strong> (McKenna)",    "day_time": "Mondays, 3:30pm-4:23pm",       "location": "Old Computer Science 2114", "ta_1": "Wonyong Jeong", "ta_2": "Chaeyoung Lee" },
-        {   "section": "<strong>R02</strong> (McKenna)",    "day_time": "Wednesdays, 3:30pm-4:23pm",    "location": "Old Computer Science 2114", "ta_1": "Yu Zhao", "ta_2": "Jerrel Sogoni" },
-        {   "section": "<strong>R03</strong> (McKenna)",    "day_time": "Mondays, 5:30pm-6:23pm",       "location": "Old Computer Science 2114", "ta_1": "Jacob Evans", "ta_2": "James Hoffman" },
-        {   "section": "<strong>R05</strong> (Banerjee)",   "day_time": "Tuesdays, 5:30pm-6:23pm",      "location": "Old Computer Science 2114", "ta_1": "Robert Trujillo", "ta_2": "Milto Ndrenika" },
-        {   "section": "",   "day_time": "",     "location": "", "ta_1": "", "ta_2": "" },
-        {   "section": "",   "day_time": "",      "location": "", "ta_1": "", "ta_2": "" }
+    "recitations":[
+        {
+            "section":"R01",
+            "instructor":"RA Jack",
+            "day_time":"wednesday 11:30",
+            "location":"india",
+            "ta_1":"richu",
+            "ta_2":"sf"
+        }
     ]
 }

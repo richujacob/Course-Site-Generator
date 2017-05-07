@@ -17,6 +17,7 @@ public class TAAdderUR implements jTPS_Transaction{
     
     private String TAName;
     private String TAEmail;
+    private boolean checkBox;
     private csg_App app;
     private csg_Workspace workspace;
     
@@ -25,6 +26,7 @@ public class TAAdderUR implements jTPS_Transaction{
         workspace = (csg_Workspace)app.getWorkspaceComponent();
         TAName = workspace.getNameTextField().getText();
         TAEmail = workspace.getEmailTextField().getText();
+        
     }
 
     @Override

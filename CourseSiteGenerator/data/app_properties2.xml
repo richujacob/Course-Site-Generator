@@ -227,6 +227,7 @@
 		<property name="TYPE_LECTURE"				value="Ders"></property>
 		<property name="TYPE_BREAK"					value="Kırılma"></property>
 		<property name="TYPE_HW"					value="HW"></property>
+		<property name="TYPE_REFERENCES"			value="Denetlenen"></property>
 		<property name="TYPE_RECITATION"			value="Seslendirmeler"></property>
 		<property name="TEAM_1"					value="Team 1"></property>
 		<property name="TEAM_2"					value="Team 2"></property>

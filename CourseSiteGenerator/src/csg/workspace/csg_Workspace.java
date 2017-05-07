@@ -61,6 +61,7 @@ import csg.data.csg_Teams;
 import djf.ui.AppGUI;
 import jtps.jTPS;
 import csg.data.csg_TAData;
+import java.time.format.DateTimeFormatter;
 import javafx.scene.paint.Color;
 /**
  *
@@ -218,6 +219,9 @@ public class csg_Workspace extends AppWorkspaceComponent {
     HBox scheduleItemsBox;
     Label scheduleItemsLabel;
     Button scheduleDeleteItems;
+    
+    String startingMonday;
+    String endingFriday;
     
     TableView<csg_Schedule> scheduleTable;
     TableColumn<csg_Schedule, String> typeColumn;
@@ -398,7 +402,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
         
         numberOptions = FXCollections.observableArrayList(
                 props.getProperty(csg_Prop.NUMBER_219.toString()),
-                props.getProperty(csg_Prop.NUMBER_308.toString())
+                props.getProperty(csg_Prop.NUMBER_308.toString()),
+                props.getProperty(csg_Prop.NUMBER_380.toString())
         );
         
         semesterOptions = FXCollections.observableArrayList(
@@ -474,6 +479,16 @@ public class csg_Workspace extends AppWorkspaceComponent {
         instructorNameField.setMinWidth(350);
         instructorNameBox.setPadding(new Insets(10, 0, 0, 30));
         
+        instructorHomeBox = new HBox();
+        String instructorHomeText = props.getProperty(csg_Prop.INSTRUCTOR_HOME_TEXT.toString());
+        instructorHomeLabel = new Label(instructorHomeText);
+        instructorHomeField = new TextField();
+        instructorHomeBox.getChildren().add(instructorHomeLabel);
+        instructorHomeLabel.setPadding(new Insets(0, 10, 0, 0));
+        instructorHomeBox.getChildren().add(instructorHomeField);
+        instructorHomeField.setMinWidth(350);
+        instructorHomeBox.setPadding(new Insets(10, 0, 0, 30));
+        
         exportDirectoryBox = new HBox();
         String exportDirText = props.getProperty(csg_Prop.EXPORT_DIR_TEXT.toString());
         exportDirectoryLabel = new Label(exportDirText);
@@ -493,6 +508,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         courseDetailsTop.getChildren().add(semesterLine);
         courseDetailsTop.getChildren().add(titleBox);
         courseDetailsTop.getChildren().add(instructorNameBox);
+        courseDetailsTop.getChildren().add(instructorHomeBox);
         courseDetailsTop.getChildren().add(exportDirectoryBox);
         courseDetailsTop.setStyle("-fx-background-color: #ccccff");
         courseDetailsTop.setPadding(new Insets(0, 30, 10, 20));
@@ -926,9 +942,11 @@ public class csg_Workspace extends AppWorkspaceComponent {
               
         type_Options = FXCollections.observableArrayList(
                props.getProperty(csg_Prop.TYPE_HOLIDAY.toString()),
-               props.getProperty(csg_Prop.TYPE_BREAK.toString()),
+               //props.getProperty(csg_Prop.TYPE_BREAK.toString()),
                props.getProperty(csg_Prop.TYPE_HW.toString()),
-               props.getProperty(csg_Prop.TYPE_LECTURE.toString())
+               props.getProperty(csg_Prop.TYPE_LECTURE.toString()),
+               props.getProperty(csg_Prop.TYPE_RECITATION.toString()),
+               props.getProperty(csg_Prop.TYPE_REFERENCES.toString())
         );
        typeEventBox = new ComboBox(type_Options);
        
@@ -1493,9 +1511,9 @@ public class csg_Workspace extends AppWorkspaceComponent {
         
        addUpdate2.setOnAction(e -> {
            if(!addRec)
-               recController.editExistingRecitation();
+               TAcontroller.editExistingRecitation();
            else
-               recController.handleAddRec();
+               TAcontroller.handleAddRec();
        });
         
        clear2.setOnAction(e ->{
@@ -1525,12 +1543,12 @@ public class csg_Workspace extends AppWorkspaceComponent {
         recitationTable.setFocusTraversable(true);
         recitationTable.setOnKeyPressed(e ->{
             if(e.getCode() == KeyCode.DELETE){
-                recController.handleDeleteRec();
+                TAcontroller.handleDeleteRec();
             }
         });
         
         recitationDeleteButton.setOnAction(e ->{
-            recController.handleDeleteRec();
+            TAcontroller.handleDeleteRec();
         });
         
         
@@ -1543,32 +1561,34 @@ public class csg_Workspace extends AppWorkspaceComponent {
         
         recitationTable.setOnMouseClicked(e ->{
             addRec = false;
-            recController.loadRectotext();
+            TAcontroller.loadRectotext();
         });
                
         date.setOnAction(e ->{
             date2.setOnAction(j ->{
-                 schController.handleCalenderBounds();
+                 TAcontroller.handleCalenderBounds();
+                 startingMonday = date.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                 endingFriday = date2.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
             });
            
         });
         
         date2.setOnAction(e ->{
             date.setOnAction(j ->{
-                schController.handleCalenderBounds();
+                TAcontroller.handleCalenderBounds();
             });
         });
         
         scheduleTable.setOnMouseClicked(e ->{
             addSch = false;
-            schController.loadSchToText();
+            TAcontroller.loadSchToText();
         });
         
         addUpdateButton3.setOnAction(e ->{
             if(!addSch){
-                schController.handleEditSch();
+                TAcontroller.handleEditSch();
             }else{
-                schController.handleAddSch();
+                TAcontroller.handleAddSch();
             }
         });
         
@@ -1592,33 +1612,33 @@ public class csg_Workspace extends AppWorkspaceComponent {
         });
         
         scheduleDeleteButton.setOnAction(e ->{
-            schController.handleDeleteSch();
+            TAcontroller.handleDeleteSch();
             
         });
         
         scheduleTable.setFocusTraversable(true);
         scheduleTable.setOnKeyPressed(e ->{
             if(e.getCode() == KeyCode.DELETE){
-                schController.handleDeleteSch();
+                TAcontroller.handleDeleteSch();
                
             }
         });
        
         teamsTable.setOnMouseClicked(e ->{
            addTeam = false;
-            teamController.loadTeamText();
+            TAcontroller.loadTeamText();
         });
         
         addUpdate4Button.setOnAction(e ->{
             if(!addTeam){
-                teamController.editTeamText();
+                TAcontroller.editTeamText();
             }else{
-                teamController.handleAddTeam();
+                TAcontroller.handleAddTeam();
             }
         });
         
         teamsDeleteButton.setOnAction(e ->{
-            teamController.handleTeamDelete();
+            TAcontroller.handleTeamDelete();
             nameTeams.setText("");
             color1.setValue(null);
             color2.setValue(null);
@@ -1626,7 +1646,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         });
         
         teamsTable.setOnKeyPressed(e ->{
-            teamController.handleTeamDelete();
+            TAcontroller.handleTeamDelete();
             nameTeams.setText("");
             color1.setValue(null);
             color2.setValue(null);
@@ -1635,14 +1655,14 @@ public class csg_Workspace extends AppWorkspaceComponent {
         
         addUpdateButton5.setOnAction(e ->{
             if(!addStudent){
-                teamController.handleStudentEdit();
+                TAcontroller.handleStudentEdit();
             }else{
-            teamController.handleStudentAdd();
+            TAcontroller.handleStudentAdd();
             }
         });
         
         studentsDeleteButton.setOnAction(e ->{
-            teamController.handleStudentDelete();
+            TAcontroller.handleStudentDelete();
             firstNameField.setText("");
             lastNameField.setText("");
             teams.setValue(null);
@@ -1650,7 +1670,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         });
         
         studentsTable.setOnKeyPressed(e ->{
-            teamController.handleStudentDelete();
+            TAcontroller.handleStudentDelete();
             firstNameField.setText("");
             lastNameField.setText("");
             teams.setValue(null);
@@ -1668,33 +1688,35 @@ public class csg_Workspace extends AppWorkspaceComponent {
         
        studentsTable.setOnMouseClicked(e ->{
            addStudent = false;
-           teamController.loadStudentText();
+           TAcontroller.loadStudentText();
         });
         
         workspace.setOnKeyPressed(e ->{
             if(e.isControlDown())
                 if(e.getCode() == KeyCode.Z){
-                    if(taData.isSelected()){
-                        TAcontroller.Undo();
-                    }
-                    else if(recitation.isSelected()){
-                        recController.Undo();
-                    }else if(schedule.isSelected()){
-                        schController.Undo();
-                    }else if(projects.isSelected()){
-                        teamController.Undo();
-                    }
+                    TAcontroller.Undo();
+//                    if(taData.isSelected()){
+//                        TAcontroller.Undo();
+//                    }
+//                    else if(recitation.isSelected()){
+//                        recController.Undo();
+//                    }else if(schedule.isSelected()){
+//                        schController.Undo();
+//                    }else if(projects.isSelected()){
+//                        teamController.Undo();
+//                    }
 //                  
                 }else if(e.getCode() == KeyCode.Y){
-                    if(taData.isSelected()){
-                        TAcontroller.Redo();
-                    }else if(recitation.isSelected()){
-                        recController.Redo();
-                    }else if(schedule.isSelected()){
-                        schController.Redo();
-                    }else if(projects.isSelected()){
-                        teamController.Redo();
-                    }
+                    TAcontroller.Redo();
+//                    if(taData.isSelected()){
+//                        TAcontroller.Redo();
+//                    }else if(recitation.isSelected()){
+//                        recController.Redo();
+//                    }else if(schedule.isSelected()){
+//                        schController.Redo();
+//                    }else if(projects.isSelected()){
+//                        teamController.Redo();
+//                    }
                 }
         });
     }
@@ -1748,6 +1770,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
         return clearButton;
     }
 
+    
+    
     public HBox getOfficeHoursSubheaderBox() {
         return officeHoursHeaderBox;
     }
@@ -1804,6 +1828,10 @@ public class csg_Workspace extends AppWorkspaceComponent {
         return studentsHeaderLabel;
     }
 
+    public TableColumn getUseColumn() {
+        return useColumn;
+    }
+    
     public Label getTeamLabel() {
         return teamLabel;
     }
@@ -1951,8 +1979,42 @@ public class csg_Workspace extends AppWorkspaceComponent {
     public ComboBox getTeams() {
         return teams;
     }
+
+    public String getStartingMonday() {
+        return startingMonday;
+    }
+
+    public String getEndingFriday() {
+        return endingFriday;
+    }
     
-    
+    public ComboBox getSubjectCombo() {
+        return subjectCombo;
+    }
+
+    public ComboBox getSemesterCombo() {
+        return semesterCombo;
+    }
+
+    public ComboBox getNumberCombo() {
+        return numberCombo;
+    }
+
+    public ComboBox getYearCombo() {
+        return yearCombo;
+    }
+
+    public TextField getTitleField() {
+        return titleField;
+    }
+
+    public TextField getInstructorNameField() {
+        return instructorNameField;
+    }
+
+    public TextField getInstructorHomeField() {
+        return instructorHomeField;
+    }
     
     public String getCellKey(Pane testPane) {
         for (String key : officeHoursGridTACellLabels.keySet()) {
@@ -1976,6 +2038,11 @@ public class csg_Workspace extends AppWorkspaceComponent {
             return comboBox1;
         return comboBox2;
     }
+
+    public csg_TAController getTAcontroller() {
+        return TAcontroller;
+    }
+    
 
     public String buildCellKey(int col, int row) {
         return "" + col + "_" + row;

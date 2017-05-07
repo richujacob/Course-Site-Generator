@@ -28,12 +28,33 @@ import javafx.scene.input.KeyEvent;
 import jtps.jTPS;
 import jtps.jTPS_Transaction;
 import csg.csg_Prop;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyEvent;
 import csg.file.csg_TimeSlot;
+import csg.data.csg_Schedule;
+import csg.data.csg_Recitation;
+import csg.data.csg_Teams;
+import csg.data.csg_Students;
 import jtps.TAAdderUR;
 import jtps.TAReplaceUR;
 import jtps.TAdeletUR;
 import jtps.TAhourschangeUR;
 import jtps.TAtoggleUR;
+import jtps.schAdderUR;
+import jtps.schDeleteUR;
+import jtps.schEditUR;
+import jtps.RecAdderUR;
+import jtps.RecDeleteUR;
+import jtps.RecReplaceUR;
+import javafx.scene.paint.Color;
+import jtps.StudentAdderUR;
+import jtps.StudentDeleteUR;
+import jtps.TeamAdderUR;
+import jtps.TeamDeleteUR;
+import jtps.TeamReplaceUR;
+import jtps.studentReplaceUR;
 
 /**
  * This class provides responses to all workspace interactions, meaning
@@ -345,4 +366,554 @@ public class csg_TAController {
             workspace.getEmailTextField().setText(email);
         }
     }
+    
+    
+    
+    public void handleCalenderBounds(){
+        try{
+        boolean validDate = false;
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        csg_TAData data = (csg_TAData)app.getDataComponent();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        String mondayDate = workspace.getDate().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        String fridayDate = workspace.getDate2().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        if(workspace.getDate().getValue().getDayOfWeek().getValue()==1){
+            if(workspace.getDate2().getValue().getDayOfWeek().getValue()==5){
+                validDate = true;
+            }else{
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(END_NOT_FRIDAY_TITLE), props.getProperty(END_NOT_FRIDAY_MESSAGE));
+                workspace.getDate2().setValue(null);
+                workspace.getDate().setValue(null);
+                workspace.getDate().requestFocus();
+            }
+        }
+        else{
+            if(workspace.getDate2().getValue().getDayOfWeek().getValue()==5){
+                workspace.getDate2().setValue(null);
+                workspace.getDate().requestFocus();
+                if(workspace.getDate().getValue().getDayOfWeek().getValue()==1){
+                    
+                }else{
+                    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                    dialog.show(props.getProperty(START_NOT_MONDAY_TITLE), props.getProperty(START_NOT_MONDAY_MESSAGE));
+                    workspace.getDate().setValue(null);
+                    workspace.getDate().requestFocus();
+                }
+            }else{
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(END_NOT_FRIDAY_TITLE), props.getProperty(END_NOT_FRIDAY_MESSAGE));
+                workspace.getDate2().setValue(null);
+                workspace.getDate().requestFocus();
+            }
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(START_NOT_MONDAY_TITLE), props.getProperty(START_NOT_MONDAY_MESSAGE));
+            workspace.getDate().setValue(null);
+            workspace.getDate().requestFocus();
+            //workspace.getDate().setValue();
+        }
+        
+        if(workspace.getDate2().getValue().getDayOfWeek().getValue()==5){
+            if(workspace.getDate().getValue().getDayOfWeek().getValue()==1){
+                validDate = true;    
+                }else{
+                    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                    dialog.show(props.getProperty(START_NOT_MONDAY_TITLE), props.getProperty(START_NOT_MONDAY_MESSAGE));
+                    workspace.getDate().setValue(null);
+                    workspace.getDate().requestFocus();
+                }
+        }else{
+            if(workspace.getDate().getValue().getDayOfWeek().getValue()==1){
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(END_NOT_FRIDAY_TITLE), props.getProperty(END_NOT_FRIDAY_MESSAGE));
+                workspace.getDate2().setValue(null);
+                workspace.getDate().requestFocus();
+            }else{
+                    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                    dialog.show(props.getProperty(START_NOT_MONDAY_TITLE), props.getProperty(START_NOT_MONDAY_MESSAGE));
+                    workspace.getDate().setValue(null);
+                    workspace.getDate().requestFocus();
+            }
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(END_NOT_FRIDAY_TITLE), props.getProperty(END_NOT_FRIDAY_MESSAGE));
+                workspace.getDate2().setValue(null);
+                workspace.getDate().requestFocus();
+        }
+        
+        if(validDate = true){
+            if(workspace.getDate().getValue().compareTo(workspace.getDate2().getValue())<0){
+                
+            }else{
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(SCH_START_BEFORE_END_TITLE), props.getProperty(SCH_START_BEFORE_END_MESSAGE));
+                workspace.getDate2().setValue(null);
+                workspace.getDate().setValue(null);
+                workspace.getDate().requestFocus();
+            }
+        }
+        }catch(NullPointerException e){
+            
+        }
+        
+    }
+    
+    public void handleAddSch(){
+        try{
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        String type = (String)workspace.getTypeEventBox().getValue();
+        String date = workspace.getDate3().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        TextField timeField = workspace.getTimeField();
+        TextField titleField = workspace.getTitleScheduleField();
+        TextField topicField = workspace.getTopicField();
+        TextField linkField = workspace.getLinkField();
+        TextField criteriaField = workspace.getCriteriaField();
+        String time = timeField.getText();
+        String title = titleField.getText();
+        String topic  = topicField.getText();
+        String link = linkField.getText();
+        String criteria = criteriaField.getText();       
+       
+        
+        csg_TAData data = (csg_TAData)app.getDataComponent();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+         
+        if(workspace.getTypeEventBox().getSelectionModel().isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TYPE_MISSING_TITLE), props.getProperty(TYPE_MISSING_MESSAGE));
+        }else if(date.equals(null)){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(DATE_MISSING_TITLE), props.getProperty(DATE_MISSING_MESSAGE));
+        }else if(title.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TITLE_MISSING_TITLE), props.getProperty(TITLE_MISSING_MESSAGE));
+        }else if(time.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TIME_MISSING_TITLE), props.getProperty(TIME_MISSING_MESSAGE));
+        }
+        else if(data.containSch(title)){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(SCH_NOT_UNIQUE_TITLE), props.getProperty(SCH_NOT_UNIQUE_MESSAGE));
+            workspace.getTypeEventBox().getSelectionModel().clearSelection();
+            workspace.getDate3().setValue(null);
+            timeField.setText("");
+            titleField.setText("");
+            topicField.setText("");
+            linkField.setText("");
+            criteriaField.setText("");
+        }else{
+            jTPS_Transaction addSchUR = new schAdderUR(app);
+            jTPS.addTransaction(addSchUR);
+            
+            workspace.getTypeEventBox().getSelectionModel().clearSelection();
+            workspace.getDate3().setValue(null);
+            timeField.setText("");
+            titleField.setText("");
+            topicField.setText("");
+            linkField.setText("");
+            criteriaField.setText("");
+            
+            
+            markWorkAsEdited();
+            
+        }
+        }catch(NullPointerException e){
+            
+        } 
+        
+    }
+    
+    public void loadSchToText(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TableView schTable = workspace.getScheduleTable();
+        Object selectedItem = schTable.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null){
+            csg_Schedule sch = (csg_Schedule)selectedItem;
+            String type = sch.getType();
+            String date = sch.getDate();
+            String title = sch.getTitle();
+            String topic = sch.getTopic();
+            String time = sch.getTime();
+            String link = sch.getLink();
+            String criteria  = sch.getCriteria();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate localDate = LocalDate.parse(date, formatter);
+            workspace.getTypeEventBox().setValue(type);
+            workspace.getDate3().setValue(localDate);
+            workspace.getTitleScheduleField().setText(title);
+            workspace.getTopicField().setText(topic);
+            workspace.getTimeField().setText(time);
+            workspace.getLinkField().setText(link);
+            workspace.getCriteriaField().setText(criteria);    
+            
+        }
+    }
+    
+    public void handleEditSch(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TableView schTable = workspace.getScheduleTable();
+        Object selectedItem = schTable.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null){
+//            csg_Schedule sch = (csg_Schedule)selectedItem;
+//            String type = sch.getType();
+//            String newType = (String)workspace.getTypeEventBox().getValue();
+//            String date = sch.getDate();
+//            String newDate = workspace.getDate3().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+//            String title = sch.getTitle();
+//            String newTitle = workspace.getTitleScheduleField().getText();
+//            String topic = sch.getTopic();
+//            String newTopic = workspace.getTopicField().getText();
+//            String time = sch.getTime();
+//            String newTime = workspace.getTimeField().getText();
+//            String link = sch.getLink();
+//            String newLink = workspace.getLinkField().getText();
+//            String criteria = sch.getCriteria();
+//            String newCriteria = workspace.getCriteriaField().getText();
+            
+            jTPS_Transaction editSchUR = new schEditUR(app);
+            jTPS.addTransaction(editSchUR);
+            
+            markWorkAsEdited();
+        }
+    }
+    
+    public void handleDeleteSch(){
+            csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+            TableView schTable = workspace.getScheduleTable();
+            
+            Object selectedItem = schTable.getSelectionModel().getSelectedItem();
+            if(selectedItem!=null){
+                csg_Schedule sch = (csg_Schedule)selectedItem;
+                String title  = sch.getTitle();
+                csg_TAData data = (csg_TAData)app.getDataComponent();
+                
+                jTPS_Transaction deleteSch = new schDeleteUR(app, title);
+                jTPS.addTransaction(deleteSch);
+                
+                markWorkAsEdited();
+            }
+    }
+    
+    public void handleAddRec(){
+        try{
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TextField sectionField = workspace.getSectionField();
+        TextField instructorField = workspace.getInstructorField();
+        TextField dayTimeField = workspace.getDayTimeField();
+        TextField locationField  = workspace.getLocationField();
+        String section =  sectionField.getText();
+        String instructor = instructorField.getText();
+        String dayTime = dayTimeField.getText();
+        String location = locationField.getText();
+        String TA1 = (String)workspace.getSupervisingTA().getValue().toString();
+        String TA2 = (String)workspace.getSupervisingTA2().getValue().toString();
+        //String ta1 = "";
+        //String ta2 = "sdfsd";
+        
+        csg_TAData data = (csg_TAData)app.getDataComponent();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        
+        if(section.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_SECTION_REC), props.getProperty(MISSING_SECTION_REC));     
+        }else if(instructor.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_INSTRUCTOR_TITLE), props.getProperty(MISSING_INSTRUCTOR_REC)); 
+        }else if(dayTime.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_DAYTIME_TITLE), props.getProperty(MISSING_DAYTIME_REC)); 
+        }else if(location.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_LOCATION_TITLE), props.getProperty(MISSING_LOCATION_REC)); 
+        }else if(workspace.getSupervisingTA().getSelectionModel().isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_SUPERVISING1_TITLE), props.getProperty(MISSING_SUPERVISING1_REC)); 
+        }//else if(workspace.getSupervisingTA2().getSelectionModel().isEmpty()){
+            //AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    //dialog.show(props.getProperty(MISSING_SUPERVISING2_TITLE), props.getProperty(MISSING_SUPERVISING2_REC)); 
+        //}
+        else if(data.containsRec(section, instructor, dayTime, location, TA1, TA2)){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(REC_TITLE_NOT_UNIQUE_TITLE), props.getProperty(REC_TITLE_NOT_UNIQUE));
+        }
+        else{
+            
+            jTPS_Transaction addRecUR = new RecAdderUR(app);
+            jTPS.addTransaction(addRecUR);
+            
+            sectionField.setText("");
+            instructorField.setText("");
+            dayTimeField.setText("");
+            locationField.setText("");
+            workspace.getSupervisingTA().getSelectionModel().clearSelection();
+            workspace.getSupervisingTA2().getSelectionModel().clearSelection();
+            markWorkAsEdited();
+        }
+        
+        }catch(NullPointerException e){
+            csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TextField sectionField = workspace.getSectionField();
+        TextField instructorField = workspace.getInstructorField();
+        TextField dayTimeField = workspace.getDayTimeField();
+        TextField locationField  = workspace.getLocationField();
+        String section =  sectionField.getText();
+        String instructor = instructorField.getText();
+        String dayTime = dayTimeField.getText();
+        String location = locationField.getText();
+            jTPS_Transaction addRecUR = new RecAdderUR(app);
+            jTPS.addTransaction(addRecUR);
+            
+            sectionField.setText("");
+            instructorField.setText("");
+            dayTimeField.setText("");
+            locationField.setText("");
+            workspace.getSupervisingTA().getSelectionModel().clearSelection();
+            workspace.getSupervisingTA2().getSelectionModel().clearSelection();
+            markWorkAsEdited();
+        }
+    }
+    
+    public void editExistingRecitation(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TableView recTable = workspace.getRecitationTable();
+        Object selectedItem = recTable.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null){
+//            csg_Recitation rec  = (csg_Recitation)selectedItem;
+//            String section = rec.getSection();
+//            String newSection = workspace.getSectionField().getText();
+//            String instructor = rec.getInstructor();
+//            String newInstructor = workspace.getInstructorField().getText();
+//            String dayTime = rec.getDayTime();
+//            String newDayTime = workspace.getDayTimeField().getText();
+//            String location = rec.getLocation();
+//            String newLocation = workspace.getLocationField().getText();
+//            String supervisingTA1 = rec.getTa();
+//            String newTA1 = (String)workspace.getSupervisingTA().getValue();
+//            String supervisingTA2 = rec.getTa2();
+//            String newTA2 = (String)workspace.getSupervisingTA2().getValue();
+            jTPS_Transaction replaceRecUR = new RecReplaceUR(app);
+            jTPS.addTransaction(replaceRecUR);
+            
+            //jTPS_Transaction replaceTAUR = (jTPS_Transaction) new RecReplaceUR(app);
+            //jTPS.addTransaction(replaceTAUR);
+            markWorkAsEdited();
+            
+        }
+    }
+    
+    public void loadRectotext(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TableView recTable = workspace.getRecitationTable();
+        Object selectedItem = recTable.getSelectionModel().getSelectedItem();
+        if(selectedItem != null){
+            csg_Recitation rec = (csg_Recitation)selectedItem;
+            String section = rec.getSection();
+            String instructor = rec.getInstructor();
+            String dayTime = rec.getDayTime();
+            String location = rec.getLocation();
+            String ta1 = rec.getTa();
+            String ta2 = rec.getTa2();
+            workspace.getSectionField().setText(section);
+            workspace.getInstructorField().setText(instructor);
+            workspace.getDayTimeField().setText(dayTime);
+            workspace.getLocationField().setText(location);
+            workspace.getSupervisingTA().setValue(ta1);
+            workspace.getSupervisingTA2().setValue(ta2);
+            
+        }
+    }
+    
+    public void handleDeleteRec(){
+            csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+            TableView recTable = workspace.getRecitationTable();
+            
+            Object selectedItem = recTable.getSelectionModel().getSelectedItem();
+            if(selectedItem!=null){
+                csg_Recitation rec = (csg_Recitation)selectedItem;
+                String section  = rec.getSection();
+                csg_TAData data = (csg_TAData)app.getDataComponent();
+                
+                jTPS_Transaction deleteRec = new RecDeleteUR(app, section);
+                jTPS.addTransaction(deleteRec);
+                
+                markWorkAsEdited();
+            }
+    }
+    
+    public void handleAddTeam(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TextField nameField = workspace.getNameTeams();
+        String hexColor = Integer.toHexString(workspace.getColor1().getValue().hashCode());
+        String textColor = Integer.toHexString(workspace.getColor2().getValue().hashCode()).substring(0, 6).toUpperCase();
+        TextField linkField = workspace.getLinkTeams();
+        String name = nameField.getText();
+        String link = linkField.getText();
+        
+        csg_TAData data = (csg_TAData)app.getDataComponent();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        
+        if(name.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(NAME_MISSING_TEAM_TITLE), props.getProperty(NAME_MISSING_TEAM_MESSAGE));
+        }
+        else if(workspace.getColor1().getValue().equals(null)){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(COLOR_MISSING_TITLE), props.getProperty(COLOR_MISSING_MESSAGE));
+        }else if(workspace.getColor2().getValue().equals(null)){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TEXTCOLOR_MISSING_TITLE), props.getProperty(TEXTCOLOR_MISSING_MESSAGE));
+        }else if(link.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(LINK_MISSING_TEAM_TITLE), props.getProperty(LINK_MISSING_TEAM_MESSAGE));
+        }
+        else if(data.containsTeam(name, hexColor, textColor, link)){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TEAMS_NOT_UNIQUE_TITLE), props.getProperty(TEAMS_NOT_UNIQUE_MESSAGE));
+        }
+        else{
+            jTPS_Transaction addTeamUR = new TeamAdderUR(app);
+            jTPS.addTransaction(addTeamUR);
+            
+            workspace.getNameTeams().setText("");
+            workspace.getLinkTeams().setText("");
+            
+            markWorkAsEdited();
+        }
+        
+        
+    }
+    
+    public void loadTeamText(){
+            csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+            TableView teamTable = workspace.getTeamsTable();
+            Object selectedItem = teamTable.getSelectionModel().getSelectedItem();
+            if(selectedItem!=null){
+                csg_Teams team = (csg_Teams)selectedItem;
+                String color = team.getColor();
+                String textColor = team.getTextColor();
+                workspace.getNameTeams().setText(team.getName());
+                workspace.getColor1().setValue(Color.valueOf(color));
+                workspace.getLinkTeams().setText(team.getLink());
+            }
+    }
+    
+    public void editTeamText(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TableView teamsTable = workspace.getTeamsTable();
+        Object selectedItem = teamsTable.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null){
+            jTPS_Transaction replaceTeamUR = new TeamReplaceUR(app);
+            jTPS.addTransaction(replaceTeamUR);
+            
+            markWorkAsEdited();
+        }
+    }
+    
+    public void handleTeamDelete(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TableView teamTable = workspace.getTeamsTable();
+        
+        Object selectedItem = teamTable.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null){
+                csg_Teams team = (csg_Teams)selectedItem;
+                String name = team.getName();
+                csg_TAData data = (csg_TAData)app.getDataComponent();
+                
+                jTPS_Transaction deleteTeam = new TeamDeleteUR(app, name);
+                jTPS.addTransaction(deleteTeam);
+                
+                markWorkAsEdited();
+            }
+        
+    }
+    
+    public void handleStudentAdd(){
+        try{
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        String firstName = workspace.getFirstNameField().getText();
+        String lastName = workspace.getLastNameField().getText();
+        //String team = (String)workspace.getTeams().getValue().toString();
+        String role = workspace.getRoleField().getText();
+        
+        csg_TAData data = (csg_TAData)app.getDataComponent();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        
+        if(firstName.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(FIRSTNAME_MISSING_TITLE), props.getProperty(FIRSTNAME_MISSING_MESSAGE));
+        }else if(lastName.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(LASTNAME_MISSING_TITLE), props.getProperty(LASTNAME_MISSING_MESSAGE));
+        }else if(workspace.getTeams().getValue().equals(null)){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TEAM_MISSING_TITLE), props.getProperty(TEAM_MISSING_MESSAGE));
+        }else if(role.isEmpty()){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(ROLE_MISSING_TITLE), props.getProperty(ROLE_MISSING_MESSAGE));
+        }else if(data.containsStudent(firstName, lastName, role)){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TEAMS_NOT_UNIQUE_TITLE), props.getProperty(TEAMS_NOT_UNIQUE_MESSAGE));
+        }else{
+            jTPS_Transaction addStudentUR = new StudentAdderUR(app);
+            jTPS.addTransaction(addStudentUR);
+            
+            workspace.getFirstNameField().setText("");
+            workspace.getLastNameField().setText("");
+            workspace.getTeams().setValue(null);
+            workspace.getRoleField().setText("");
+            
+            markWorkAsEdited();
+        }
+        }catch(NullPointerException e){
+            
+        }
+        
+    }
+    
+    public void loadStudentText(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+            TableView studentTable = workspace.getStudentsTable();
+            Object selectedItem = studentTable.getSelectionModel().getSelectedItem();
+            if(selectedItem!=null){
+                csg_Students student = (csg_Students)selectedItem;
+                String firstName  = student.getFirstName();
+                String lastName = student.getLastName();
+                String team = student.getTeam();
+                String role = student.getRole();
+                workspace.getFirstNameField().setText(firstName);
+                workspace.getLastNameField().setText(lastName);
+                workspace.getTeams().setValue(team);
+                workspace.getRoleField().setText(role);
+            }
+    }
+    
+    public void handleStudentEdit(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TableView studentTable = workspace.getStudentsTable();
+        Object selectedItem = studentTable.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null){
+            jTPS_Transaction replaceStudentUR = new studentReplaceUR(app);
+            jTPS.addTransaction(replaceStudentUR);
+            
+            markWorkAsEdited();
+        }
+    }
+    
+    public void handleStudentDelete(){
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        TableView studentTable = workspace.getStudentsTable();
+        
+        Object selectedItem = studentTable.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null){
+                csg_Students student = (csg_Students)selectedItem;
+                String firstName = student.getFirstName();
+                csg_TAData data = (csg_TAData)app.getDataComponent();
+                
+                jTPS_Transaction deleteStudent = new StudentDeleteUR(app, firstName);
+                jTPS.addTransaction(deleteStudent);
+                
+                markWorkAsEdited();
+            }
+    }
+    
+    
 }

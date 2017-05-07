@@ -217,6 +217,7 @@
 	   <property name="COURSE_CSE"	value="CSE"></property>
 	   <property name="NUMBER_219"	value="219"></property>
 	   <property name="NUMBER_308"	value="308"></property>
+	   <property name="NUMBER_380"	value="380"></property>
  	   <property name="SEMESTER_FALL"	 		value="Fall"			></property>
 	   <property name="SEMESTER_SPRING"	 	value="Spring"			></property>
 	   <property name="YEAR_2017"	 		value="2017"			></property>
@@ -227,6 +228,7 @@
 		<property name="TYPE_LECTURE"				value="Lecture"></property>
 		<property name="TYPE_BREAK"					value="Break"></property>
 		<property name="TYPE_HW"					value="HW"></property>
+		<property name="TYPE_REFERENCES"			value="Reference"></property>
 		<property name="TYPE_RECITATION"			value="Recitation"></property>
 		<property name="TEAM_1"					value="Team 1"></property>
 		<property name="TEAM_2"					value="Team 2"></property>
