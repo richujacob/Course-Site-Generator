@@ -233,10 +233,16 @@ public class AppFileController {
         System.out.println(path);
         String oldPath = "..\\TAManagerTester\\public_html";
         copy(oldPath, path);
+        try{
         String filePath = "..\\TAManagerTester\\public_html\\js\\courseDetailsData.json";
         app.getFileComponent().exportData(app.getDataComponent(), filePath);
+        }catch(NullPointerException e){
+            
+        }
         String filePathRec = "..\\TAManagerTester\\public_html\\js\\RecitationsData.json";
         app.getFileComponent().saveRecitationData(app.getDataComponent(), filePathRec);
+        String filePathSch = "..\\TAManagerTester\\public_html\\js\\ScheduleData.json";
+        app.getFileComponent().saveScheduleData(app.getDataComponent(), filePathSch);
     }
     
 //    public void handleExportScheduleRequest() {

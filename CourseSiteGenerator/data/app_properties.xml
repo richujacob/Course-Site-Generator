@@ -26,6 +26,7 @@
 </property>
 	   <property name="ABOUT_ICON"		value="About.png">
 </property>
+	<property name="BANNER_IMAGE"		value="SBUDarkRedShieldLogo.png"></property>
 
         
         <!-- TOOLTIPS FOR BUTTONS -->

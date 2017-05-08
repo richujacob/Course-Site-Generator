@@ -31,6 +31,8 @@ import csg.data.csg_Students;
 import csg.data.csg_Teams;
 import csg.workspace.csg_Workspace;
 import djf.controller.AppFileController;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -118,7 +120,12 @@ public class csg_TAFiles implements AppFileComponent {
     static final String JSON_TIME_EXPORT = "time";
     static final String JSON_CRITERIA_EXPORT = "criteria";
     
-    
+    static final String JSON_TEAMS_EXPORT = "teams";
+    static final String JSON_TEAMNAME_EXPORT = "name";
+    static final String JSON_RED_EXPORT = "red";
+    static final String JSON_GREEN_EXPORT = "green";
+    static final String JSON_BLUE_EXPORT = "blue";
+    static final String JSON_TEXTCOLOR_EXPORT = "text_color";
     
     public csg_TAFiles(csg_App initApp) {
         app = initApp;
@@ -438,9 +445,9 @@ public class csg_TAFiles implements AppFileComponent {
         csg_TAData dataManager = (csg_TAData)data;
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         
-        String startingMonday = workspace.getDate().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-        String endingFriday = workspace.getDate2().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-        String selectedDate = workspace.getDate3().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+//        String startingMonday = workspace.getDate().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+//        String endingFriday = workspace.getDate2().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+//        String selectedDate = workspace.getDate3().getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         
         int mondayMonth = workspace.getDate().getValue().getMonthValue();
         String startingMondayMonth = Integer.toString(mondayMonth);
@@ -449,29 +456,181 @@ public class csg_TAFiles implements AppFileComponent {
         
         int fridayMonth = workspace.getDate2().getValue().getMonthValue();
         String endingFridayMonth = Integer.toString(fridayMonth);
-        int fridayDay = workspace.getDate().getValue().getDayOfMonth();
-        String endFridayDay = Integer.toString(fridayDay);
+        int fridayDay = workspace.getDate2().getValue().getDayOfMonth();
+        String endingFridayDay = Integer.toString(fridayDay);
         
-        JsonArrayBuilder schTableArray = Json.createArrayBuilder();
+//        int selectedMonth = workspace.getDate3().getValue().getMonthValue();
+//        String selectedMonthNum = Integer.toString(selectedMonth);
+//        int selectedDay = workspace.getDate3().getValue().getDayOfMonth();
+//        String selectedDayNum = Integer.toString(selectedDay);
+        
+
+        
+        JsonArrayBuilder schHolidayArray = Json.createArrayBuilder();
         ObservableList<csg_Schedule> sch = dataManager.getScheduleTable();
         for(csg_Schedule schedule: sch){
-            JsonObject schJson = Json.createObjectBuilder()
-                    .add(JSON_TYPE, schedule.getType())
-                    .add(JSON_DATE, schedule.getDate())
-                    .add(JSON_TITLE, schedule.getTitle())
-                    .add(JSON_TOPIC, schedule.getTopic())
-                    .add(JSON_SCH_TIME, schedule.getTime())
-                    .add(JSON_LINK, schedule.getLink())
-                    .add(JSON_CRITERIA, schedule.getCriteria())
-                    .build();
-            schTableArray.add(schJson);
-        }
-        JsonArray schTablesArray = schTableArray.build(); 
+            if(schedule.getType().equals("Holiday")){
+                String date = schedule.getDate();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                LocalDate localDate = LocalDate.parse(date, formatter);
+                int selectedMonth = localDate.getMonthValue();
+                String selectedMonthNum = Integer.toString(selectedMonth);
+                int selectedDay = localDate.getDayOfMonth();
+                String selectedDayNum = Integer.toString(selectedDay);
+                
+                JsonObject schHoliday = Json.createObjectBuilder()
+                    .add(JSON_MONTH_EXPORT, selectedMonthNum)
+                    .add(JSON_DAY_EXPORT, selectedDayNum)
+                    .add(JSON_TITLESCH_EXPORT, schedule.getTitle())
+                    .add(JSON_LINK_EXPORT, schedule.getLink())
+                    .build(); 
+                schHolidayArray.add(schHoliday);
+            }
+        }JsonArray scheduleHolidayArray = schHolidayArray.build();
         
-        
+        JsonArrayBuilder schLectureArray = Json.createArrayBuilder();
+        ObservableList<csg_Schedule> schLec = dataManager.getScheduleTable();
+            for(csg_Schedule schedule : schLec){
+            if(schedule.getType().equals("Lecture")){
+                String date = schedule.getDate();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                LocalDate localDate = LocalDate.parse(date, formatter);
+                int selectedMonth = localDate.getMonthValue();
+                String selectedMonthNum = Integer.toString(selectedMonth);
+                int selectedDay = localDate.getDayOfMonth();
+                String selectedDayNum = Integer.toString(selectedDay);
+                
+                JsonObject schLecture = Json.createObjectBuilder()
+                    .add(JSON_MONTH_EXPORT, selectedMonthNum)
+                    .add(JSON_DAY_EXPORT, selectedDayNum)
+                    .add(JSON_TITLESCH_EXPORT, schedule.getTitle())
+                    .add(JSON_TOPIC_EXPORT, schedule.getTopic())  
+                    .add(JSON_LINK_EXPORT, schedule.getLink())
+                    .build(); 
+                schLectureArray.add(schLecture);                
+                }
+            }JsonArray scheduleLectureArray = schLectureArray.build();
+            
+            JsonArrayBuilder schReferenceArray = Json.createArrayBuilder();
+            ObservableList<csg_Schedule> schRef = dataManager.getScheduleTable();
+                for(csg_Schedule schedule : schRef){
+                    if(schedule.getType().equals("Reference")){
+                        String date = schedule.getDate();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                        LocalDate localDate = LocalDate.parse(date, formatter);
+                        int selectedMonth = localDate.getMonthValue();
+                        String selectedMonthNum = Integer.toString(selectedMonth);
+                        int selectedDay = localDate.getDayOfMonth();
+                        String selectedDayNum = Integer.toString(selectedDay);
+                        
+                        JsonObject schReference = Json.createObjectBuilder()
+                                .add(JSON_MONTH_EXPORT, selectedMonthNum)
+                                .add(JSON_DAY_EXPORT, selectedDayNum)
+                                .add(JSON_TITLESCH_EXPORT, schedule.getTitle())
+                                .add(JSON_TOPIC_EXPORT, schedule.getTopic())  
+                                .add(JSON_LINK_EXPORT, schedule.getLink())
+                                .build(); 
+                        schReferenceArray.add(schReference);
+                    }
+                }JsonArray scheduleReferenceArray = schReferenceArray.build();
+                
+            JsonArrayBuilder schRecitationArray = Json.createArrayBuilder();
+            ObservableList<csg_Schedule> schRec = dataManager.getScheduleTable();
+                for(csg_Schedule schedule : schRec){
+                    if(schedule.getType().equals("Recitation")){
+                        String date = schedule.getDate();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                        LocalDate localDate = LocalDate.parse(date, formatter);
+                        int selectedMonth = localDate.getMonthValue();
+                        String selectedMonthNum = Integer.toString(selectedMonth);
+                        int selectedDay = localDate.getDayOfMonth();
+                        String selectedDayNum = Integer.toString(selectedDay);
+                        
+                        JsonObject schRecitation = Json.createObjectBuilder()
+                                .add(JSON_MONTH_EXPORT, selectedMonthNum)
+                                .add(JSON_DAY_EXPORT, selectedDayNum)
+                                .add(JSON_TITLESCH_EXPORT, schedule.getTitle())
+                                .add(JSON_TOPIC_EXPORT, schedule.getTopic())  
+                                //.add(JSON_LINK_EXPORT, schedule.getLink())
+                                .build(); 
+                        schRecitationArray.add(schRecitation);
+                    }
+                }JsonArray scheduleRecitationArray = schRecitationArray.build();
+                
+            JsonArrayBuilder schHWArray = Json.createArrayBuilder();
+            ObservableList<csg_Schedule> schHW = dataManager.getScheduleTable();
+                for(csg_Schedule schedule : schHW){
+                    if(schedule.getType().equals("HW")){
+                        String date = schedule.getDate();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                        LocalDate localDate = LocalDate.parse(date, formatter);
+                        int selectedMonth = localDate.getMonthValue();
+                        String selectedMonthNum = Integer.toString(selectedMonth);
+                        int selectedDay = localDate.getDayOfMonth();
+                        String selectedDayNum = Integer.toString(selectedDay);
+                        
+                        JsonObject schHomework = Json.createObjectBuilder()
+                                .add(JSON_MONTH_EXPORT, selectedMonthNum)
+                                .add(JSON_DAY_EXPORT, selectedDayNum)
+                                .add(JSON_TITLESCH_EXPORT, schedule.getTitle())
+                                .add(JSON_TOPIC_EXPORT, schedule.getTopic())  
+                                .add(JSON_LINK_EXPORT, schedule.getLink())
+                                .add(JSON_TIME_EXPORT, schedule.getTime())
+                                .add(JSON_CRITERIA_EXPORT, schedule.getCriteria())
+                                .build(); 
+                        schHWArray.add(schHomework);
+                    }
+                }JsonArray scheduleHWArray = schHWArray.build();
+                    
+                JsonObject dataManagerJSO = Json.createObjectBuilder()
+                        .add(JSON_STARTINGMONDAY_MONTH_EXPORT, "" + startingMondayMonth)
+                        .add(JSON_STARTINGMONDAY_DAY_EXPORT, "" + startingMondayDay)
+                        .add(JSON_ENDINGFRIDAY_MONTH_EXPORT, "" + endingFridayMonth)
+                        .add(JSON_ENDINGFRIDAY_DAY_EXPORT, "" + endingFridayDay)
+                        .add(JSON_HOLIDAYS_EXPORT, scheduleHolidayArray)
+                        .add(JSON_LECTURES_EXPORT, scheduleLectureArray)
+                        .add(JSON_REFERENCES_EXPORT, scheduleReferenceArray)
+                        .add(JSON_SCHRECITATION_EXPORT, scheduleRecitationArray)
+                        .add(JSON_HW_EXPORT, scheduleHWArray)
+                        .build();
+                
+        Map<String, Object> properties = new HashMap<String, Object>(1);
+	properties.put(JsonGenerator.PRETTY_PRINTING, true);
+	JsonWriterFactory writerFactory = Json.createWriterFactory(properties);
+	StringWriter sw = new StringWriter();
+	JsonWriter jsonWriter = writerFactory.createWriter(sw);
+	jsonWriter.writeObject(dataManagerJSO);
+	jsonWriter.close();
+
+	// INIT THE WRITER
+	OutputStream os = new FileOutputStream(filePath);
+	JsonWriter jsonFileWriter = Json.createWriter(os);
+	jsonFileWriter.writeObject(dataManagerJSO);
+	String prettyPrinted = sw.toString();
+	PrintWriter pw = new PrintWriter(filePath);
+	pw.write(prettyPrinted);
+	pw.close();
         
     }
     
+    public void saveTeamsData(AppDataComponent data, String filePath){
+        csg_TAData dataManager = (csg_TAData)data;
+        csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
+        
+        JsonArrayBuilder teamArray = Json.createArrayBuilder();
+        ObservableList<csg_Teams> team = dataManager.getTeamsTable();
+            for(csg_Teams teams: team){
+                String color = teams.getColor();
+                int r = hex2decimal(color.substring(0, 2));
+                int g = hex2decimal(color.substring(2, 4));
+                int b = hex2decimal(color.substring(4, 6));
+                String red = Integer.toString(r);
+                String green = Integer.toString(g);
+                String blue = Integer.toString(b);
+                String textColor = teams.getTextColor();
+                
+            }
+    }
     
     // IMPORTING/EXPORTING DATA IS USED WHEN WE READ/WRITE DATA IN AN
     // ADDITIONAL FORMAT USEFUL FOR ANOTHER PURPOSE, LIKE ANOTHER APPLICATION
@@ -487,4 +646,16 @@ public class csg_TAFiles implements AppFileComponent {
         csg_TAData dataManager = (csg_TAData)data;
         saveCourseDetails(data, filePath);       
     }
+    
+    public static int hex2decimal(String s) {
+             String digits = "0123456789ABCDEF";
+             s = s.toUpperCase();
+             int val = 0;
+             for (int i = 0; i < s.length(); i++) {
+                 char c = s.charAt(i);
+                 int d = digits.indexOf(c);
+                 val = 16*val + d;
+             }
+             return val;
+         }
 }

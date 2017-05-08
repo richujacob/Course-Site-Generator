@@ -21,6 +21,8 @@ public interface AppFileComponent {
     public void saveRecitationData(AppDataComponent data, String filePath) throws IOException;
     
     public void saveScheduleData(AppDataComponent data, String filePath) throws IOException;
+    
+    public void saveTeamsData(AppDataComponent data, String filePath) throws IOException;
 
     /**
      * This function must be overridden in the actual component and would

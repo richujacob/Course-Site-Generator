@@ -62,7 +62,10 @@ import djf.ui.AppGUI;
 import jtps.jTPS;
 import csg.data.csg_TAData;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+//import javax.swing.text.html.ImageView;
 /**
  *
  * @author Richu
@@ -162,6 +165,10 @@ public class csg_Workspace extends AppWorkspaceComponent {
     Button changeButton3;
     ObservableList<String> style_Options;
     ComboBox styleSheet;        
+    
+    ImageView imageBanner;
+    ImageView imageLeft;
+    ImageView imageRight;
     
     HBox recitationHeader;
     Label recitationLabel;
@@ -609,11 +616,16 @@ public class csg_Workspace extends AppWorkspaceComponent {
         courseDetailsBottom.getChildren().add(pageStyleBox);
         
         bannerSchoolBox = new HBox();
+//        Image image = new Image(props.getProperty(csg_Prop.BANNER_IMAGE));
+//        ImageView iv1 = new ImageView();
+//        iv1.setImage(image);
         String bannerSchoolText = props.getProperty(csg_Prop.BANNER_SCHOOL_TEXT.toString());
         bannerSchoolLabel = new Label(bannerSchoolText);
         String changeText1 = props.getProperty(csg_Prop.CHANGE_BUTTON1_TEXT.toString());
         changeButton1 = new Button(changeText1);
         bannerSchoolBox.getChildren().add(bannerSchoolLabel);
+        imageBanner = new ImageView();
+        //bannerSchoolBox.getChildren().add(iv1);
         bannerSchoolLabel.setPadding(new Insets(0, 180, 0, 0));
         bannerSchoolBox.getChildren().add(changeButton1);
         bannerSchoolBox.setPadding(new Insets(10, 0, 0, 10));
@@ -624,6 +636,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         leftFootLabel = new Label(leftFootText);
         String changeText2 = props.getProperty(csg_Prop.CHANGE_BUTTON2_TEXT.toString());
         changeButton2 = new Button(changeText2);
+        imageLeft = new ImageView();
         leftFootBox.getChildren().add(leftFootLabel);
         leftFootLabel.setPadding(new Insets(0, 196, 0, 0));
         leftFootBox.getChildren().add(changeButton2);
@@ -635,6 +648,7 @@ public class csg_Workspace extends AppWorkspaceComponent {
         rightFootLabel = new Label(rightFootText);
         String changeText3 = props.getProperty(csg_Prop.CHANGE_BUTTON3_TEXT.toString());
         changeButton3 = new Button(changeText3);
+        imageRight = new ImageView();
         rightFootBox.getChildren().add(rightFootLabel);
         rightFootLabel.setPadding(new Insets(0, 188, 0, 0));
         rightFootBox.getChildren().add(changeButton3);
@@ -1567,8 +1581,8 @@ public class csg_Workspace extends AppWorkspaceComponent {
         date.setOnAction(e ->{
             date2.setOnAction(j ->{
                  TAcontroller.handleCalenderBounds();
-                 startingMonday = date.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-                 endingFriday = date2.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                 //startingMonday = date.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                 //endingFriday = date2.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
             });
            
         });

@@ -789,9 +789,11 @@ public class csg_TAController {
             if(selectedItem!=null){
                 csg_Teams team = (csg_Teams)selectedItem;
                 String color = team.getColor();
+                String color2 = team.getTextColor();
                 String textColor = team.getTextColor();
                 workspace.getNameTeams().setText(team.getName());
                 workspace.getColor1().setValue(Color.valueOf(color));
+                workspace.getColor2().setValue(Color.valueOf(color2));
                 workspace.getLinkTeams().setText(team.getLink());
             }
     }

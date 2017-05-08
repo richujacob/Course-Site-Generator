@@ -193,6 +193,8 @@ public enum csg_Prop {
     ROLE_MISSING_MESSAGE,
     STUDENTS_NOT_UNIQUE_MESSAGE,
     
+    BANNER_IMAGE,
+    
     
     
     
