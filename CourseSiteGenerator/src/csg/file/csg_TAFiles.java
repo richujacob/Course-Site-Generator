@@ -31,6 +31,7 @@ import csg.data.csg_Students;
 import csg.data.csg_Teams;
 import csg.workspace.csg_Workspace;
 import djf.controller.AppFileController;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -613,7 +614,7 @@ public class csg_TAFiles implements AppFileComponent {
         
     }
     
-    public void saveTeamsData(AppDataComponent data, String filePath){
+    public void saveTeamsData(AppDataComponent data, String filePath) throws IOException{
         csg_TAData dataManager = (csg_TAData)data;
         csg_Workspace workspace = (csg_Workspace)app.getWorkspaceComponent();
         
@@ -629,7 +630,36 @@ public class csg_TAFiles implements AppFileComponent {
                 String blue = Integer.toString(b);
                 String textColor = teams.getTextColor();
                 
-            }
+                JsonObject teamExport = Json.createObjectBuilder()
+                        .add(JSON_TEAMNAME_EXPORT, teams.getName())
+                        .add(JSON_RED_EXPORT, "" + red)
+                        .add(JSON_GREEN_EXPORT, "" + green)
+                        .add(JSON_BLUE_EXPORT, "" + blue)
+                        .add(JSON_TEXTCOLOR_EXPORT, teams.getTextColor())
+                        .build();      
+                teamArray.add(teamExport);
+            }JsonArray teamsArray = teamArray.build();
+            
+            JsonObject dataManagerJSO = Json.createObjectBuilder()
+                .add(JSON_TEAMS_EXPORT, teamsArray).build();
+            
+            Map<String, Object> properties = new HashMap<String, Object>(1);
+	properties.put(JsonGenerator.PRETTY_PRINTING, true);
+	JsonWriterFactory writerFactory = Json.createWriterFactory(properties);
+	StringWriter sw = new StringWriter();
+	JsonWriter jsonWriter = writerFactory.createWriter(sw);
+	jsonWriter.writeObject(dataManagerJSO);
+	jsonWriter.close();
+
+	// INIT THE WRITER
+	OutputStream os = new FileOutputStream(filePath);
+	JsonWriter jsonFileWriter = Json.createWriter(os);
+	jsonFileWriter.writeObject(dataManagerJSO);
+	String prettyPrinted = sw.toString();
+	PrintWriter pw = new PrintWriter(filePath);
+	pw.write(prettyPrinted);
+	pw.close();
+            
     }
     
     // IMPORTING/EXPORTING DATA IS USED WHEN WE READ/WRITE DATA IN AN

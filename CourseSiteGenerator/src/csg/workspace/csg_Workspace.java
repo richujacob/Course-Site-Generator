@@ -167,6 +167,9 @@ public class csg_Workspace extends AppWorkspaceComponent {
     ComboBox styleSheet;        
     
     ImageView imageBanner;
+    Image banner;
+    Image left;
+    Image right;
     ImageView imageLeft;
     ImageView imageRight;
     
@@ -619,14 +622,18 @@ public class csg_Workspace extends AppWorkspaceComponent {
 //        Image image = new Image(props.getProperty(csg_Prop.BANNER_IMAGE));
 //        ImageView iv1 = new ImageView();
 //        iv1.setImage(image);
+        String path = System.getProperty("user.dir");
+        path += "\\export_dir\\public_html\\images\\";
         String bannerSchoolText = props.getProperty(csg_Prop.BANNER_SCHOOL_TEXT.toString());
         bannerSchoolLabel = new Label(bannerSchoolText);
         String changeText1 = props.getProperty(csg_Prop.CHANGE_BUTTON1_TEXT.toString());
         changeButton1 = new Button(changeText1);
         bannerSchoolBox.getChildren().add(bannerSchoolLabel);
-        imageBanner = new ImageView();
-        //bannerSchoolBox.getChildren().add(iv1);
-        bannerSchoolLabel.setPadding(new Insets(0, 180, 0, 0));
+        banner  = new Image("http://www3.cs.stonybrook.edu/~cse219/Section02/images/SBUDarkRedShieldLogo.png");
+        imageBanner = new ImageView(banner);
+       
+        bannerSchoolBox.getChildren().add(imageBanner);
+        bannerSchoolLabel.setPadding(new Insets(0, 20, 0, 0));
         bannerSchoolBox.getChildren().add(changeButton1);
         bannerSchoolBox.setPadding(new Insets(10, 0, 0, 10));
         courseDetailsBottom.getChildren().add(bannerSchoolBox);
@@ -636,9 +643,11 @@ public class csg_Workspace extends AppWorkspaceComponent {
         leftFootLabel = new Label(leftFootText);
         String changeText2 = props.getProperty(csg_Prop.CHANGE_BUTTON2_TEXT.toString());
         changeButton2 = new Button(changeText2);
-        imageLeft = new ImageView();
+        left = new Image("http://www3.cs.stonybrook.edu/~cse219/Section02/images/SBUWhiteShieldLogo.jpg");
+        imageLeft = new ImageView(left);
         leftFootBox.getChildren().add(leftFootLabel);
-        leftFootLabel.setPadding(new Insets(0, 196, 0, 0));
+        leftFootLabel.setPadding(new Insets(0, 20, 0, 0));
+        leftFootBox.getChildren().add(imageLeft);
         leftFootBox.getChildren().add(changeButton2);
         leftFootBox.setPadding(new Insets(10, 0, 0, 10));
         courseDetailsBottom.getChildren().add(leftFootBox);
@@ -648,9 +657,12 @@ public class csg_Workspace extends AppWorkspaceComponent {
         rightFootLabel = new Label(rightFootText);
         String changeText3 = props.getProperty(csg_Prop.CHANGE_BUTTON3_TEXT.toString());
         changeButton3 = new Button(changeText3);
-        imageRight = new ImageView();
+        right = new Image("http://www3.cs.stonybrook.edu/~cse219/Section02/images/CSLogo.png");
+        imageRight = new ImageView(right);
         rightFootBox.getChildren().add(rightFootLabel);
-        rightFootLabel.setPadding(new Insets(0, 188, 0, 0));
+        rightFootLabel.setPadding(new Insets(0, 20, 0, 0));
+        rightFootBox.getChildren().add(imageRight);
+        //changeButton3.setPadding(new Insets(0, 20, 0, 0));
         rightFootBox.getChildren().add(changeButton3);
         rightFootBox.setPadding(new Insets(10, 0, 0, 10));
         courseDetailsBottom.getChildren().add(rightFootBox);
