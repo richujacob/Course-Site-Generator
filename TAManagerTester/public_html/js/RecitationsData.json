@@ -1,13 +1,5 @@
 
 {
     "recitations":[
-        {
-            "section":"R01",
-            "instructor":"RA Jack",
-            "day_time":"wednesday 11:30",
-            "location":"india",
-            "ta_1":"richu",
-            "ta_2":"sf"
-        }
     ]
 }

@@ -1,0 +1,33 @@
+
+{
+    "startingMondayMonth":"5",
+    "startingMondayDay":"1",
+    "endingFridayMonth":"5",
+    "endingFridayDay":"26",
+    "holidays":[
+    ],
+    "lectures":[
+        {
+            "month":"5",
+            "day":"17",
+            "title":"dsf",
+            "topic":"sfsdf",
+            "link":"fdsf"
+        }
+    ],
+    "references":[
+    ],
+    "recitations":[
+    ],
+    "hws":[
+        {
+            "month":"5",
+            "day":"16",
+            "title":"dsfsd",
+            "topic":"dsfds",
+            "link":"fdssfsd",
+            "time":"sdfsd",
+            "criteria":"fdsfsd"
+        }
+    ]
+}

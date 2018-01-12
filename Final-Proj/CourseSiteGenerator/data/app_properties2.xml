@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file allows us to easily customize the look and language used
+    in our program's user interface. Note that this properties file is only
+    for the standard controls for an app from the Desktop Java Framework, so
+    it would not include things initialized for the workspace, which is
+    customizable.
+-->
+<properties>
+    <property_list>
+        <property name="APP_TITLE"	    value="TA Yönetici"></property>
+	<property name="APP_LOGO"	    value="TAManagerLogo.png"></property>
+	<property name="APP_PATH_CSS"	    value="style/"></property>
+	<property name="APP_CSS"	    value="csg_style.css"></property>
+        
+        <!-- PROGRAM ICON FILES -->
+        <property name="NEW_ICON"	    value="New.png"></property>
+        <property name="LOAD_ICON"	    value="Load.png"></property>
+        <property name="SAVE_ICON"	    value="Save.png"></property>
+        <property name="SAVE_AS_ICON"	    value="SaveAs.png"></property>
+        <property name="EXPORT_ICON"	    value="Export.png"></property>
+        <property name="EXIT_ICON"          value="Exit.png"></property> 
+	   <property name="UNDO_ICON"		value="Undo.png">
+</property>
+	   <property name="REDO_ICON"		value="Redo.png">
+</property>
+	   <property name="ABOUT_ICON"		value="About.png">
+</property>
+<property name="BANNER_IMAGE"		value="SBUDarkRedShieldLogo.png"></property>
+
+        
+        <!-- TOOLTIPS FOR BUTTONS -->
+        <property name="NEW_TOOLTIP"		value="Yeni bir TA Grid'i oluşturun"></property>
+        <property name="LOAD_TOOLTIP"		value="Var olan bir TA Gridini yükle"></property>
+        <property name="SAVE_TOOLTIP"		value="Mevcut TA Grid'i kaydet"></property>
+        <property name="SAVE_AS_TOOLTIP"        value="Mevcut TA Grid'i aşağıdaki gibi kaydedin:"></property>
+        <property name="EXPORT_TOOLTIP"         value="Mevcut TA Gridini dışa aktar"></property>
+        <property name="EXIT_TOOLTIP"		value="Uygulamadan Çık"></property>
+	  <property name="UNDO_TOOLTIP"		value="Son işlemi geri al"></property>
+	  <property name="REDO_TOOLTIP"		value="Son işlemi tekrarla"></property>
+	  <property name="ABOUT_TOOLTIP"		value="Uygulama hakkında bilgi"></property>
+
+
+        
+        <!-- ERROR MESSAGES -->
+        <property name="CLOSE_BUTTON_TEXT"              value="Kapat"></property>
+
+        <property name="NEW_ERROR_MESSAGE"              value="Yeni çalışma oluşturulurken bir hata oluştu."></property>
+        <property name="NEW_ERROR_TITLE"		value="Yeni İş Hatası"></property>
+        <property name="LOAD_ERROR_MESSAGE"             value="Yükleme işlemi sırasında bir hata oluştu."></property>
+        <property name="LOAD_ERROR_TITLE"		value="Yükleme İşi Hatası"></property>
+        <property name="SAVE_ERROR_MESSAGE"             value="İşin kaydedilmesi sırasında bir hata oluştu."></property>
+        <property name="SAVE_ERROR_TITLE"		value="İş Hatasını Kaydet"></property>
+        <property name="PROPERTIES_LOAD_ERROR_MESSAGE"	value="Bir özellik dosyası yüklenirken bir hata oluştu."></property>	
+        <property name="PROPERTIES_LOAD_ERROR_TITLE"	value="Özellikler Dosya Yükleme Hatası"></property>
+	
+        <!-- VERIFICATION MESSAGES -->
+	
+        <property name="NEW_COMPLETED_MESSAGE"		value="Düzenlemeye Hazır Yeni İşler"></property>
+        <property name="NEW_COMPLETED_TITLE"		value="Yeni İş Oluştu"></property>
+        <property name="LOAD_COMPLETED_MESSAGE"		value="Dosya Yükleme Tamamlandı ve düzenleme için hazır"></property>
+        <property name="LOAD_COMPLETED_TITLE"		value="Yükleme Tamamlandı"></property>
+        <property name="SAVE_COMPLETED_MESSAGE"		value="Dosya Kaydetme Tamamlandı"></property>
+        <property name="SAVE_COMPLETED_TITLE"		value="Tasarruf Tamamlandı"></property>
+        <property name="SAVE_UNSAVED_WORK_MESSAGE"	value="Kaydedilmemiş eserinizi önce kaydetmek ister misiniz?"></property>
+        <property name="SAVE_UNSAVED_WORK_TITLE"	value="Kaydedilmemiş eseri kaydet"></property>
+	
+        <property name="NEW_CREATED_MESSAGE"		value="Yeni İş Oluşturuldu, ancak Henüz Kaydedilmedi"></property>
+        <property name="WORK_LOADED_MESSAGE"		value="İşler Yüklendi"></property>
+        <property name="WORK_SAVED_MESSAGE"		value="İş Kaydedildi"></property>
+        <property name="SAVE_UNSAVED_WORK_MESSAGE"	value="Kaydedilmemiş eserinizi önce kaydetmek istiyor musunuz?"></property>
+	<property name="SAVE_WORK_TITLE"		value="Çalışmanızı kurtarın"></property>
+	<property name="LOAD_WORK_TITLE"		value="Yüklenecek iş dosyasını seçin"></property>
+	<property name="WORK_FILE_EXT"			value="json"></property>
+	<property name="EXPORT_FILE_EXT"		value="html"></property>
+	<property name="WORK_FILE_EXT_DESC"		value="TA Çalışma Saatleri"></property>
+
+        <!-- WORKSPACE CONTROLS STUFF -->        
+        <property name="TAS_HEADER_TEXT"                value="Öğretim Görevlileri"></property>
+        <property name="NAME_COLUMN_TEXT"               value="İsim"></property>
+        <property name="EMAIL_COLUMN_TEXT"              value="E-posta"></property>
+		<property name="USETA_COLUMN_TEXT"				value="Lisans diploması"></property>
+        <property name="NAME_PROMPT_TEXT"               value="İsim"></property>
+		<property name="USE_COLUMN_TEXT"                value="Kullan"></property>
+		<property name="NAVBAR_COLUMN_TEXT"             value="Navbar Başlığı"></property>
+		<property name="FILE_COLUMN_TEXT"               value="Dosya adı"></property>
+		<property name="SCRIPT_COLUMN_TEXT"             value="Senaryo"></property>
+		<property name="SECTION_COLUMN_TEXT"			value="Bölüm"></property>
+		<property name="INSTRUCTOR_COLUMN_TEXT"			value="Eğitmen"></property>
+		<property name="DAYTIME_COLUMN_TEXT"			value="Gündüz"></property>
+		<property name="LOCATION_COLUMN_TEXT"			value="yer"></property>
+		<property name="TA1_COLUMN_TEXT"				value="TA"></property>
+		<property name="TA2_COLUMN_TEXT"				value="TA"></property>
+	    <property name="EMAIL_PROMPT_TEXT"              value="E-posta"></property>
+        <property name="ADD_BUTTON_TEXT"                value="TA ekle"></property>
+        <property name="UPDATE_BUTTON_TEXT"             value="TA'yı güncelle"></property>
+        <property name="CLEAR_BUTTON_TEXT"              value="Açık"></property>
+	  <property name="CHANGE_BUTTON_TEXT" 		value="Değişiklik"></property>
+	  <property name="SELECT_TEMPLATE_BUTTON" 		value="Şablon Dizini'ni seçin"></property>
+	  <property name="RECITATION_DELETE_BUTTON"			value="-"></property>
+        <property name="ADDUPDATE_BUTTON2_TEXT"			value="Ekle / Güncelle"></property>
+		<property name="CLEAR_BUTTON2_TEXT"				value="Açık"></property>	
+		<property name="OFFICE_HOURS_SUBHEADER"         value="Çalışma Saatleri Izgara"></property>
+        <property name="OFFICE_HOURS_REMOVED_TITLE"     value="Bazı çalışma saatleri kaybolacak mıydı?"></property>
+        <property name="OFFICE_HOURS_REMOVED_MESSAGE"   value="Bu çalışma saatlerini kaldırdığınızdan emin misiniz?"></property>
+        <property name="START_OVER_END_TITLE"           value="Başlamadan önce bitemez!"></property>
+        <property name="START_OVER_END_MESSAGE"         value="Başlamadan önce bitemez!"></property>
+	   <property name="COURSE_INFO_TEXT"		value="Dersin Bilgileri"></property>
+	   <property name="SUBJECT_TEXT"			value="Konu"></property>
+	   <property name="NUMBER_TEXT"			value="Numara"></property>
+	   <property name="SEMESTER_TEXT"			value="Yarıyıl"></property>
+	   <property name="YEAR_EXIT"			value="Yıl"></property>
+	   <property name="TITLE_TEXT"			value="Başlık"></property>
+	   <property name="INSTRUCTOR_NAME_TEXT"	value="Eğitmen Adı"></property>
+	   <property name="INSTRUCTOR_HOME_TEXT"	value="Eğitmen Ana Sayfası"></property>
+	   <property name="EXPORT_DIR_TEXT"		value="İhracat Müdürü."></property>
+	   <property name="EXPORT_TEXT"		value=""></property>
+	   <property name="SITE_TEMPLATE_TEXT"		value="Site Şablonu"></property>
+	   <property name="DIR_INSTRUCTIONS_TEXT"		value="Seçili dizinde tam site şablonu bulunmalıdır"></property>
+	   <property name="FILE_TEMPLATE_TEXT"		value="dosyası\cse219"></property>
+	   <property name="FILE_TEMPLATE_TEXT"		value="Şablonlar\cse219"></property>
+	   <property name="SITE_PAGES_TEXT"		value="Site Sayfaları:"></property>
+	   <property name="PAGE_STYLE_TEXT" 		value="Sayfa Stili"></property>
+	   <property name="BANNER_SCHOOL_TEXT"		value="Afiş Okulu Resim:"></property>
+	   <property name="LEFT_FOOTER_TEXT"		value="Sol Altbilgi Resmi:"></property>
+	   <property name="RIGHT_FOOTER_TEXT"		value="Sağ Altbilgi Resmi:"></property>
+	   <property name="STYLESHEET_TEXT"			value="Stil sayfası:"></property>
+	   <property name="STYLE_NOTE_TEXT"			value="NOT: Yeni stil sayfaları, seçilebilir olmak için iş / css içine yerleştirilebilir"></property>
+	   <property name="CHANGE_BUTTON1_TEXT" 		value="Değişiklik"></property>
+	   <property name="CHANGE_BUTTON2_TEXT" 		value="Değişiklik"></property>
+	   <property name="CHANGE_BUTTON3_TEXT" 		value="Değişiklik"></property>
+	   <property name="COURSE_DETAILSTAB_TEXT"		value="kurs ayrıntıları"></property>
+	   <property name="TA_DATATAB_TEXT"				value="TA Verileri"></property>
+	   <property name="RECITATION_TAB_TEXT"			value="Recitation"></property>
+	   <property name="SCHEDULE_TAB_TEXT"			value="Zamanlama"></property>
+	   <property name="PROJECTS_TAB_TEXT"			value="Projeler"></property>
+	   <property name="RECITATION_HEADER_TEXT"		value="Seslendirmeler"></property>
+	   <property name="ADDEDIT_HEADER_TEXT"			value="Ekle/Düzenle"></property>
+		<property name="SECTION_TEXT"					value="Bölüm:"></property>
+		<property name="INSTRUCTOR_TEXT"				value="Eğitmen:"></property>
+		<property name="DAYTIME_TEXT"					value="Gündüz:"></property>
+		<property name="LOCATION_TEXT"					value="Yer:"></property>
+		<property name="SUPERVISING_TA1_TEXT"			value="Denetleme TA:"></property>
+		<property name="SUPERVISING_TA2_TEXT"			value="Denetleme TA:"></property>
+		<property name="SCHEDULE_HEADER_TEXT"			value="Zamanlama"></property>
+		<property name="CALENDAR_BOUNDS_TEXT"			value="Takvim sınırları"></property>
+		<property name="STARTING_MONDAY_TEXT"			value="Pazartesi başlıyor"></property>
+		<property name="ENDING_FRIDAY_TEXT"				value="Cuma bitiyor"></property>
+		<property name="SCHEDULE_ITEMS_TEXT"			value="Zamanlama Öğeleri"></property>
+		<property name="SCHEDULE_DELETE_BUTTON"			value="-"></property>
+		<property name="TYPE_COLUMN_TEXT"				value="Tip"></property>
+		<property name="DATE_COLUMN_TEXT"				value="Tarih"></property>
+		<property name="TITLE_COLUMN_TEXT"				value="Başlık"></property>
+		<property name="TOPIC_COLUMN_TEXT"				value="Konu"></property>
+		<property name="ADDEDIT_SCHEDULE_TEXT"			value="Ekle/Düzenle"></property>
+		<property name="TYPE_TEXT"						value="Yazın:"></property>
+		<property name="DATE_TEXT"						value="Tarih:"></property>
+		<property name="TIME_TEXT"						value="Zaman:"></property>		
+		<property name="TITLE_SCHEDULE_TEXT"			value="Başlık:"></property>
+		<property name="TOPIC_TEXT"						value="Konu:"></property>
+		<property name="LINK_TEXT"						value="Bağlantı:"></property>
+		<property name="CRITERIA_TEXT"					value="Kriterler:"></property>
+		<property name="ADDUPDATE_BUTTON3_TEXT"			value="Ekle/Güncelle"></property>
+		<property name="CLEAR_BUTTON3_TEXT"				value="Açık"></property>
+		<property name="PROJECTS_HEADER_TEXT"			value="Projeler"></property>
+		<property name="TEAMS_HEADER_TEXT"				value="Takımlar"></property>
+		<property name="TEAMS_DELETE_BUTTON"			value="-"></property>
+		<property name="NAME_TEAMS_COLUMN"				value="İsim"></property>
+		<property name="COLOR_TEAMS_COLUMN"				value="Renk(altıköşe#)"></property>
+		<property name="TEXTCOLOR_TEAMS_COLUMN"			value="Metin Rengi(altılısayı#)"></property>
+		<property name="LINK_TEAMS_COLUMN"				value="Bağlantı"></property>
+		<property name="ADDEDIT_TEAMS_TEXT"				value="Ekle/Düzenle"></property>
+		<property name="NAME_TEAMS_TEXT"				value="İsim:"></property>
+		<property name="COLOR_TEAMS_TEXT"				value="Renk:"></property>
+		<property name="TEXTCOLOR_TEAMS_TEXT"			value="Metin Rengi:"></property>
+		<property name="LINK_TEAMS_TEXT"				value="Bağlantı:"></property>
+		<property name="ADDUPDATE_BUTTON4_TEXT"			value="Ekle/Güncelle"></property>
+		<property name="CLEAR_BUTTON4_TEXT"				value="Açık"></property>
+		<property name="STUDENTS_HEADER_TEXT"			value="Öğrenciler"></property>
+		<property name="STUDENTS_DELETE_BUTTON"			value="-"></property>
+		<property name="FIRSTNAME_COLUMN"				value="İlk İsim"></property>
+		<property name="LASTNAME_COLUMN"				value="Soyadı İsim"></property>
+		<property name="TEAM_COLUMN"					value="Takım"></property>
+		<property name="ROLE_COLUMN"					value="Rolü"></property>
+		<property name="ADDEDIT_STUDENTS_TEXT"			value="Add/Edit"></property>
+		<property name="FIRSTNAME_TEXT"					value="İlk İsim:"></property>
+		<property name="LASTNAME_TEXT"					value="Soyadı İsim:"></property>
+		<property name="TEAM_TEXT"						value="Takım:"></property>
+		<property name="ROLE_TEXT"						value="Rolü:"></property>
+		<property name="ADDUPDATE_BUTTON5_TEXT"			value="Ekle/Güncelle"></property>
+		<property name="CLEAR_BUTTON5_TEXT"				value="Açık"></property>
+
+        
+        <property name="TIME_12AM"                      value="12 am"></property>
+        <property name="TIME_1AM"                      value="1 am"></property>
+        <property name="TIME_2AM"                      value="2 am"></property>
+        <property name="TIME_3AM"                      value="3 am"></property>
+        <property name="TIME_4AM"                      value="4 am"></property>
+        <property name="TIME_5AM"                      value="5 am"></property>
+        <property name="TIME_6AM"                      value="6 am"></property>
+        <property name="TIME_7AM"                      value="7 am"></property>
+        <property name="TIME_8AM"                      value="8 am"></property>
+        <property name="TIME_9AM"                      value="9 am"></property>
+        <property name="TIME_10AM"                      value="10 am"></property>
+        <property name="TIME_11AM"                      value="11 am"></property>
+        <property name="TIME_12PM"                      value="12 pm"></property>
+        <property name="TIME_1PM"                      value="1 pm"></property>
+        <property name="TIME_2PM"                      value="2 pm"></property>
+        <property name="TIME_3PM"                      value="3 pm"></property>
+        <property name="TIME_4PM"                      value="4 pm"></property>
+        <property name="TIME_5PM"                      value="5 pm"></property>
+        <property name="TIME_6PM"                      value="6 pm"></property>
+        <property name="TIME_7PM"                      value="7 pm"></property>
+        <property name="TIME_8PM"                      value="8 pm"></property>
+        <property name="TIME_9PM"                      value="9 pm"></property>
+        <property name="TIME_10PM"                      value="10 pm"></property>
+        <property name="TIME_11PM"                      value="11 pm"></property>
+	   <property name="COURSE_CSE"	value="CSE"></property>
+	   <property name="NUMBER_219"	value="219"></property>
+	   <property name="NUMBER_308"	value="308"></property>
+ 	   <property name="SEMESTER_FALL"	 		value="Düşmek"			></property>
+	   <property name="SEMESTER_SPRING"	 	value="İlkbahar"			></property>
+	   <property name="YEAR_2017"	 		value="2017"			></property>
+	   <property name="SEA_WOLF"			value="sea_wolf.css"></property>
+	   <property name="NAME_JOE"					value="Joe Shmo"></property>
+	   <property name="NAME_JANE"					value="Jane Doe"></property>
+		<property name="TYPE_HOLIDAY"				value="Tatil"></property>
+		<property name="TYPE_LECTURE"				value="Ders"></property>
+		<property name="TYPE_BREAK"					value="Kırılma"></property>
+		<property name="TYPE_HW"					value="HW"></property>
+		<property name="TYPE_REFERENCES"			value="Denetlenen"></property>
+		<property name="TYPE_RECITATION"			value="Seslendirmeler"></property>
+		<property name="TEAM_1"					value="Team 1"></property>
+		<property name="TEAM_2"					value="Team 2"></property>
+		<property name="TEAM_3"					value="Team 3"></property>
+        
+        <!-- WORKSPACE ERROR MESSAGES -->
+        <property name="MISSING_TA_NAME_TITLE"          value="Eksik TA Adı"></property>
+        <property name="MISSING_TA_NAME_MESSAGE"        value="Bir TA Adını sağlamalısınız"></property>
+        <property name="MISSING_TA_EMAIL_TITLE"         value="Eksik Tayland E-postası"></property>
+        <property name="MISSING_TA_EMAIL_MESSAGE"       value="Bir TA e-postası sağlamalısınız"></property>
+        <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_TITLE"     value="TA Adı ve E-postası Benzersiz Değil"></property>
+        <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="Benzersiz bir TA Adı ve E-postası sağlamalısınız"></property>
+        <property name="TA_EMAIL_INVALID_TITLE"     value="TA e-posta geçersiz"></property>
+        <property name="TA_EMAIL_INVALID_MESSAGE"   value="Geçerli bir E-posta göndermelisiniz"></property>
+		<property name="MISSING_SECTION_TITLE"		value="Eksik bölüm adı"></property>
+		<property name="MISSING_INSTRUCTOR_TITLE"		value="Eksik eğitmen adı"></property>
+		<property name="MISSING_DAYTIME_TITLE"		value="Eksik gün ve saat"></property>
+		<property name="MISSING_LOCATION_TITLE"		value="Konum eksik"></property>
+		<property name="MISSING_SUPERVISING1_TITLE"		value="Denetlenen TA adını eksik"></property>
+		<property name="MISSING_SUPERVISING2_TITLE"		value="Denetlenen TA adını eksik"></property>
+		<property name="REC_TITLE_NOT_UNIQUE_TITLE"		value="Benzersiz bir anlatım sağlamalıdır"></property>
+		<property name="MISSING_SECTION_REC"		value="Bir bölüm adı sağlamalısınız"></property>
+		<property name="MISSING_INSTRUCTOR_REC"		value="Eğitmen adını vermelisin"></property>
+		<property name="MISSING_DAYTIME_REC"		value="Bir gün ve saat vermelisin"></property>
+		<property name="MISSING_LOCATION_REC"		value="Bir yer sağlamalısınız"></property>
+		<property name="MISSING_SUPERVISING1_REC"		value="Denetimli bir TA sağlamalısınız"></property>
+		<property name="MISSING_SUPERVISING2_REC"		value="Denetimli bir TA sağlamalısınız"></property>
+		<property name="REC_TITLE_NOT_UNIQUE"		value="Benzersiz bir açıklama yapmalısınız"></property>
+		<property name="SCH_START_BEFORE_END_TITLE"		value="Başlama hatasından önce bitir"></property>
+		<property name="START_NOT_MONDAY_TITLE"		value="Başlangıç ​​günü hatası"></property>
+		<property name="END_NOT_FRIDAY_TITLE"		value="Bitiş günü hatası"></property>
+		<property name="DATE_NOT_RANGE_TITLE"		value="Geçersiz tarih"></property>
+		<property name="SCH_START_BEFORE_END_MESSAGE"		value="Bitiş tarihi, başlangıç ​​tarihinden sonra olmalı"></property>
+		<property name="START_NOT_MONDAY_MESSAGE"		value="Başlama günü bir Pazartesi olmalı"></property>
+		<property name="END_NOT_FRIDAY_MESSAGE"		value="Bitiş günü bir Cuma olmalı"></property>
+		<property name="DATE_NOT_RANGE_MESSAGE"		value="Tarih geçerli aralıkta değil"></property>
+		<property name="TYPE_MISSING_TITLE"		value="Takvim türü eksik"></property>
+		<property name="DATE_MISSING_TITLE"		value="Takvim tarihi eksik"></property>
+		<property name="TITLE_MISSING_TITLE"		value="Takvim başlığı eksik"></property>
+		<property name="TYPE_MISSING_MESSAGE"		value="Bir zamanlama türü sağlamalısınız"></property>
+		<property name="DATE_MISSING_MESSAGE"		value="Bir zamanlama tarihi belirtmelisiniz"></property>
+		<property name="TITLE_MISSING_MESSAGE"		value="Bir zamanlama başlığı sağlamalısınız"></property>
+		<property name="SCH_NOT_UNIQUE_TITLE"		value="Benzersiz bir anlatım"></property>
+		<property name="SCH_NOT_UNIQUE_MESSAGE"		value="Benzersiz bir yapmalısınız"></property>
+		<property name="NAME_MISSING_TEAM_TITLE"		value="Takım adı eksik"></property>
+		<property name="COLOR_MISSING_TITLE"		value="Takım rengi eksik"></property>
+		<property name="TEXTCOLOR_MISSING_TITLE"		value="Takım metin rengi eksik"></property>
+		<property name="LINK_MISSING_TEAM_TITLE"		value="Takım bağlantısı eksik"></property>
+		<property name="NAME_MISSING_TEAM_MESSAGE"		value="Bir takım adı sağlamalısın"></property>
+		<property name="COLOR_MISSING_MESSAGE"		value="Takım rengi sağlamalısın"></property>
+		<property name="TEXTCOLOR_MISSING_MESSAGE"		value="Takım rengi sağlamalısın"></property>
+		<property name="LINK_MISSING_TEAM_MESSAGE"		value="Bir takım bağlantısı sağlamalısınız"></property>
+		<property name="FIRSTNAME_MISSING_TITLE"		value="İlk adı eksik"></property>
+	    <property name="LASTNAME_MISSING_TITLE"		value="Soyadı eksik"></property>
+		<property name="TEAM_MISSING_TITLE"		value="Takım eksik"></property>
+		<property name="ROLE_MISSING_TITLE"		value="Rol eksik"></property>
+		<property name="FIRSTNAME_MISSING_MESSAGE"		value="Bir isim vermelisiniz"></property>
+	    <property name="LASTNAME_MISSING_MESSAGE"		value="Soyadını vermelisin"></property>
+		<property name="TEAM_MISSING_MESSAGE"		value="Bir takım seçmelisin"></property>
+		<property name="ROLE_MISSING_MESSAGE"		value="Bir rol girmelisiniz"></property>
+		<property name="TEAMS_NOT_UNIQUE_TITLE"		value="Benzersiz olmayan takımlar"></property>
+	    <property name="TEAMS_NOT_UNIQUE_MESSAGE"		value="Benzersiz bir takım sağlamalısın"></property>
+		<property name="STUDENTS_NOT_UNIQUE_TITLE"		value="Benzersiz olmayan öğrenciler"></property>
+		<property name="STUDENTS_NOT_UNIQUE_MESSAGE"		value="Benzersiz bir öğrenci sağlamalısın"></property>
+		<property name="TIME_MISSING_TITLE"		value="Zamanlama saati eksik"></property>
+		<property name="TIME_MISSING_MESSAGE"		value="Bir zamanlama zamanı sağlamalısın"></property>
+		
+    </property_list>
+    <property_options_list>
+        <property_options name="OFFICE_HOURS_TABLE_HEADERS">
+            <option>Başlama zamanı</option>
+            <option>Bitiş zamanı</option>
+        </property_options>
+        <property_options name="DAYS_OF_WEEK">
+            <option>PAZARTESİ</option>
+            <option>SALI</option>
+            <option>ÇARŞAMBA</option>
+            <option>PERŞEMBE</option>
+            <option>CUMA</option>
+        </property_options>
+    </property_options_list>
+</properties>

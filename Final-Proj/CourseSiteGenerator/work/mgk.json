@@ -1,0 +1,41 @@
+
+{
+    "startHour":"0",
+    "endHour":"23",
+    "undergrad_tas":[
+        {
+            "name":"name",
+            "email":"name.email@domain.com"
+        }
+    ],
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"9_30am",
+            "name":"name"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"10_30am",
+            "name":"name"
+        }
+    ],
+    "site_pages":[
+    ],
+    "recitations":[
+        {
+            "section":"dsfsd",
+            "instructor":"sfs",
+            "daytime":"sdfsd",
+            "location":"dsfs",
+            "ta":"dsfds",
+            "ta2":"dsfsd"
+        }
+    ],
+    "schedule":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

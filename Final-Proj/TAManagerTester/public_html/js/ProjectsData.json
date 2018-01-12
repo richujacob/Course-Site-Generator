@@ -1,0 +1,34 @@
+{
+    "work": [
+        {
+            "semester": "Spring 2017",
+            "projects": [
+                {
+                    "name": "Dc",
+                    "students": [
+                    "Richu Jacob",
+                    "Shawn jack",
+                    "jon sai",
+                    "pleb star"
+                    ],
+                    "link": "www.bull.com"
+                }
+            ]
+        },
+        {
+            "semester": "Spring 2017",
+            "projects": [
+                {
+                    "name": "Atomic",
+                    "students": [
+                    "dsfd dfdgfd",
+                    "sdgfd sfdgd",
+                    "gdsfds ghfdd",
+                    "dhrth dghf"
+                    ],
+                    "link": "sdfsd"
+                }
+            ]
+        }
+    ]
+}

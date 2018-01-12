@@ -1,0 +1,69 @@
+
+{
+    "startHour":"0",
+    "endHour":"23",
+    "undergrad_tas":[
+        {
+            "use":false,
+            "name":"name",
+            "email":"name.email@domain.com"
+        }
+    ],
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"9_30am",
+            "name":"name"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"10_30am",
+            "name":"name"
+        }
+    ],
+    "site_pages":[
+        {
+            "use":true,
+            "navbarTitle":"Home",
+            "fileName":"index.html",
+            "script":"homebuilder.js"
+        }
+    ],
+    "recitations":[
+        {
+            "section":"R02",
+            "instructor":"Mckenna",
+            "daytime":"Wed 3:30pm - tomorrow",
+            "location":"New CS 321",
+            "ta":"Person",
+            "ta2":""
+        }
+    ],
+    "schedule":[
+        {
+            "type":"Holiday",
+            "date":"05/22/2017",
+            "title":"Spring Break",
+            "topic":"nothing",
+            "time":"time",
+            "link":"link",
+            "criteria":"criteria"
+        }
+    ],
+    "teams":[
+        {
+            "name":"Atomic Comics",
+            "color":"55211",
+            "textColor":"fff ffff",
+            "link":"http://atomic.com"
+        }
+    ],
+    "students":[
+        {
+            "firstName":"RA",
+            "lastName":"Jack",
+            "team":"Atomic Comics",
+            "role":"Lead Designer"
+        }
+    ]
+}

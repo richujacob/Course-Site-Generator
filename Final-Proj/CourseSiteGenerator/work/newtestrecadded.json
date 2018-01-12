@@ -1,0 +1,31 @@
+
+{
+    "startHour":"0",
+    "endHour":"23",
+    "undergrad_tas":[
+        {
+            "name":"sdf",
+            "email":"dsfsd.sdfsd@sdfsd.edi"
+        }
+    ],
+    "officeHours":[
+    ],
+    "site_pages":[
+    ],
+    "recitations":[
+        {
+            "section":"xcvsdf",
+            "instructor":"dsfsdf",
+            "daytime":"dsfsgs",
+            "location":"sdsdsdf",
+            "ta":"Jane Doe",
+            "ta2":"Joe Shmo"
+        }
+    ],
+    "schedule":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

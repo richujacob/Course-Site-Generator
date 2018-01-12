@@ -23,7 +23,7 @@
     ],
     "site_pages":[
         {
-            "use":true,
+            "use":false,
             "navbarTitle":"Home",
             "fileName":"index.html",
             "script":"homebuilder.js"
@@ -42,7 +42,7 @@
     "schedule":[
         {
             "type":"Holiday",
-            "date":"05/22/2017",
+            "date":"Today",
             "title":"Spring Break",
             "topic":"nothing",
             "time":"time",

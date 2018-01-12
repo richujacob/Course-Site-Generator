@@ -1,0 +1,41 @@
+
+{
+    "startHour":"0",
+    "endHour":"23",
+    "undergrad_tas":[
+        {
+            "name":"name",
+            "email":"name.email@domain.com"
+        }
+    ],
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"9_30am",
+            "name":"name"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"10_30am",
+            "name":"name"
+        }
+    ],
+    "site_pages":[
+    ],
+    "recitations":[
+        {
+            "section":"R02",
+            "instructor":"Mckenna",
+            "daytime":"Wed 3:30pm - tomorrow",
+            "location":"New CS 321",
+            "ta":"Person",
+            "ta2":"Person"
+        }
+    ],
+    "schedule":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

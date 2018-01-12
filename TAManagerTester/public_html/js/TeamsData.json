@@ -1,0 +1,38 @@
+
+{
+    "teams":[
+        {
+            "name":"Dc",
+            "red":"128",
+            "green":"51",
+            "blue":"77",
+            "text_color":"6680e6"
+        }
+    ],
+    "students":[
+        {
+            "lastName":"fdsfsd",
+            "firstName":"sdfsd",
+            "team":"Dc",
+            "role":"Data Designer"
+        },
+        {
+            "lastName":"sdfsd",
+            "firstName":"dsfsdf",
+            "team":"Dc",
+            "role":"Project Manager"
+        },
+        {
+            "lastName":"re",
+            "firstName":"tre",
+            "team":"Dc",
+            "role":"Lead Programmer"
+        },
+        {
+            "lastName":"vbcv",
+            "firstName":"vbvc",
+            "team":"Dc",
+            "role":"Lead Designer"
+        }
+    ]
+}

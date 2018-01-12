@@ -1,0 +1,69 @@
+
+{
+    "teams":[
+        {
+            "name":"Dc",
+            "red":"128",
+            "green":"51",
+            "blue":"77",
+            "text_color":"6680e6"
+        },
+        {
+            "name":"Atomic",
+            "red":"255",
+            "green":"102",
+            "blue":"102",
+            "text_color":"cccc33"
+        }
+    ],
+    "students":[
+        {
+            "lastName":"fdsfsd",
+            "firstName":"sdfsd",
+            "team":"Dc",
+            "role":"Data Designer"
+        },
+        {
+            "lastName":"sdfsd",
+            "firstName":"dsfsdf",
+            "team":"Dc",
+            "role":"Project Manager"
+        },
+        {
+            "lastName":"re",
+            "firstName":"tre",
+            "team":"Dc",
+            "role":"Lead Programmer"
+        },
+        {
+            "lastName":"vbcv",
+            "firstName":"vbvc",
+            "team":"Dc",
+            "role":"Lead Designer"
+        },
+        {
+            "lastName":"dgfs",
+            "firstName":"dsgg",
+            "team":"Atomic",
+            "role":"Data Designer"
+        },
+        {
+            "lastName":"sdfds",
+            "firstName":"sdsfd",
+            "team":"Atomic",
+            "role":"Project Manager"
+        },
+        {
+            "lastName":"gdsfds",
+            "firstName":"gfssd",
+            "team":"Atomic",
+            "role":"Lead Programmer"
+        },
+        {
+            "lastName":"dfgffdg",
+            "firstName":"dsgddh",
+            "team":"Atomic",
+            "role":"Lead Designer"
+        }
+    ]
+}

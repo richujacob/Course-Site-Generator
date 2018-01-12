@@ -21,6 +21,26 @@
     ],
     "officeHours":[
         {
+            "day":"MONDAY",
+            "time":"0_00am",
+            "name":"sf"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"0_00am",
+            "name":"sf"
+        },
+        {
+            "day":"MONDAY",
+            "time":"0_30am",
+            "name":"richu"
+        },
+        {
+            "day":"MONDAY",
+            "time":"1_00am",
+            "name":"richu"
+        },
+        {
             "day":"WEDNESDAY",
             "time":"1_00am",
             "name":"richu"
@@ -84,10 +104,28 @@
     ],
     "students":[
         {
-            "firstName":"Shawn",
-            "lastName":"Belly Button",
+            "firstName":"sdfsd",
+            "lastName":"fdsfsd",
             "team":"Dc",
-            "role":"sdfsd"
+            "role":"Data Designer"
+        },
+        {
+            "firstName":"dsfsdf",
+            "lastName":"sdfsd",
+            "team":"Dc",
+            "role":"Project Manager"
+        },
+        {
+            "firstName":"tre",
+            "lastName":"re",
+            "team":"Dc",
+            "role":"Lead Programmer"
+        },
+        {
+            "firstName":"vbvc",
+            "lastName":"vbcv",
+            "team":"Dc",
+            "role":"Lead Designer"
         }
     ]
 }
